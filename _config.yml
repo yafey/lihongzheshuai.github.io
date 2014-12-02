@@ -27,10 +27,10 @@ kramdown:
 
 # Site owner
 owner:
-  name: Your Name
-  avatar: bio-photo.jpg
-  bio: "Describe your self."
-  email: 
+  name: OneCoder
+  avatar: onecoder-photo.jpg
+  bio: "I am a coder."
+  email: wushikezuo@gmail.com
   disqus-shortname: 
   twitter: #username
   facebook: #username
