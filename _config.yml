@@ -41,8 +41,8 @@ owner:
     ad-client: 
     ad-slot: 
   bing-verify: 
-  github: #username
-  stackoverflow: #http://stackoverflow.com/users/123456/username
+  github: https://github.com/lihongzheshuai
+  stackoverflow: #username
   linkedin: #username
   instagram: #username
   lastfm: #username
