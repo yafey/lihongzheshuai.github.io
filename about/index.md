@@ -1,26 +1,16 @@
 ---
 layout: page
-title: About the Jekyll Theme
-excerpt: "So Simple is a responsive Jekyll theme for your words and images."
-modified: 2014-08-08T19:44:38.564948-04:00
+title: 关于我
+excerpt: "About OneCoder"
+modified: 2014-12-04
 image:
-  feature: so-simple-sample-image-4.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: onecoder.jpg
+  credit: OneCoder
+  creditlink: http://www.coderli.com
 ---
 
-Looking for a simple, responsive, theme for your Jekyll powered blog? Well look no further. Here be **So Simple Theme**, the follow up to [**Minimal Mistakes**](http://mmistakes.github.io/minimal-mistakes) --- by designer slash illustrator [Michael Rose](http://mademistakes.com).
+关于我(OneCoder)
+一个简单的而普通的coder，因为对其他语言的不擅长而擅长Java。 以Java为生，但非为Java而生，不抗拒任何语言和技术。 热爱生活，享受与家人相处的乐趣。 享受coding，时而消遣，时而奋斗。 曾以苦逼coder自嘲，并以此名在51CTO建立博客。 不想儿女也以苦逼老爹称呼，遂为博客取名为One Coder。 So, I'm just a coder.
 
-## So Simple Theme is all about:
-
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 9+ and all modern browsers.
-* Minimal embellishments and subtle animations.
-* Optional large feature images for posts and pages.
-* [Custom 404 page]({{ site.url }}/404.html) to get you started.
-* [Simple site search](https://github.com/christian-fei/Simple-Jekyll-Search)
-* Support for Disqus Comments
-
-<a markdown="0" href="{{ site.url }}/theme-setup" class="btn">Install So Simple Theme</a>
-
-[^1]: Example: *domain.com/category-name/post-title*
+QQ:[57959968](http://sighttp.qq.com/authd?IDKEY=d4042de87d3e305ee0aec0492e660fa65d2c8890afde394b)
+Github:[https://github.com/lihongzheshuai](https://github.com/lihongzheshuai)
