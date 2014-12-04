@@ -235,7 +235,7 @@ span + .entry-title {
 		@include font-size(52,yes,54);
 	}
 	@include media($large) {
-		@include font-size(68,yes,72);
+		@include font-size(48,yes,72);
 	}
 }
 .entry-wrapper {
