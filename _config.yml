@@ -7,10 +7,10 @@ url:              http://onecoder.gitcafe.com
 
 # Jekyll configuration
 
-permalink:   /:categories/:title/
+permalink:   /blog/:title/
 markdown:    kramdown
 highlighter: true
-permalink: pretty
+
 sass:
   sass_dir: _sass
   style: compressed
