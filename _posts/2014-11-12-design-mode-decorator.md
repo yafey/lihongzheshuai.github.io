@@ -4,7 +4,8 @@ title: 乱学设计模式——装饰模式
 date: 2014-11-12 18:25
 author: onecoder
 comments: true
-categories: [decorator, Java, 装饰模式, 设计模式]
+tags: [decorator, Java, 装饰模式, 设计模式]
+thread_key: 1854
 ---
 码农写码3，4年，设计模式用了不少，但又有一种在乱用的感觉。要么叫不出名字，要么感觉摸不到其精髓。其实所谓Java中的23种设计模式，OneCoder之前也乱乱的看过几遍，但是至今感觉也没有什么深刻的领悟。
 
@@ -43,7 +44,8 @@ GoF《设计模式》中说道：动态的给一个对象添加一些额外的�
 其中ReviewChineseDecorator和ReviewEnglishDecorator就是两个装饰器。装饰的是ReviewImpl。这里设想的是这样的场景，一个人想要进行复习(ReviewImpl.doReview())，本来只有一些特定内容要复习。结果，后来又增加的中文和英文的复习任务。这个时候，如果不应用设计模式，那么就要修改doReview的代码，增加英语和语文复习的内容。这自然范围了开闭原则。当然你也可以采用继承，增加子类，但是这又违反了合成复用原则。而且，那种在调用者一端构造一堆子类实例然后调用的方式，又显得不够优雅。于是，装饰模式来了。
 
 装饰器与被装饰者实现同一个接口，并持有被装饰着实例，从而可以动态的为被装饰着添加功能。代码如下：
-<pre class="brush:java">/**
+{% highlight java %}
+/**
 * Created by OneCoder on 2014/11/12.
 */
 public class ReviewEnglishDecorator  implements Review {
@@ -89,9 +91,11 @@ public class DecoratorMain {
     }
 
 }
-</pre>
+{% endhighlight %}
 调用者的代码是不是看起来特别的熟悉，我们在使用Java中的各种流的时候，经常遇到这种代码：
-<pre class="brush:java">InputStream input = new DataInputStream(new BufferedInputStream(new FileInputStream("C:/test.exe")));</pre>
+{% highlight java %}
+InputStream input = new DataInputStream(new BufferedInputStream(new FileInputStream("C:/test.exe")));
+{% endhighlight %}
 这就是典型的装饰模式。
 
 其实网上关于各种设计模式的介绍导出都是，有很多其实讲的都很清楚。这里OneCoder只是为了自己能加深印象，深入理解，自己讲给自己听的而已。
