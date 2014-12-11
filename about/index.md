@@ -1,25 +1,17 @@
 ---
 layout: page
 title: About the Theme
-tags: [about, Jekyll, theme, responsive]
-modified: 2014-08-08T20:53:07.573882-04:00
+tags: [about, Jekyll, onecoder]
+modified: 2014-12-11T20:53:07.573882-04:00
 comments: true
 image:
-  feature: sample-image-2.jpg
-  credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  feature: 
+  credit: 
+  creditlink:
 ---
 
-Minimal Mistakes is responsive Jekyll theme with large featured images and solid typography. As the name implies the styling is fairly minimal to make it easier for you to build on top of.
+##关于我
 
-## Minimal Mistakes is all about:
+关于我(OneCoder) 一个简单的而普通的coder，因为对其他语言的不擅长而擅长Java。 以Java为生，但非为Java而生，不抗拒任何语言和技术。 热爱生活，享受与家人相处的乐趣。 享受coding，时而消遣，时而奋斗。 曾以苦逼coder自嘲，并以此名在51CTO建立博客。 不想儿女也以苦逼老爹称呼，遂为博客取名为One Coder。 So, I’m just a coder.
 
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 8+ and all modern browsers. 
-* Minimal embellishments -- content first.
-* Optional large feature images for posts and pages.
-* Simple and clear permalink structure.
-* [Custom 404 page](http://mmistakes.github.io/minimal-mistakes/404.html) to get you started.
-* Support for Disqus Comments
-
-<a markdown="0" href="{{ site.url }}/theme-setup" class="btn">Install Minimal Mistakes Theme</a>
+QQ:[57959968](http://sighttp.qq.com/authd?IDKEY=d4042de87d3e305ee0aec0492e660fa65d2c8890afde394b)

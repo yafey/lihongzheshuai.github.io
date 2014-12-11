@@ -7,7 +7,7 @@ url:              http://onecoder.gitcafe.com
 
 # Jekyll configuration
 
-permalink:   /blog/:title/
+permalink:   /:title/
 markdown:    kramdown
 highlighter: true
 
@@ -41,7 +41,7 @@ owner:
     ad-client: 
     ad-slot: 
   bing-verify: 
-  github: https://github.com/lihongzheshuai
+  github: lihongzheshuai
   stackoverflow: #username
   linkedin: #username
   instagram: #username
