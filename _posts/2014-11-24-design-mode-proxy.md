@@ -35,7 +35,8 @@ thread_key: 1862
 对比装饰模式，感觉非常相近，所以才会有之前一直提到的文章。代理模式感觉是一个代理处理了所有其他的事情，装饰模式是需要一系列各种各种的“能人”，各取所长。
 
 实现代码很简单了：
-<pre class="brush:java">/**
+{% highlight java %}
+/**
 * Created by OneCoder on 2014/11/24.
 */
 public class HouseOwner implements ISellHouse {
@@ -65,7 +66,7 @@ public class HouseProxy implements ISellHouse {
         System. out.println("Proxy: Get commision.");
     }
 }
-</pre>
+{% endhighlight %}
 似乎没什么可说的，OneCoder自我感觉是可以区分和使用这两种设计模式了，目的达到了。
 
 PS:
