@@ -9,7 +9,7 @@ url:              http://www.coderli.com
 
 permalink:   /:title/
 markdown:    kramdown
-highlighter: true
+highlighter: pygments
 
 sass:
   sass_dir: _sass
