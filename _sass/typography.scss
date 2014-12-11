@@ -24,6 +24,24 @@ h6 {
 
 // Links
 // --------------------------------------------------
+article {
+	h2 {
+		a {
+			color: $article-link-color;
+			&:visited { 
+				color: $article-linkcolorvisited; 
+			}
+			&:hover { 
+				color: $article-linkcolorhover; 
+			}
+			&:focus { 
+				outline: thin dotted; 
+				color: $article-linkcolorfocus;
+			}
+		}
+	}
+}
+
 a { 
 	text-decoration: none;
 	color: $link-color; 

@@ -2,7 +2,7 @@
 
 title:            OneCoder
 locale:           cn_ZH
-url:              http://www.coderli.com
+url:              http://localhost:4000
 
 
 # Jekyll configuration
