@@ -3,7 +3,7 @@ layout: post
 title: "从wordpress迁移到Github.io、GitCafe"
 modified:
 categories: 
-excerpt:
+excerpt: 最近博客([www.coderli.com](www.coderli.com)) 被几个流氓IP爬的厉害，流量超标。促使我萌生了将博客迁移到github.io的想法。整个迁移过程OneCoder之前也是不熟悉的，不过思路是清晰的。
 tags: [jekyll, blog, gitcafe, github.io]
 image:
   feature:
