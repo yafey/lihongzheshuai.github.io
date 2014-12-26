@@ -17,19 +17,31 @@
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9a56e18de4833e2edd762c36b8163227' type='text/javascript'%3E%3C/script%3E"));
 </script>
-<div>
-<span>blogroll</span>
+<div style="">
+<span>Blogroll</span>
 <table>
-{% for item in site.data.link %}
-{% if (forloop.index0 % 2) == 0 %}
+
+
 <tr>
-{% endif %}
+{% for item in site.data.link limit:6 %}
 <td>
-	<a href="{{ item.url}}" target="_blank"> {{ item.name }}</a>
+	<a href="{{ item.url }}" target="_blank"> {{ item.name }}</a>
   </td>
-{% if (forloop.index0 % 2) == 1 %}
-</tr>
-{% endif %}
 {% endfor %}
+</tr>
+<tr>
+{% for item in site.data.link limit:6 offset:6%}
+<td>
+	<a href="{{ item.url }}" target="_blank"> {{ item.name }}</a>
+  </td>
+{% endfor %}
+</tr>
+<tr>
+{% for item in site.data.link limit:6 offset:12%}
+<td>
+	<a href="{{ item.url }}" target="_blank"> {{ item.name }}</a>
+  </td>
+{% endfor %}
+</tr>
 </table>
 </div>
