@@ -17,7 +17,7 @@ client.getContext().getParameters().add("socketTimeout", "60000");
 {% endhighlight %}
 不过，设置后，OneCoder经测试却发现无效。无论socketTimeout设置为多少。均会在1分钟左右超时。
 
-这好像是由于Restlet默认使用的是一个简单的http服务，而在现在版本中，Restlet提供了很多增强的扩展。其中一个是ext.jetty扩展。即以jetty服务器做服务，启动Rest服务。使用方式很简单，无需修改原有代码，只需增加ext.jetty的依赖即可。</p>
+这好像是由于Restlet默认使用的是一个简单的http服务，而在现在版本中，Restlet提供了很多增强的扩展。其中一个是ext.jetty扩展。即以jetty服务器做服务，启动Rest服务。使用方式很简单，无需修改原有代码，只需增加ext.jetty的依赖即可。
 {% highlight xml %}
  <dependency>
   <groupId>org.restlet.jse</groupId>
@@ -25,7 +25,7 @@ client.getContext().getParameters().add("socketTimeout", "60000");
   <version>2.1.2</version>
 </dependency>
 {% endhighlight %}
-	再次测试，有效。
+再次测试，有效。
 	
 值得一提的是，Restlet提供了很多扩展包。会对默认的Restlet服务进行很多增强。
 
