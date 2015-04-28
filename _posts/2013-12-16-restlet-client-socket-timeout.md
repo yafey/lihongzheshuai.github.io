@@ -4,7 +4,8 @@ title: Restlet 客户端连接超时问题解决
 date: 2013-12-16 13:05
 author: onecoder
 comments: true
-categories: [connection, restlet, restlet, timeout]
+tags: [connection, restlet, timeout, jetty]
+thread_key: 1581
 ---
 <p>
 	使用Restlet进行同步请求，有时可能处理的时间会很长所以需要客户端进行较长时间的等待。从API中查得客户端的设置方式如下：
