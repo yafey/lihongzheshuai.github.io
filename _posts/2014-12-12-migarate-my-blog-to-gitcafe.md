@@ -11,7 +11,7 @@ thread_key: 1863
 date: 2014-12-12T15:18:51+08:00
 ---
 
-最近博客([www.coderli.com](www.coderli.com)) 被几个流氓IP爬的厉害，流量超标。促使我萌生了将博客迁移到github.io的想法。整个迁移过程OneCoder之前也是不熟悉的，不过思路是清晰的。
+最近博客([www.coderli.com](http://www.coderli.com)) 被几个流氓IP爬的厉害，流量超标。促使我萌生了将博客迁移到github.io的想法。整个迁移过程OneCoder之前也是不熟悉的，不过思路是清晰的。
 
 1、 如何在github.io/GitCafe上建立页面。
 github.io就是原github的page功能。建立的方式很简单。首先你需要有一个Github帐号，然后在你的github帐号下建立一个名为：
