@@ -20,11 +20,11 @@ colname integer NOT NULL DEFAULT nextval(’tablename_colname_seq’) );
 ALTER SEQUENCE tablename_colname_seq OWNED BY tablename.colname;
 
 **money** - 用于保存跟钱相关的数据。可支持如：$1,000.00 格式的数据。跟本地位置信息相关。取决于lc_monetary参数的配置。例如：
-｛% highlight sh %}
+｛% highlight bash %}
 mydb=# select '12.34' ::money;
   money  
  ￥12.34
- {% endhighlight %}
+{% endhighlight %}
 
 **character varying(n)**  - 有限可变长度字符串
 
