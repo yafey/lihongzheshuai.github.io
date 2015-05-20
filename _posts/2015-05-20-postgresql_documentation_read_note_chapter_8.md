@@ -25,7 +25,6 @@ mydb=# select '12.34' ::money;
   money  
  ￥12.34
 
-
 **character varying(n)**  - 有限可变长度字符串
 
 **character（n)** - 有限定长字符串。空格补位。
@@ -43,7 +42,8 @@ mydb=# select '12.34' ::money;
 Style Specification Year-Month Interval Day-Time Interval Mixed Interval
 sql_standard 1-2 3 4:05:06 -1-2 +3 -4:05:06
 
-**网络地址类型** - 推荐使用网络地址类型保存相关数据，因为提供了额外的操作和函数支持。具体可参考：http://francs3.blog.163.com/blog/static/405767272012584552165/
+**网络地址类型** - 推荐使用网络地址类型保存相关数据，因为提供了额外的操作和函数支持。具体可参考：[http://francs3.blog.163.com/blog/static/405767272012584552165/
+](http://francs3.blog.163.com/blog/static/405767272012584552165/)
 
 **tsvector** - 排序去重列表。例如：
 SELECT ’a fat cat sat on a mat and ate a fat rat’::tsvector;                              
