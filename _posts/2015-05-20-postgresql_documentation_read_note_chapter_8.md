@@ -3,7 +3,7 @@ layout: post
 title: "Postgresql 9.4 文档阅读笔记-第八章 数据类型"
 modified:
 categories: 
-excerpt:
+excerpt: 记录阅读中在意的点, 给自己一点积累。
 tags: [postgresql, documentation, note]
 image:
   feature:
