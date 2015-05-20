@@ -4,7 +4,7 @@ title: "Postgresql 9.4 文档阅读笔记-第八章 数据类型"
 modified:
 categories: 
 excerpt:
-tags: []
+tags: [postgresql, documentation, note]
 image:
   feature:
 thread_key: 1865
