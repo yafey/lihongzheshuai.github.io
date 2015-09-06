@@ -3,7 +3,7 @@ layout: post
 title: "LeetCode[Algorithms] Two Sum"
 modified:
 categories:
-excerpt: 记录阅读中在意的点, 给自己一点积累。
+excerpt: LeetCode [Two Sum] by OneCoder
 tags: [leetcode, algorithms, two sum]
 image:
   feature:
