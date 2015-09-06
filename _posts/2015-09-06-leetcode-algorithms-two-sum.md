@@ -110,5 +110,5 @@ public class TwoSum {
 }
 {% endhighlight %}
 总结：以空间换时间，解决以前关于HashMap的时间复杂度的误区，查询了HashMap实现相关的文章。
-参考：http://it.deepinmind.com/%E6%80%A7%E8%83%BD/2014/04/24/hashmap-performance-in-java-8.html
+参考：[http://it.deepinmind.com/%E6%80%A7%E8%83%BD/2014/04/24/hashmap-performance-in-java-8.html](http://it.deepinmind.com/%E6%80%A7%E8%83%BD/2014/04/24/hashmap-performance-in-java-8.html "http://it.deepinmind.com/%E6%80%A7%E8%83%BD/2014/04/24/hashmap-performance-in-java-8.html")
 
