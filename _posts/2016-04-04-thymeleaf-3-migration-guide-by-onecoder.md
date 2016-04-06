@@ -29,7 +29,6 @@ Thymeleaf 3.0 BETA版本是稳定且完全覆盖2.1版本的特性，所以，�
 看一个thymeleaf-spring4集成的配置文件例子。
 
 首先你需要更新Maven依赖
-
 ```xml
 <dependency>
   <groupId>org.thymeleaf</groupId>
@@ -42,7 +41,6 @@ Thymeleaf 3.0 BETA版本是稳定且完全覆盖2.1版本的特性，所以，�
   <version>3.0.0.BETA02</version>
 </dependency>
 ```
-
 然后是spring 配置
 
 ```java
