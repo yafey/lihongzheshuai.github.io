@@ -1,15 +1,10 @@
 ---
 layout: page
-title: About
+title: 关于我
 permalink: /about/
+thread_key: 2
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+我，OneCoder， 一个简单的而普通的coder，因为对其他语言的不擅长而擅长Java。 以Java为生，但非为Java而生，不抗拒任何语言和技术。 热爱生活，享受与家人相处的乐趣。 享受coding，时而消遣，时而奋斗。 曾以苦逼coder自嘲，并以此名在51CTO建立博客。 不想儿女也以苦逼老爹称呼，遂为博客取名为One Coder。 So, I’m just a coder.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+QQ:[57959968](http://sighttp.qq.com/authd?IDKEY=d4042de87d3e305ee0aec0492e660fa65d2c8890afde394b)

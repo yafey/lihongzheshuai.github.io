@@ -37,7 +37,14 @@ ul, ol, dl, figure,
     margin-bottom: $spacing-unit / 2;
 }
 
-
+.pagination ｛
+  ul {
+    li.page {
+      list-style: none;
+      float: left;
+    }
+  }
+｝
 
 /**
  * Images
@@ -156,8 +163,9 @@ pre {
  * Wrapper
  */
 .wrapper {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    // max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    // max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    width: 80%;
     margin-right: auto;
     margin-left: auto;
     padding-right: $spacing-unit;

@@ -4,20 +4,84 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">最近发表 {{total_posts}}</h1>
 
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
+        <p>{{ post.excerpt | truncate: 400 }}</p>
+        <a class="read-more" href="{{ post.url | prepend: site.baseurl }}">阅读全文</a>
       </li>
     {% endfor %}
   </ul>
+  <div class="clearfix"></div>
+  <div id="post-pagination" class="pagination">
+    {% if paginator.previous_page %}
+      <p class="previous">
+        {% if paginator.previous_page == 1 %}
+          <a href="/">Previous</a>
+        {% else %}
+          <a href="{{ paginator.previous_page_path }}">上一页</a>
+        {% endif %}
+      </p>
+    {% else %}
+      <p class="previous disabled">
+        <span>上一页</span>
+      </p>
+    {% endif %}
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <ul class="pages">
+      <li class="page">
+        {% if paginator.page == 1 %}
+          <span class="current-page">1</span>
+        {% else %}
+          <a href="/">1</a>
+        {% endif %}
+      </li>
 
+      {% for count in (2..paginator.total_pages) %}
+        <li class="page">
+          {% if count == paginator.page %}
+            <span class="current-page">{{ count }}</span>
+          {% else %}
+            <a href="/page{{ count }}">{{ count }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if paginator.next_page %}
+      <p class="next">
+        <a href="{{ paginator.next_page_path }}">下一页</a>
+      </p>
+    {% else %}
+      <p class="next disabled">
+        <span>下一页</span>
+      </p>
+    {% endif %}
+
+  </div>
+</div>
+<div class="recent-comments" style="float:right">
+<!-- 多说最新评论 start -->
+<div class="ds-recent-comments" data-num-items="15" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+<!-- 多说最新评论 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"coderli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
 </div>
