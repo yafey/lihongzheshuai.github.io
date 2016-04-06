@@ -10,6 +10,26 @@
     position: relative;
 }
 
+.contact-container {
+  width:15%;
+  ul.contact-list > li > a {
+    font-size: 12px;
+  }
+}
+
+.link-container {
+  width: 80%;
+  span, table > tbody > tr > td > a{
+    padding: 0 15px;
+  }
+  table > tbody > tr > td > a{
+    font-size: 12px;
+  }
+  table > tbody > tr {
+    line-height: 1;
+  }
+}
+
 .site-title {
     font-size: 26px;
     font-weight: 300;

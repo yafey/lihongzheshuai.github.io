@@ -4,7 +4,7 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">最近发表 {{total_posts}}</h1>
+  <h1 class="page-heading">所有博文 (共{{paginator.total_posts}}篇)</h1>
 
   <ul class="post-list">
     {% for post in paginator.posts %}
@@ -15,8 +15,8 @@ layout: default
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
         <p>{{ post.excerpt | truncate: 400 }}</p>
-        <a class="read-more" href="{{ post.url | prepend: site.baseurl }}">阅读全文</a>
       </li>
+      <a class="read-more" href="{{ post.url | prepend: site.baseurl }}">阅读全文</a>
     {% endfor %}
   </ul>
   <div class="clearfix"></div>
@@ -24,7 +24,7 @@ layout: default
     {% if paginator.previous_page %}
       <p class="previous">
         {% if paginator.previous_page == 1 %}
-          <a href="/">Previous</a>
+          <a href="/">上一页</a>
         {% else %}
           <a href="{{ paginator.previous_page_path }}">上一页</a>
         {% endif %}
@@ -66,22 +66,4 @@ layout: default
     {% endif %}
 
   </div>
-</div>
-<div class="recent-comments" style="float:right">
-<!-- 多说最新评论 start -->
-<div class="ds-recent-comments" data-num-items="15" data-show-avatars="0" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-<!-- 多说最新评论 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"coderli"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
 </div>
