@@ -26,9 +26,10 @@ Thymeleaf 3.0 BETA版本是稳定且完全覆盖2.1版本的特性，所以，�
 
 ### 2. 配置变化
 
-看一个thymeleaf-spring4集成的配置文件例子。
+看一个thymeleaf-spring4集成的配置文件的例子。
 
 首先你需要更新Maven依赖
+
 ```xml
 <dependency>
   <groupId>org.thymeleaf</groupId>
