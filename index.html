@@ -16,7 +16,6 @@ layout: default
         </h2>
         <p>{{ post.excerpt | truncate: 400 }}</p>
       </li>
-      <a class="read-more" href="{{ post.url | prepend: site.baseurl }}">阅读全文</a>
     {% endfor %}
   </ul>
   <div class="clearfix"></div>
