@@ -25,6 +25,18 @@ body {
     font-kerning: normal;
 }
 
+.post-content {
+
+  h1, h2, h3 {
+    border-bottom: solid 1px #ccc;
+  }
+
+  h4 {
+    background-color: #eee;
+    border-bottom: solid 2px #ccc;
+    padding: 3px 0 3px 10px;
+  }
+}
 
 
 /**
