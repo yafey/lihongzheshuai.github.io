@@ -198,7 +198,7 @@ Thymeleaf 3.0 引入了一个新的片段表达式。形如：~{commons::footer}
 
 ### 6. 无操作标记（token）
 
-Thymeleaf 3.0 另一个新的特性就是无操作（NO-OP  no-operation）标记，下划线”_”，代表什么也不做。
+Thymeleaf 3.0 另一个新的特性就是无操作（NO-OP  no-operation）标记，下划线&quot;\_&quot;，代表什么也不做。
 
 例如：
 
@@ -210,7 +210,7 @@ Thymeleaf 3.0 另一个新的特性就是无操作（NO-OP  no-operation）标�
 
 该特性详细资料参考：[The NO-OP token](https://github.com/thymeleaf/thymeleaf/issues/452)
 
-7 模板逻辑解耦
+### 7 模板逻辑解耦
 
 Thymeleaf 3.0 允许 HTML和XML模式下的模板内容和控制逻辑完全解耦。
 
