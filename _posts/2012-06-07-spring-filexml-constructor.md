@@ -15,7 +15,6 @@ thread_key: 331
 
 ```java
 	private static final String SPRINT_FILEPATH_CONTEXT = "D:\\workspace-home\\OpenSourceStudy\\src\\main\\resources\\spring\\app-context.xml";          
-
 	ApplicationContext  appContext = new FileSystemXmlApplicationContext(
 				SPRINT_FILEPATH_CONTEXT);
 ```
@@ -26,7 +25,6 @@ thread_key: 331
 
 ```java
 	public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
-
 	/**
 	 * Create a new FileSystemXmlApplicationContext for bean-style configuration.
 	 * @see #setConfigLocation
@@ -138,9 +136,7 @@ thread_key: 331
 一共七个构造函数和一个复写的方法。我们现在重点关注构造函数，除前两个之外，其他的构造函数都最终指向构造函数
 
 ```java
-public FileSystemXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)
-			throws BeansException {
-
+	public FileSystemXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent) throws BeansException {
 		super(parent);
 		setConfigLocations(configLocations);
 		if (refresh) {
@@ -163,7 +159,7 @@ public FileSystemXmlApplicationContext(String[] configLocations, boolean refresh
 下面给出一些关于构造函数的测试用例，能更直观、具体的说明问题
 
 ```java
-private String filePath = "D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml";
+	private String filePath = "D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml";
 	private String parentFilePath = "D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\parent-context.xml";
 
 	/**
