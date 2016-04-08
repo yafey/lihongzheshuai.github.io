@@ -7,16 +7,16 @@ comments: true
 tags: [Spring]
 thread_key: 331
 ---
-宅男Coder，没有其他爱好，闲暇之余抱着瞻仰的心态去阅读一下Spring的源码，期许能收获一支半解。要学习Spring的源码，第一步自然是下载和编译Spring的源码，这个我在之前的博文中已经发表过了。具体可参考:<a href="http://www.coderli.com/springframework-source-compile/" target="_blank">《SpringFramework源码下载和编译教程</span>》</a>
+宅男Coder，没有其他爱好，闲暇之余抱着瞻仰的心态去阅读一下Spring的源码，期许能收获一支半解。要学习Spring的源码，第一步自然是下载和编译Spring的源码，这个我在之前的博文中已经发表过了。具体可参考:<a href="http://www.coderli.com/springframework-source-compile/" target="_blank">《SpringFramework源码下载和编译教程》</a>
 
 面对茫茫多的Spring的工程和代码，很多人可能会无从下手。其实想想，Spring也是有入口的，那就是配置文件的加载。Spring容器的构建完全是基于配置文件的配置的。不论是Web工程，还是普通的Java应用，加载Spring配置文件都是首要的工作。所以，我就从配置文件的加载学起。
 
 要加载配置文件，首先当然是要找到该文件。大多数人通常都是在Web应用中使用Spring。网上搜搜配置，配置文件的名字就叫约定的：applicationContext.xml，然后往编译路径下一扔，Spring自然就好用了，就没过多的关注过其他容器初始化的问题。其实，一个自然应该想到的问题就是：一个普通的J2SE应用该如何使用Spring呢？答案很简单：new 出一个***ApplicationContext***的实例就好了。例如：
 
 ```java
-private static final String SPRINT_FILEPATH_CONTEXT = "D:\\workspace-home\\OpenSourceStudy\\src\\main\\resources\\spring\\app-context.xml";          
+	private static final String SPRINT_FILEPATH_CONTEXT = "D:\\workspace-home\\OpenSourceStudy\\src\\main\\resources\\spring\\app-context.xml";          
 
-ApplicationContext  appContext = new FileSystemXmlApplicationContext(
+	ApplicationContext  appContext = new FileSystemXmlApplicationContext(
 				SPRINT_FILEPATH_CONTEXT);
 ```
 
@@ -25,7 +25,7 @@ ApplicationContext  appContext = new FileSystemXmlApplicationContext(
 下面，我们来仔细看看FileSystemXmlApplicationContext这个类：
 
 ```java
-public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
+	public class FileSystemXmlApplicationContext extends AbstractXmlApplicationContext {
 
 	/**
 	 * Create a new FileSystemXmlApplicationContext for bean-style configuration.
