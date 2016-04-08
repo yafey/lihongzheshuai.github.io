@@ -14,6 +14,7 @@ thread_key: 331
 要加载配置文件，首先当然是要找到该文件。大多数人通常都是在Web应用中使用Spring。网上搜搜配置，配置文件的名字就叫约定的：applicationContext.xml，然后往编译路径下一扔，Spring自然就好用了，就没过多的关注过其他容器初始化的问题。其实，一个自然应该想到的问题就是：一个普通的J2SE应用该如何使用Spring呢？答案很简单：new 出一个***ApplicationContext***的实例就好了。例如：
 
 ```java
+
 	private static final String SPRINT_FILEPATH_CONTEXT = "D:\\workspace-home\\OpenSourceStudy\\src\\main\\resources\\spring\\app-context.xml";          
 	ApplicationContext  appContext = new FileSystemXmlApplicationContext(
 				SPRINT_FILEPATH_CONTEXT);
