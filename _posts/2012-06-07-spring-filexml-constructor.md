@@ -147,7 +147,6 @@ public FileSystemXmlApplicationContext(String[] configLocations, boolean refresh
 			refresh();
 		}
 ```
-</div>
 
 只是对没有传入的参数，给了一个默认值。		
 
