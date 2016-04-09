@@ -1,52 +1,46 @@
 ---
 layout: post
 title: Spring源码学习-FileSystemXmlApplicationContext路径格式及解析方式
-date: 2012-06-09 20:21
+date: 2012-06-09 20:21 +0800
 author: onecoder
 comments: true
-categories: [Java, Spring, Spring, SSH, 源码]
+tags: [Spring]
+thread_key: 348
 ---
-了解完了FileSystemXmlApplicationContext构造函数，我们回到<span style="color: #0000ff;"><a href="http://www.coderli.com/archives/spring-filexml-constructor/" title="[原创] Spring研究-容器初始化之FileSystemXmlApplicationContext构造函数"><span style="color: #0000ff;">上节</span></a></span>留下的思考的问题：
-<ol>
-	<li>
-		支持路径格式的研究。(绝对？相对？通配符？classpath格式又如何？)</li>
-	<li>
-		路径如何解析？</li>
-</ol>
-<div>
-	下面，我们就来一一验证和解答。</div>
-<div>
-	先放出本次测试用的配置文件(app-context和test.properties)：</div>
-<div>
-	<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-&lt;bean id=&quot;placeHolderConfig&quot;
- class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
- &lt;property name=&quot;systemPropertiesModeName&quot; value=&quot;SYSTEM_PROPERTIES_MODE_OVERRIDE&quot; /&gt; 
- &lt;property name=&quot;locations&quot;&gt;
- &lt;list&gt;
- &lt;value&gt;classpath*:spring/test.properties&lt;/value&gt;
- &lt;/list&gt;
- &lt;/property&gt;
- &lt;/bean&gt;
- &lt;bean id=&quot;veryCommonBean&quot; class=&quot;kubi.coder.bean.VeryCommonBean&quot;&gt;
- &lt;property name=&quot;name&quot; value=&quot;${test.name}&quot;&gt;&lt;/property&gt;
- &lt;/bean&gt;
-</pre>
-</div>
-<div>
-	<span style="color: #ff0000;">test.properties</span></div>
-<div>
-	<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+了解完了FileSystemXmlApplicationContext构造函数，我们来看看路径解析的问题。
+
+- 支持路径格式的研究。(绝对？相对？通配符？classpath格式又如何？
+- 路径如何解析？
+
+下面，我们就来一一验证和解答。先放出本次测试用的配置文件(***app-context.xml***和***test.properties***)：
+
+```xml
+<bean id="placeHolderConfig"
+ class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" /> 
+ <property name="locations">
+ <list>
+ <value>classpath*:spring/test.properties</value>
+ </list>
+ </property>
+ </bean>
+ <bean id="veryCommonBean" class="kubi.coder.bean.VeryCommonBean">
+ <property name="name" value="${test.name}"></property>
+ </bean>
+```
+
+***test.properties***
+
+```properties
 test.name=verycommonbean-name
-</pre>
-</div>
-<div>
-	首先想到的自然是最普通的绝对路径：</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+首先想到的自然是最普通的绝对路径：
+
+```java
 /**
   * 测试通过普通的绝对路径:
-  * &lt;p&gt;D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml&lt;/p&gt;
+  * <p>D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml</p>
   * 读取配置文件
   * 
   * @author lihzh
@@ -54,25 +48,24 @@ test.name=verycommonbean-name
   */
  @Test
  public void testPlainAbsolutePath() {
- String path = &quot;D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml&quot;;
+ String path = "D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml";
  ApplicationContext appContext = new FileSystemXmlApplicationContext(path);
  assertNotNull(appContext);
  VeryCommonBean bean = appContext.getBean(VeryCommonBean.class);
  assertNotNull(bean);
- assertEquals(&quot;verycommonbean-name&quot;, bean.getName());
+ assertEquals("verycommonbean-name", bean.getName());
  }
-</pre>
-</div>
-<div>
-	测试通过，我们来看下Spring是怎么找到该文件的。之前已经说过refresh这个函数，是Spring生命周期的开始，我们就以它为入口，顺藤摸瓜，时序图如下：</div>
-<div>
-	<a href="http://www.coderli.com/wp-content/uploads/2012/06/springsequence-filepath.jpg"><img alt="spring路径解析时序图" class="alignnone size-large wp-image-349" height="318" src="http://www.coderli.com/wp-content/uploads/2012/06/springsequence-filepath-1024x552.jpg" title="springsequence-filepath" width="590" /></a></div>
-<div>
-	最终，我们找到解析路径的关键方法，PathMatchingResourcePatternResolver的getResources方法和DefaultResourceLoader中的getResource方法：</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+测试通过，我们来看下Spring是怎么找到该文件的。之前已经说过refresh这个函数，是Spring生命周期的开始，我们就以它为入口，顺藤摸瓜，时序图如下
+
+![](/images/post/springframework-filepath-parse/springsequence-filepath.jpg)
+
+最终，我们找到解析路径的关键方法，**PathMatchingResourcePatternResolver**的*getResources*方法和**DefaultResourceLoader**中的*getResource*方法：
+
+```java
 public Resource[] getResources(String locationPattern) throws IOException {
- Assert.notNull(locationPattern, &quot;Location pattern must not be null&quot;);
+ Assert.notNull(locationPattern, "Location pattern must not be null");
  if (locationPattern.startsWith(CLASSPATH_ALL_URL_PREFIX)) {
  // a class path resource (multiple resources for same name possible)
  if (getPathMatcher().isPattern(locationPattern.substring(CLASSPATH_ALL_URL_PREFIX.length()))) {
@@ -87,7 +80,7 @@ public Resource[] getResources(String locationPattern) throws IOException {
  else {
  // Only look for a pattern after a prefix here
  // (to not get fooled by a pattern symbol in a strange prefix).
- int prefixEnd = locationPattern.indexOf(&quot;:&quot;) + 1;
+ int prefixEnd = locationPattern.indexOf(":") + 1;
  if (getPathMatcher().isPattern(locationPattern.substring(prefixEnd))) {
  // a file pattern
  return findPathMatchingResources(locationPattern);
@@ -98,12 +91,11 @@ public Resource[] getResources(String locationPattern) throws IOException {
  }
  }
  }
-</pre>
-</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+```java
 public Resource getResource(String location) {
- Assert.notNull(location, &quot;Location must not be null&quot;);
+ Assert.notNull(location, "Location must not be null");
  if (location.startsWith(CLASSPATH_URL_PREFIX)) {
  return new ClassPathResource(location.substring(CLASSPATH_URL_PREFIX.length()), getClassLoader());
  }
@@ -114,71 +106,56 @@ public Resource getResource(String location) {
  return new UrlResource(url);
  }
  catch (MalformedURLException ex) {
- // No URL -&gt; resolve as resource path.
+ // No URL -> resolve as resource path.
  return getResourceByPath(location);
  }
  }
  }
-</pre>
-</div>
-<div>
-	<div>
-		其中常量</div>
-	<div>
-		<span style="color: #ff0000;">CLASSPATH_ALL_URL_PREFIX =&nbsp;</span>&quot;classpath*:&quot;;</div>
-	<div>
-		<span style="color: #ff0000;">CLASSPATH_URL_PREFIX</span>&nbsp;=&nbsp;&quot;classpath:&quot;；</div>
-	<div>
-		我们输入的路径是绝对路径：&quot;D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml&quot;。不是以classpath*开头的，所以会落入else之中。在else中：getPathMatcher().isPattern()，实际是调用AntPathMatcher中的isPattern()方法：</div>
-	<div>
-		<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+其中常量
+
+```java
+CLASSPATH_ALL_URL_PREFIX = "classpath*:";
+CLASSPATH_URL_PREFIX = "classpath:";
+```
+
+我们输入的路径是绝对路径："D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml"。不是以**classpath\***开头的，所以会落入else之中。在else中：**getPathMatcher().isPattern()**，实际是调用**AntPathMatcher****中的isPattern()**方法：
+
+```java	
 public boolean isPattern(String path) {
-		return (path.indexOf(&#39;*&#39;) != -1 || path.indexOf(&#39;?&#39;) != -1);
+		return (path.indexOf('*') != -1 || path.indexOf('?') != -1);
 	}
-</pre>
-	</div>
-	<div>
-		<div>
-			是用来判断&quot;:&quot;以后的路径中是否包含通配符&ldquo;*&rdquo;或者 &quot;?&quot;。</div>
-		<div>
-			我们的路径显然也不包含，所以最终会直接走入getResource方法。</div>
-		<div>
-			仍然，路径既不是以classpath开头的，也不是URL格式的路径，所以最终会落入 getResourceByPath(location)这个分支，而我们之前介绍过，这个方法恰好是在FileSystemXmlApplicationContext这个类中复写过的：</div>
-		<div>
-			<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+是用来判断":"以后的路径中是否包含通配符"\*"或者 "?"。我们的路径显然也不包含，所以最终会直接走入**getResource**方法。
+
+路径仍然既不是以classpath开头的，也不是URL格式的路径，所以最终会落入**getResourceByPath(location)**这个分支，而我们之前介绍过，这个方法恰好是在FileSystemXmlApplicationContext这个类中复写过的
+
+```java
 protected Resource getResourceByPath(String path) {
- if (path != null &amp;&amp; path.startsWith(&quot;/&quot;)) {
+ if (path != null && path.startsWith("/")) {
  path = path.substring(1);
  }
  return new FileSystemResource(path);
  }
-</pre>
-		</div>
-	</div>
-</div>
-<div>
-	我们给的路径不是以&quot;/&quot;开头，所以直接构造了一个FileSystemResource:</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+我们给的路径不是以"/"开头，所以直接构造了一个**FileSystemResource**
+
+```java
 public FileSystemResource(String path) {
- Assert.notNull(path, &quot;Path must not be null&quot;);
+ Assert.notNull(path, "Path must not be null");
  this.file = new File(path);
  this.path = StringUtils.cleanPath(path);
  }
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<div>
-		即用路径直接构造了一个File。这里StringUtil.cleanPath方法：</div>
-	<div>
-		主要是将传入的路径规范化，比如将windows的路径分隔符&ldquo;\\&rdquo;替换为标准的&ldquo;/&ldquo;，如果路径中含有.(当前文件夹)，或者..(上层文件夹)，则计算出其真实路径。而File本身是支持这样的路径的，也就是说，spring可以支持这样的路径。出于好奇，我们也针对这个方法测试如下：</div>
-	<div>
-		<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+即用路径直接构造了一个File。这里**StringUtil.cleanPath**方法主要是将传入的路径规范化，比如将windows的路径分隔"\\"替换为标准的"/"，如果路径中含有"."(当前文件夹)，或者".."(上层文件夹)，则计算出其真实路径。而File本身是支持这样的路径的，也就是说，spring可以支持这样的路径。出于好奇，我们也针对这个方法测试如下：
+
+```java
 /**
   * 测试通过含有.或者..的绝对路径
-  * &lt;p&gt;D:\\workspace-home\\spring-custom\\.\\src\\main\\resources\\spring\\..\\spring\\app-context.xml&lt;/p&gt;
+  * <p>D:\\workspace-home\\spring-custom\\.\\src\\main\\resources\\spring\\..\\spring\\app-context.xml</p>
   * 读取配置文件
   * 
   * @author lihzh
@@ -186,27 +163,22 @@ public FileSystemResource(String path) {
   */
  @Test
  public void testContainDotAbsolutePath() {
- String path = &quot;D:\\workspace-home\\spring-custom\\.\\src\\main\\resources\\spring\\..\\spring\\app-context.xml&quot;;
+ String path = "D:\\workspace-home\\spring-custom\\.\\src\\main\\resources\\spring\\..\\spring\\app-context.xml";
  ApplicationContext appContext = new FileSystemXmlApplicationContext(path);
  assertNotNull(appContext);
  VeryCommonBean bean = appContext.getBean(VeryCommonBean.class);
  assertNotNull(bean);
- assertEquals(&quot;verycommonbean-name&quot;, bean.getName());
+ assertEquals("verycommonbean-name", bean.getName());
  }
-</pre>
-	</div>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<div>
-		容器可以正常初始化。路径计算正确。</div>
-	<div>
-		&nbsp;</div>
-	<div>
-		<span style="color: #ff0000;">补充说明：Spring最终读取配置文件，是通过InputStream加载的，Spring中的各种Resource的最上层接口InputStreamResource中定义了唯一的一个方法getInputStream。也就是说，只要保证各Resource的实现类的getInputStream方法能够正常获取流，Spring容器即可解析初始化。对于FileSystemResource而已，其实现如下：</span></div>
-	<div>
-		<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+容器可以正常初始化。路径计算正确。
+	
+> 补充说明：Spring最终读取配置文件，是通过**InputStream**加载的，Spring中的各种Resource的最上层接口**InputStreamResource**中定义了唯一的一个方法**getInputStream**。也就是说，只要保证各Resource的实现类的**getInputStream**方法能够正常获取流，Spring容器即可解析初始化。
+
+对于**FileSystemResource**而言，其实现如下：
+
+```java
 /**
   * This implementation opens a FileInputStream for the underlying file.
   * @see java.io.FileInputStream
@@ -214,21 +186,16 @@ public FileSystemResource(String path) {
  public InputStream getInputStream() throws IOException {
  return new FileInputStream(this.file);
  }
-</pre>
-	</div>
-</div>
-<div>
-	<div>
-		所以，我们说，此时只有是File正常支持的格式，Spring才能正常初始化。</div>
-	<div>
-		&nbsp;</div>
-	<div>
-		继续回到前面的话题。我们目前只验证else分支中的catch分支。根据代码分析，即使是FileSystemXmlApplicationContext也可以支持Classpath格式的路径和URL格式的路径的。验证如下：</div>
-	<div>
-		<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+所以，我们说，此时只有是File正常支持的格式，Spring才能正常初始化。		
+
+继续回到前面的话题。我们目前只验证else分支中的**catch**分支。根据代码分析，即使是**FileSystemXmlApplicationContext**也可以支持Classpath格式的路径和URL格式的路径的。验证如下
+
+```java
 /**
   * 测试通过含有.或者..的绝对路径
-  * &lt;p&gt;file:/D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml&lt;/p&gt;
+  * <p>file:/D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml</p>
   * 读取配置文件
   * 
   * @author lihzh
@@ -236,17 +203,17 @@ public FileSystemResource(String path) {
   */
  @Test
  public void testURLAbsolutePath() {
- String path = &quot;file:/D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml&quot;;
+ String path = "file:/D:\\workspace-home\\spring-custom\\src\\main\\resources\\spring\\app-context.xml";
  ApplicationContext appContext = new FileSystemXmlApplicationContext(path);
  assertNotNull(appContext);
  VeryCommonBean bean = appContext.getBean(VeryCommonBean.class);
  assertNotNull(bean);
- assertEquals(&quot;verycommonbean-name&quot;, bean.getName());
+ assertEquals("verycommonbean-name", bean.getName());
  }
  
  /**
   * 测试通过Classpath类型的路径
-  * &lt;p&gt;classpath:spring/app-context.xml&lt;/p&gt;
+  * <p>classpath:spring/app-context.xml</p>
   * 通过读取配置文件
   * 
   * @author lihzh
@@ -254,26 +221,21 @@ public FileSystemResource(String path) {
   */
  @Test
  public void testClassPathStylePath() {
- String path = &quot;classpath:spring/app-context.xml&quot;;
+ String path = "classpath:spring/app-context.xml";
  ApplicationContext appContext = new FileSystemXmlApplicationContext(path);
  assertNotNull(appContext);
  VeryCommonBean bean = appContext.getBean(VeryCommonBean.class);
  assertNotNull(bean);
- assertEquals(&quot;verycommonbean-name&quot;, bean.getName());
+ assertEquals("verycommonbean-name", bean.getName());
  }
+```
 
-</pre>
-	</div>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	验证通过，并且通过debug确认，确实走入了相应的分支，分别构造了UrlResource和ClassPathResource实例。所以，之后Spring会分别调用这个两个Resource中的getInputStream方法获取流，解析配置文件。附上这两个类中的getInputStream方法，有兴趣的可以继续研究：</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
- /**
+验证通过，并且通过debug确认，确实走入了相应的分支，分别构造了**UrlResource**和**ClassPathResource**实例。所以，之后Spring会分别调用这个两个Resource中的**getInputStream**方法获取流，解析配置文件。附上这两个类中的**getInputStream**方法，有兴趣的可以继续研究。
+
+```java
+/**
   * This implementation opens an InputStream for the given URL.
-  * It sets the &quot;UseCaches&quot; flag to &lt;code&gt;false&lt;/code&gt;,
+  * It sets the "UseCaches" flag to <code>false</code>,
   * mainly to avoid jar file locking on Windows.
   * @see java.net.URL#openConnection()
   * @see java.net.URLConnection#setUseCaches(boolean)
@@ -294,7 +256,7 @@ public FileSystemResource(String path) {
  }
  }
 
-        /**
+ /**
   * This implementation opens an InputStream for the given class path resource.
   * @see java.lang.ClassLoader#getResourceAsStream(String)
   * @see java.lang.Class#getResourceAsStream(String)
@@ -309,18 +271,12 @@ public FileSystemResource(String path) {
  }
  if (is == null) {
  throw new FileNotFoundException(
- getDescription() + &quot; cannot be opened because it does not exist&quot;);
+ getDescription() + " cannot be opened because it does not exist");
  }
  return is;
  }
-</pre>
-</div>
-<div>
-	<div>
-		上述两个实现所属的类，我想应该一目了然吧~~</div>
-	<div>
-		&nbsp;</div>
-	<div>
-		至此，我们算是分析验证通过了一个小分支下的支持的路径的情况，其实，这只是这些都是最简单直接的。回想刚才的分析，<span style="color: #ff0000;">如果路径包含通配符(?,*)spring是怎么处理的？如果是以classpath*开头的又是如何呢？</span>？鉴于害怕文章过长，我们下回分解&hellip;&hellip;&hellip;&hellip;o(&cap;_&cap;)o</div>
-</div>
+```
+		
+上述两个实现所属的类，我想应该一目了然吧~~
 
+至此，我们算是分析验证通过了一个小分支下的支持的路径的情况，其实，这只是这些都是最简单直接的。回想刚才的分析，***如果路径包含通配符(?,\*)spring是怎么处理的？***如果是以***classpath\****开头的又是如何呢？我们下回分解……
