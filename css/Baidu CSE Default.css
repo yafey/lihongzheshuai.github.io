@@ -71,6 +71,7 @@
     border-width: 1px;
     border-style: solid;
     outline: none;
+    border-color: #424242;
 }
 .bdcs-container .bdcs-search-form-submit-wrap {
     display: inline-block;
