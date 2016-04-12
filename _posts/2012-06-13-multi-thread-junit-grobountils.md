@@ -60,7 +60,7 @@ System.exit(code);
 
 所以要想编写多线程Junit测试用例，就必须让主线程等待所有子线程执行完成后再退出。想到的办法自然是Thread中的join方法。话又说回来，这样一个简单而又典型的需求，难道会没有第三方的包支持么？通过google，笔者很快就找到了GroboUtils这个Junit多线程测试的开源的第三方的工具包。
 			
-- GroboUtils官网如下：<a href="http://groboutils.sourceforge.net/" target=""_blank>http://groboutils.sourceforge.net/</a>
+- GroboUtils官网如下：<a href="http://groboutils.sourceforge.net/" target="_blank">http://groboutils.sourceforge.net/</a>
 - 下载页面：<a href="http://groboutils.sourceforge.net/downloads.html" target="_blank">http://groboutils.sourceforge.net/downloads.html</a>			
 Maven依赖方式：
 
