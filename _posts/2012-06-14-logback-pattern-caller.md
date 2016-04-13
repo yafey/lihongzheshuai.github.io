@@ -15,7 +15,7 @@ thread_key: 476
 
 虽然感觉上，没原来的好看了，不过好歹，这个功能是有了。如果你想去掉烦人的**Caller+0**字样，还可以继续使用**replace**进行替换。
 
-附上笔者使用的logback pattern配置：</div>
+附上笔者使用的**logback pattern**配置：
 
 ```xml
 %d{yyyy/MM/dd-HH:mm:ss} %level [%thread] %caller{1} - %msg%n
