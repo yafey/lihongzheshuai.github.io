@@ -23,4 +23,4 @@ thread_key: 476
 
 关于***logback pattern*** 转换符的说明，我找到了这个帖子，说的还是比较详细的
 
-- <a href="http://aub.iteye.com/blog/1103685" target="_blank">http://aub.iteye.com/blog/1103685</span></a>
+- <a href="http://aub.iteye.com/blog/1103685" target="_blank">http://aub.iteye.com/blog/1103685</a>
