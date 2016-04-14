@@ -1,0 +1,15 @@
+---
+layout: page
+title: 推荐书籍
+permalink: /books/
+---
+{% for item in site.data.book %}
+<h3>{{item.category}}</h3>
+	<ul class="book-list">
+	{% for book in item.books %}
+		<li class="book-item">
+			<a href="{{book.url}}" target="\_blank">{{book.name}}</a>
+		</li>
+	{% endfor %}
+	</ul>
+{% endfor %}
