@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 未初始化的String相“+"为什么会打印出“nullnull"
+title: 未初始化的String相 "+" 为什么会打印出“nullnull"
 date: 2012-06-14 21:13 +0800
 author: onecoder
 comments: true
