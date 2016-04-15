@@ -104,7 +104,7 @@ docker restart dns-server
 
 ```sh
 dig master
-``
+```
 
 ![](/images/post/docker-dnsmasq/dig-console.png)
 
