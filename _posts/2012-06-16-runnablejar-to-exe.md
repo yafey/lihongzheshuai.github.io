@@ -60,7 +60,7 @@ Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
 
 这是笔者打出Jar的内部截图，去掉所有跟我的程序不相关的东西。**MANIFEST.MF**的配置也很简单。
 
-```propreties
+```properties
 Manifest-Version: 1.0
 Main-Class: one.coder.jdk.JDKMain
 ```
@@ -69,9 +69,7 @@ Main-Class: one.coder.jdk.JDKMain
 
 > 注：这里需要提一下，尽量不用用解压软件自带的编辑器进行编辑，如果你编辑后发现不能运行，提示打开jar错误等信息，很可能是由于你编辑的**MANIFEST.MF**文件的编码错误。导致无法解析。默认是采用ANSI编码格式的。不要改成UTF-8等。笔者被这个问题，困扰了近半个小时。
 	
-接下来说说在没有JRE的机器上怎么办？
-	
-最简单的手动的办法就是写一个**bat**脚本。并且带一份**jre**在你的程序里。
+接下来说说在没有JRE的机器上怎么办？最简单的手动的办法就是写一个**bat**脚本。并且带一份**jre**在你的程序里。
 
 ![](/images/post/jar-to-exe/bat-jar.jpg)
 
@@ -83,11 +81,7 @@ Main-Class: one.coder.jdk.JDKMain
 
 说白了就是调用**jre**中的**java**命令，执行指定的jar程序。 双击**start.bat**，执行成功。
 
-如果你非要打成**exe**程序，笔者推荐一个工具**JSmooth**。简单好用。同样这也肯定是需要JRE指定的。
-
-关于JSmooth的教程，笔者找到了一个不错的教学贴：<a href="http://yisufuyou.iteye.com/blog/403556" target="_blank">http://yisufuyou.iteye.com/blog/403556</a>
-	
-按照里面的步骤，你一定可以成功。		
+如果你非要打成**exe**程序，笔者推荐一个工具**JSmooth**。简单好用。同样这也肯定是需要JRE指定的。关于JSmooth的教程，笔者找到了一个不错的教学贴：<a href="http://yisufuyou.iteye.com/blog/403556" target="_blank">http://yisufuyou.iteye.com/blog/403556</a> 按照里面的步骤，你一定可以成功。		
 
 ![](/images/post/jar-to-exe/jsmooth.jpg)
 
