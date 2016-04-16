@@ -7,7 +7,7 @@ comments: true
 tags: [Libvirt]
 thread_key: 613
 ---
- <a target="_blank" href="http://libvirt.org/ target="_blank">**Libvirt**</a>是一个优秀的虚拟化环境管理的工具包。核心用c实现，不过提供了不同语言的调用API。官网的简介如下：
+ <a href="http://libvirt.org/ target="\_blank">**Libvirt**</a>是一个优秀的虚拟化环境管理的工具包。核心用c实现，不过提供了不同语言的调用API。官网的简介如下：
 
 > libvirt is:
 > 
