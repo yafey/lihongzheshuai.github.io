@@ -18,7 +18,7 @@ thread_key: 613
 - A  <a target="_blank" href="http://libvirt.org/CIM/">CIM provider</a> for the DMTF virtualization schema
 - A  <a target="_blank" href="http://libvirt.org/qpid/">QMF agent</a> for the AMQP/QPid messaging system
 > 
-> libvirt supports:</h2>
+> libvirt supports:
 > 
 - The <a target="_blank" href="http://libvirt.org/drvqemu.html">KVM/QEMU</a> Linux hypervisor
 - The  <a target="_blank" href="http://libvirt.org/drvxen.html">Xen</a> hypervisor on Linux and Solaris hosts.		
