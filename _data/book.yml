@@ -12,3 +12,7 @@
   books:
     - name: 《大话设计模式》
       url: http://pan.baidu.com/s/1c2e7RUg
+- category: Maven
+  books:
+    - name: 《Maven实战》
+      url: http://pan.baidu.com/s/1i5pneWd
