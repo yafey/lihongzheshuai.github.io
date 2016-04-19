@@ -15,11 +15,11 @@ thread_key: 695
 ```java
 public class DelLastUpdated { 
  
-    private static PropertyHelper propHelper = new PropertyHelper(&quot;config&quot;); 
-    private static final String KEY_MAVEN_REPO = &quot;maven.repo&quot;; 
+    private static PropertyHelper propHelper = new PropertyHelper("config"); 
+    private static final String KEY_MAVEN_REPO = "maven.repo"; 
     private static final String MAVEN_REPO_PATH = propHelper 
             .getValue(KEY_MAVEN_REPO); 
-    private static final String FILE_SUFFIX = &quot;lastUpdated&quot;; 
+    private static final String FILE_SUFFIX = "lastUpdated"; 
     private static final Log _log = LogFactory.getLog(DelLastUpdated.class); 
  
     /** 
@@ -28,17 +28,17 @@ public class DelLastUpdated {
     public static void main(String[] args) { 
         File mavenRep = new File(MAVEN_REPO_PATH); 
         if (!mavenRep.exists()) { 
-            _log.warn(&quot;Maven repos is not exist.&quot;); 
+            _log.warn("Maven repos is not exist."); 
             return; 
         } 
         File[] files = mavenRep.listFiles((FilenameFilter) FileFilterUtils 
                 .directoryFileFilter()); 
         delFileRecr(files,null); 
-        _log.info(&quot;Clean lastUpdated files finished.&quot;); 
+        _log.info("Clean lastUpdated files finished."); 
     } 
  
     private static void delFileRecr(File[] dirs, File[] files) { 
-        if (dirs != null &amp;&amp; dirs.length &gt; 0) { 
+        if (dirs != null && dirs.length &gt; 0) { 
             for(File dir: dirs){ 
                 File[] childDir = dir.listFiles((FilenameFilter) FileFilterUtils 
                 .directoryFileFilter()); 
@@ -47,10 +47,10 @@ public class DelLastUpdated {
                 delFileRecr(childDir,childFiles); 
             } 
         } 
-        if(files!=null&amp;&amp;files.length&gt;0){ 
+        if(files!=null&&files.length&gt;0){ 
             for(File file: files){ 
                 if(file.delete()){ 
-                    _log.info(&quot;File: [&quot;+file.getName()+&quot;] has been deleted.&quot;); 
+                    _log.info("File: ["+file.getName()+"] has been deleted."); 
                 } 
             } 
         } 
