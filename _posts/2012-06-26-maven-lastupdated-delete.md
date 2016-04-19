@@ -1,18 +1,18 @@
 ---
 layout: post
 title: Maven库中.lastUpdated文件自动清除工具
-date: 2012-06-26 21:43
+date: 2012-06-26 21:43 +0800
 author: onecoder
 comments: true
-categories: [lastupdated, Maven, Maven, 删除, 开发环境, 批量]
+tags: [Maven]
+thread_key: 695
 ---
-<p style="padding: 0px 0px 15px; margin: 0px; color: rgb(44, 44, 44); font-family: 宋体, 'Arial Narrow', arial, serif; font-size: 14px; line-height: 28px;">
-	<span style="padding: 0px; margin: 0px; font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; ">最近开发过程中，在更新maven库时，如果网络问不定或者是一些自己手动安装到本地maven库的jar包，在中心库找不到对应的jar，会生成一些.lastUpdated文件，会导致m2e工具无法找到依赖的jar包，从而提示编译错误。</span></p>
-<p style="padding: 0px; margin: 0px; color: rgb(44, 44, 44); font-size: 14px; font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; ">
-	对于该问题，我也没有找到很好的解决方案，只能手动删除一下lastUpdated文件。文件多时十分繁琐。网上看到别人的解决方案也有利用命令行命令，匹配文件扩展名批量删除的。命令行不会，于是就写了几行代码用于删除.lastUpdated文件。</p>
-<p style="padding: 0px; margin: 0px; color: rgb(44, 44, 44); font-size: 14px; font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; ">
-	<span style="padding: 0px; margin: 0px; color: rgb(255, 0, 0); "><strong style="padding: 0px; margin: 0px; ">如有其他直接的解决方案，望不吝赐教，写代码实属无奈之举。</strong></span></p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+最近开发过程中，在更新**maven**库时，如果网络问不定或者是一些自己手动安装到本地maven库的jar包，在中心库找不到对应的jar，会生成一些**.lastUpdated**文件，会导致m2e工具无法找到依赖的jar包，从而提示编译错误。
+
+对于该问题，我也没有找到很好的解决方案，只能手动删除一下lastUpdated文件。文件多时十分繁琐。网上看到别人的解决方案也有利用命令行命令，匹配文件扩展名批量删除的。命令行不会，于是就写了几行代码用于删除.lastUpdated文件。如有其他直接的解决方案，望不吝赐教，写代码实属无奈之举。
+
+```java
 public class DelLastUpdated { 
  
     private static PropertyHelper propHelper = new PropertyHelper(&quot;config&quot;); 
@@ -57,16 +57,16 @@ public class DelLastUpdated {
     } 
  
 } 
-</pre>
-<br />
-<span style="color: rgb(44, 44, 44); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25px; ">配置文件：config.properties</span><br />
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-maven.repo=D:\\.m2\\repository 
-</pre>
-<p style="padding: 0px 0px 15px; margin: 0px; color: rgb(44, 44, 44); font-family: 宋体, 'Arial Narrow', arial, serif; font-size: 14px; line-height: 28px; ">
-	<span style="padding: 0px; margin: 0px; font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; ">源码下载地址：</span></p>
-<p style="padding: 0px 0px 15px; margin: 0px; color: rgb(44, 44, 44); font-family: 宋体, 'Arial Narrow', arial, serif; font-size: 14px; line-height: 28px; ">
-	&nbsp;svn:&nbsp;https://svn.code.sf.net/p/maventools/code/trunk/maven-tools</p>
-<p style="padding: 0px 0px 15px; margin: 0px; color: rgb(44, 44, 44); font-family: 宋体, 'Arial Narrow', arial, serif; font-size: 14px; line-height: 28px; ">
-	<span style="padding: 0px; margin: 0px; font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25px; ">工程里还包括一个批量安装jar包到本地maven库的工具。以后再另外介绍。</span></p>
+```
 
+配置文件：**config.properties**
+
+```properties
+maven.repo=D:\\.m2\\repository 
+```
+
+源码下载地址：
+	
+- svn:<a href="https://svn.code.sf.net/p/maventools/code/trunk/maven-tools" target="\_blank">https://svn.code.sf.net/p/maventools/code/trunk/maven-tools</a>
+
+工程里还包括一个批量安装jar包到本地maven库的工具。以后再另外介绍。
