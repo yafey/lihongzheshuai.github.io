@@ -199,6 +199,7 @@ hdfs-site.xml
 ```
 
 ##### Datanode
+
 **core-site.xml**
 
 ```xml
@@ -289,7 +290,9 @@ ldd --version
 
 在YARN里，主节点称为**ResourceManager**，从节点称为**NodeManager**。
 根据理解，需要告知**NodeManager**, **ResouceManager**的通信地址。 对于**ResourceManager**来说，所以的从节点已经配置在slaves中了。因此，配置如下：
+
 ##### NodeManager
+
 **yarn-site.xml**
 
 ```xml
