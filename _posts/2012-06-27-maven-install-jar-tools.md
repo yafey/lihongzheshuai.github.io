@@ -12,7 +12,7 @@ thread_key: 700
 使用方式：
 
 - 在**config.properties**中，配置待安装jar文件的存放路径。
-- 安装时**groupId,artifactId,version**等信息，根据jar文件的文件名获得。采用分割"-"的方式，解析出来。所以，推荐jar的文件名中含有两个"-"。例如：**group-artifact-version.jar**。如果为**group-artifactversion.jar**，则*groupId=group，artifactId=version=artifactversion*。
+- 安装时**groupId,artifactId,version**等信息，根据jar文件的文件名获得。采用分割"-"的方式，解析出来。所以，推荐jar的文件名中含有两个"-"。例如：**group-artifact-version.jar**。如果为**group-artifactversion.jar**，则**groupId=group，artifactId=version=artifactversion**。
 
 ```java
 public class Main { 
