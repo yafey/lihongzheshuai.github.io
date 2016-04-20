@@ -169,6 +169,7 @@ export HADOOP_HOME="/home/dps-hadoop/hadoop-2.6.4"
 #### HDFS配置
 
 不考虑调优，仅从功能可运行上来理解，HDFS配置需要分别配置namenode、datanode的ip和端口号。数据备份份数。数据存放地址。因此配置如下：
+
 ##### namenode
 
 **core-site.xml**
