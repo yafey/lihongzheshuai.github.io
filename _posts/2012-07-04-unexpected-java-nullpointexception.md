@@ -32,4 +32,4 @@ this.size = size
      6  lstore_2 [m]
 ```
 
-原来这种强转是调用了Long中的longValue()方法。自然符合用null对象调用方法，抛出空指针异常，也就不奇怪了。
+原来这种强转是调用了**Long**中的**longValue()**方法。自然符合用null对象调用方法，抛出空指针异常，也就不奇怪了。
