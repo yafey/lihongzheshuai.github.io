@@ -18,7 +18,7 @@ a.setSize(b.getSize());
 很自然的想到**b**会为**null**。但是前面的代码已经用过**b**了，也就是说，如果**b**是**null**。早就抛出空指针了。**a**是新**new**的。不会是**null**。se****t方法内部也只是赋值。
 
 ```java
-this.size = size。
+this.size = size
 ```
 	
 一时间，我迷惑了。再仔细看代码，发现b**.getSize**获取的类型是**Long**。而**a.setSize**，传入的类型是**long**。
