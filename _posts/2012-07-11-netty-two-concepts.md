@@ -15,7 +15,7 @@ thread_key: 913
 ### ChannelEvent
 ![](http://onecoder.qiniudn.com/8wuliao/C6HbDv3x/FjuwT.jpg)
 
-先说这个ChannelEvent，因为Netty是基于事件驱动的，就是我们<a href="http://www.coderli.com/netty-course-hello-world/">上文</a>提到的，发生什么事，就通知"有关部门"。所以，不难理解，我们自己的业务代码中，一定有跟这些事件相关的处理。在<a href="http://www.coderli.com/netty-course-hello-world/">样例代码</a>，我们处理的事件，就是**channelConnected**。以后，我们还会处理更多的事件。
+先说这个ChannelEvent，因为Netty是基于事件驱动的，就是我们<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank">上文</a>提到的，发生什么事，就通知"有关部门"。所以，不难理解，我们自己的业务代码中，一定有跟这些事件相关的处理。在<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank">样例代码</a>，我们处理的事件，就是**channelConnected**。以后，我们还会处理更多的事件。
 
 ### ChannelPipeline
 
