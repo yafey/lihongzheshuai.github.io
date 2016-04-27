@@ -264,6 +264,8 @@ cp conf/hive-log4j.properties.template conf/hive-log4j.properties
 hive.log.dir=/home/dps-hadoop/logs/hive
 ```
 
+### 启动HiveServer服务
+
 启动MetaStore Service
 
 ```bash
