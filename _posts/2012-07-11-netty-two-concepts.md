@@ -7,8 +7,8 @@ comments: true
 tags: [Netty]
 thread_key: 913
 ---
-<p>
-	<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank"> "Hello World"</a>的代码固然简单，不过其中的几个重要概念（类）和 Netty的工作原理还是需要简单明确一下，至少知道其是负责什。方便自己以后更灵活的使用和扩展。
+
+<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank"> "Hello World"</a>的代码固然简单，不过其中的几个重要概念（类）和 Netty的工作原理还是需要简单明确一下，至少知道其是负责什。方便自己以后更灵活的使用和扩展。
 	
 声明，笔者一介码农，不会那么多专业的词汇和缩写，只能以最简单苍白的话来形容个人的感受和体会。如果您觉得这太不专业，笔者首先只能抱歉。
 
