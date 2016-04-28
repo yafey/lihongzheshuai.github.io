@@ -185,7 +185,11 @@ export HADOOP_HOME="/home/dps-hadoop/hadoop-2.6.4"
               <value>hdfs://master:54000/</value>
     </property>
 </configuration>
-hdfs-site.xml
+```
+
+**hdfs-site.xml**
+
+```xml
 <configuration>
     
     <property>
