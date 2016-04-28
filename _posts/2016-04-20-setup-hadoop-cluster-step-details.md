@@ -239,7 +239,7 @@ export HADOOP_HOME="/home/dps-hadoop/hadoop-2.6.4"
 > ```xml
 	<property>
            <name>fs.default.name</name>
-              <value>hdfs://master:54000/</value>
+           <value>hdfs://master:54000/</value>
     </property>
 ```
 该配置必须配置在core-site.xml配置文件中，之前的配置是错误的。否则，各个hdfs节点不在一个集群中。
