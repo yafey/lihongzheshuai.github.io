@@ -25,7 +25,7 @@ SendBuffer acquire(Object message) {
         }
 
         throw new IllegalArgumentException(
-                &quot;unsupported message type: &quot; + message.getClass());
+                "unsupported message type: " + message.getClass());
     }
 ```
 
@@ -96,7 +96,7 @@ public class MessageClient {
 			}
 		});
 		// 连接到本地的8000端口的服务端
-		bootstrap.connect(new InetSocketAddress(&quot;127.0.0.1&quot;, 8000));
+		bootstrap.connect(new InetSocketAddress("127.0.0.1", 8000));
 	}
 
 	private static class MessageClientHandler extends SimpleChannelHandler {
@@ -111,7 +111,7 @@ public class MessageClient {
 		public void channelConnected(ChannelHandlerContext ctx,
 				ChannelStateEvent e) {
 			// 将字符串，构造成ChannelBuffer，传递给服务端
-			String msg = &quot;Hello, I&#39;m client.&quot;;
+			String msg = "Hello, I'm client.";
 			ChannelBuffer buffer = ChannelBuffers.buffer(msg.length());
 			buffer.writeBytes(msg.getBytes());
 			e.getChannel().write(buffer);
