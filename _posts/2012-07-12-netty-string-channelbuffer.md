@@ -1,36 +1,22 @@
 ---
 layout: post
 title: Java NIO框架Netty教程（三）- 字符串消息收发
-date: 2012-07-12 21:18
+date: 2012-07-12 21:18 +0800
 author: onecoder
 comments: true
-categories: [ChannelBuffer, Netty, Netty, 分布式]
+tags: [Netty]
+thread_key: 922
 ---
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">了解了Netty的</span><a href="http://www.coderli.com/archives/netty-two-concepts/" style="cursor: pointer; font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">基本概念</a><span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">，开发起来应该会顺手很多。&nbsp;&nbsp;在</span><a href="http://www.coderli.com/archives/netty-course-hello-world/" style="cursor: pointer; font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">&ldquo;Hello World&rdquo;</a><span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">代码中，我们只是在完成绑定的时候，在各自的本地打印了简单的信息，并没有客户端和服务端的消息传递。这个肯定是最基本的功能。在上代码之前，先补充一个Netty中重要的概念，ChannelBuffer。</span></p>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	<ul>
-		<li>
-			<b style="font-size: 22px; ">ChannelBuffer</b></li>
-	</ul>
-	<div style="text-align: center; ">
-		<img alt="ChannelBuffer" src="http://onecoder.qiniudn.com/8wuliao/C6PXEavo/CT0dH.jpg" style="width: 600px; height: 149px;" /><br />
-		&nbsp;</div>
-	<div>
-		<span style="text-align: -webkit-auto; ">&nbsp;Netty中的消息传递，都必须以字节的形式，以ChannelBuffer为载体传递。简单的说，就是你想直接写个字符串过去，对不起，抛异常。虽然，Netty定义的writer的接口参数是Object的，这可能也是会给新上手的朋友容易造成误会的地方。Netty源码中，是这样判断的：</span><br />
-		<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+了解了Netty的<a href="http://www.coderli.com/netty-two-concepts/" target="\_blank">基本概念</a>，开发起来应该会顺手很多。在<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank">"Hello World"</a>代码中，我们只是在完成绑定的时候，在各自的本地打印了简单的信息，并没有客户端和服务端的消息传递。这个肯定是最基本的功能。在上代码之前，先补充一个Netty中重要的概念，ChannelBuffer。
+
+### ChannelBuffer
+
+![](http://onecoder.qiniudn.com/8wuliao/C6PXEavo/CT0dH.jpg)
+
+Netty中的消息传递，都必须以字节的形式，以**ChannelBuffer**为载体传递。简单的说，就是你想直接写个字符串过去，对不起，抛异常。虽然，**Netty**定义的**writer**的接口参数是**Object**的，这可能也是会给新上手的朋友容易造成误会的地方。**Netty**源码中，是这样判断的：
+
+```java
 SendBuffer acquire(Object message) {
         if (message instanceof ChannelBuffer) {
             return acquire((ChannelBuffer) message);
@@ -41,12 +27,11 @@ SendBuffer acquire(Object message) {
         throw new IllegalArgumentException(
                 &quot;unsupported message type: &quot; + message.getClass());
     }
-</pre>
-	</div>
-</div>
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">所以，我们要想传递字符串，那么就必须转换成ChannelBuffer。明确了这一点，接下来我们上代码：</span></p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+所以，我们要想传递字符串，那么就必须转换成**ChannelBuffer**。明确了这一点，接下来我们上代码：
+
+```java
 /**
  * @author lihzh
  * @alia OneCoder
@@ -87,8 +72,9 @@ public class MessageServer {
 
 	}
 }
-</pre>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+```java
 /**
  * @author lihzh
  * @alia OneCoder
@@ -133,16 +119,7 @@ public class MessageClient {
 	}
 
 }
-</pre>
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">与&nbsp;</span><a href="http://www.coderli.com/archives/netty-course-hello-world/" style="cursor: pointer; font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">&ldquo;Hello World&rdquo;</a><span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">&nbsp;样例代码不同的是，客户端在channel连通后，不是在本地打印，而是将消息转换成ChannelBuffer传递给服务端，服务端接受到ChannelBuffer后，解码成字符串打印出来。</span></p>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	<br />
-	<div>
-		同时，通过对比可以发现，变动的只是Handler里的代码，启动服务和绑定服务的代码没有变化，也就是我们在<a href="http://www.coderli.com/archives/netty-two-concepts/" style="cursor: pointer; ">概念介绍</a>里提到了，关注Handler，在Handler里处理我们自己的业务。所以，以后我们会只给出业务中关键代码，不会在上重复的代码：）</div>
-</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	由于在Netty中消息的收发全依赖于ChannelBuffer，所以，下一章我们将会详细的介绍ChannelBuffer的使用。我们一起学习。</div>
+```
+与<a href="http://www.coderli.com/netty-course-hello-world/" target="\_blank">"Hello World"</a>样例代码不同的是，客户端在**channel**连通后，不是在本地打印，而是将消息转换成**ChannelBuffer**传递给服务端，服务端接受到**ChannelBuffer**后，解码成字符串打印出来。同时，通过对比可以发现，变动的只是**Handler**里的代码，启动服务和绑定服务的代码没有变化，也就是我们在<a href="http://www.coderli.com/netty-two-concepts/" target="\_blank">概念介绍</a>里提到了，关注**Handler**，在**Handler**里处理我们自己的业务。所以，以后我们会只给出业务中关键代码，不会在上重复的代码：）
 
+由于在Netty中消息的收发全依赖于**ChannelBuffer**，所以，下一章我们将会详细的介绍**ChannelBuffer**的使用。我们一起学习。
