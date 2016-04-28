@@ -180,13 +180,14 @@ export HADOOP_HOME="/home/dps-hadoop/hadoop-2.6.4"
             <name>hadoop.tmp.dir</name>
             <value>/home/dps-hadoop/tmpdata</value>
      </property>
-</configuration>
-hdfs-site.xml
-<configuration>
-    <property>
+     <property>
            <name>fs.default.name</name>
               <value>hdfs://master:54000/</value>
     </property>
+</configuration>
+hdfs-site.xml
+<configuration>
+    
     <property>
             <name>dfs.namenode.name.dir</name>
             <value>/home/dps-hadoop//namedata</value>
@@ -208,6 +209,10 @@ hdfs-site.xml
                 <name>hadoop.tmp.dir</name>
                 <value>/home/dps-hadoop/tmpdata</value>
          </property>
+         <property>
+           <name>fs.default.name</name>
+              <value>hdfs://master:54000/</value>
+    </property>
 </configuration>
 ```
 
@@ -215,10 +220,7 @@ hdfs-site.xml
 
 ```xml
 <configuration>
-    <property>
-           <name>fs.default.name</name>
-              <value>hdfs://master:54000/</value>
-    </property>
+    
     <property>
             <name>dfs.datanode.data.dir</name>
             <value>/home/dps-hadoop/datadir</value>
@@ -227,6 +229,16 @@ hdfs-site.xml
 ```
 
 这里只有**core-site.xml**里的**hadoop.tmp.dir**的配置是我们之前没有提到的。该配置是修改临时文件的存储路径，避免因为系统重启造成的临时文件的丢失，从而导致集群不可能用的情况出现。
+
+> 2016-04-28注：
+> 
+> ```xml
+	<property>
+           <name>fs.default.name</name>
+              <value>hdfs://master:54000/</value>
+    </property>
+```
+该配置必须配置在core-site.xml配置文件中，之前的配置是错误的。否则，各个hdfs节点不在一个集群中。
 
 ### 启动HDFS集群
 
