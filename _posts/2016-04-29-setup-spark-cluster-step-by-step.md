@@ -6,11 +6,13 @@ date: 2016-04-29 10:42:32 +0800
 comments: true
 thread_key: 1893
 ---
-还是在之前的Hadoop集群环境上继续搭建Spark环境
+还是在之前的Hadoop集群环境上继续搭建Spark-1.6.1环境
 
 ### 下载安装
 
 下载Spark并解压
+
+<!--break-->
 
 ```bash
 wget http://mirrors.cnnic.cn/apache/spark/spark-1.6.1/spark-1.6.1-bin-hadoop2.6.tgz
