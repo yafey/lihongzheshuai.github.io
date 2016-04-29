@@ -8,6 +8,8 @@ thread_key: 1892
 ---
 **Kafka**集群环境依赖于**Zookeeper**环境。因此我们的环境搭建实际分为两部分。**Zookeeper**环境搭建和**Kafka**环境搭建。
 
+<!--break-->
+
 ### Zookeeper 3.4.8集群搭建
 
 #### 部署安装包
