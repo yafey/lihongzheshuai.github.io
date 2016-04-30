@@ -1,23 +1,13 @@
 ---
 layout: post
 title: Java NIO框架Netty教程（四）- ChannelBuffer
-date: 2012-07-13 22:10
+date: 2012-07-13 22:10 +0800
 author: onecoder
 comments: true
-categories: [ChannelBuffer, Netty, Netty, 流]
+tags: [Netty]
+thread_key: 936
 ---
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">在学</span><a href="http://www.coderli.com/archives/netty-string-channelbuffer/" style="cursor: pointer; font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">字符串消息收发</a><span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">的时候，已经提到过。ChannelBuffer是Netty中非常重要的概念。所有消息的收发都依赖于这个Buffer。我们通过Netty的官方的文档来了解一下，基于流的消息传递机制。</span></p>
-<p>
-	&nbsp;</p>
-<p>
-	&nbsp;</p>
-<p>
-	&nbsp;</p>
-<p>
-	&nbsp;</p>
-<p>
-	&nbsp;</p>
+在<a href="http://www.coderli.com/netty-string-channelbuffer/" target="\_blank">字符串消息收发</a>中提到。**ChannelBuffer**是**Netty**中非常重要的概念。所有消息的收发都依赖于这个**Buffer**。我们通过**Netty**的官方的文档来了解一下，基于流的消息传递机制。
 <blockquote>
 	<div>
 		In a stream-based transport such as TCP/IP, received data is stored into a socket receive buffer.</div>
@@ -39,34 +29,34 @@ categories: [ChannelBuffer, Netty, Netty, 流]
 		<div>
 			+-----+-----+-----+</div>
 		<div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-				Because of this general property of a stream-based protocol, there&#39;s high chance of reading them in the</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+						Because of this general property of a stream-based protocol, there' high chance of reading them in the</div>
+			<div>
 				following fragmented form in your application:</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				+----+-------+---+---+</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				| AB | CDEFG | H | I |</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				+----+-------+---+---+</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				Therefore, a receiving part, regardless it is server-side or client-side, should defrag the received data into one</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				or more meaningful frames that could be easily understood by the application logic. In case of the example</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				above, the received data should be framed like the following:</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				+-----+-----+-----+</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				| ABC | DEF | GHI |</div>
-			<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
+			<div>
 				+-----+-----+-----+</div>
 		</div>
 	</div>
 </blockquote>
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">不知道您理解了没，简单翻译一下就是说。在TCP/IP这种基于流传递的协议中。他识别的不是你每一次发送来的消息，不是分包的。而是，只认识一个整体的流，即使分三次分别发送三段话：ABC、DEF、GHI。在传递的过程中，他就是一个具有整体长度的流。在读流的过程中，如果我一次读取的长度选择的不是三个，我可以收到类似AB、CDEFG、H、I这样的信息。这显然是我们不想看到的。所以说，在你写的消息收发的系统里，需要预先定义好这种解析机制，规定每帧(次)读取的长度。通过代码来理解一下：</span></p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+您理解了没，简单翻译一下就是说。在**TCP/IP**这种基于流传递的协议中。他识别的不是你每一次发送来的消息，不是分包的。而是，只认识一个整体的流，即使分三次分别发送三段话：**ABC**、**DEF**、**GHI**。在传递的过程中，他就是一个具有整体长度的流。在读流的过程中，如果我一次读取的长度选择的不是三个，我可以收到类似**AB**、**CDEFG**、**H**、**I**这样的信息。这显然是我们不想看到的。所以说，在你写的消息收发的系统里，需要预先定义好这种解析机制，规定每帧(次)读取的长度。通过代码来理解一下:
+
+```java
 /**
  * @author lihzh
  * @alia OneCoder
@@ -84,7 +74,7 @@ public class ServerBufferHandler extends SimpleChannelHandler {
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
 		ChannelBuffer buffer = (ChannelBuffer) e.getMessage();
 		// 五位读取
-		while (buffer.readableBytes() &gt;= 5) {
+		while (buffer.readableBytes() >= 5) {
 			ChannelBuffer tempBuffer = buffer.readBytes(5);
 			System.out.println(tempBuffer.toString(Charset.defaultCharset()));
 		}
@@ -92,8 +82,10 @@ public class ServerBufferHandler extends SimpleChannelHandler {
 		System.out.println(buffer.toString(Charset.defaultCharset()));
 	}
 
-}</pre>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+}
+```
+
+```java
 /**
  * @author lihzh
  * @alia OneCoder
@@ -114,19 +106,19 @@ public class ClientBufferHandler extends SimpleChannelHandler {
 	}
 
 	/**
-	 * 将&lt;b&gt;&quot;Hello, I&#39;m client.&quot;&lt;/b&gt;分成三份发送。 &lt;br&gt;
-	 * Hello, &lt;br&gt;
-	 * I&#39;m&lt;br&gt;
-	 * client.&lt;br&gt;
+	 * 将<b>"Hello, I'm client."</b>分成三份发送。 <br>
+	 * Hello, <br>
+	 * I'm<br>
+	 * client.<br>
 	 * 
 	 * @param e
 	 *            Netty事件
 	 * @author lihzh
 	 */
 	private void sendMessageByFrame(ChannelStateEvent e) {
-		String msgOne = &quot;Hello, &quot;;
-		String msgTwo = &quot;I&#39;m &quot;;
-		String msgThree = &quot;client.&quot;;
+		String msgOne = "Hello, ";
+		String msgTwo = "I'm ";
+		String msgThree = "client.";
 		e.getChannel().write(tranStr2Buffer(msgOne));
 		e.getChannel().write(tranStr2Buffer(msgTwo));
 		e.getChannel().write(tranStr2Buffer(msgThree));
@@ -146,17 +138,16 @@ public class ClientBufferHandler extends SimpleChannelHandler {
 		return buffer;
 	}
 
-}</pre>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	服务端输出结果：</div>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+}
+```
+
+服务端输出结果：
+
+```
 Hello
-, I&#39;m
+, I'm
  clie
 nt.
-</pre>
-</div>
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">这里其实，服务端是否分段发送并不会影响输出结果，也就是说，你一次性的把&quot;Hi, I&#39;m client.&quot;这段信息发送过来，输出的结果也是一样的。这就是开头说的，传输的是流，不分包。而只在于你如何分段读写。</span></p>
+```
 
+这里其实，服务端是否分段发送并不会影响输出结果，也就是说，你一次性的把"Hi, I'm client."这段信息发送过来，输出的结果也是一样的。这就是开头说的，传输的是流，不分包。而只在于你如何分段读写。
