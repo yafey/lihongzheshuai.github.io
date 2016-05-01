@@ -135,8 +135,10 @@
 
 .contact-list,
 .social-media-list {
-    li span {
-      float: left;
+    li {
+      span {
+        float: left;
+      }
     }
     list-style: none;
     margin-left: 0;
