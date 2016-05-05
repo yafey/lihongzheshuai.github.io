@@ -1,18 +1,19 @@
 ---
 layout: post
 title: Java NIO框架Netty教程(八)-Object对象传递
-date: 2012-07-23 16:43
+date: 2012-07-23 16:43 +0800
 author: onecoder
 comments: true
-categories: [codec, Netty, Netty, object]
+tags: [Netty]
+thread_key: 982
 ---
-<p>
-	说了这么多废话，才提到对象的传输，不知道您是不是已经不耐烦了。一个系统内部的消息传递，没有对象传递是不太现实的。下面就来说说，怎么传递对象。</p>
-<p>
-	如果，您看过前面的介绍，如果您善于专注本质，勤于思考。您应该也会想到，我们说过，Netty的消息传递都是基于流，通过ChannelBuffer传递的，那么自然，Object也需要转换成ChannelBuffer来传递。好在Netty本身已经给我们写好了这样的转换工具。ObjectEncoder和ObjectDecoder。</p>
-<p>
-	工具怎么用？再一次说说所谓的本质，我们之前也说过，Netty给我们处理自己业务的空间是在灵活的可子定义的Handler上的，也就是说，如果我们自己去做这个转换工作，那么也应该在Handler里去做。而Netty，提供给我们的ObjectEncoder和Decoder也恰恰是一组Handler。于是，修改Server和Client的启动代码：</p>
-<pre class="brush:java;title:'服务端';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+说了这么多废话，才提到对象的传输，不知道您是不是已经不耐烦了。一个系统内部的消息传递，没有对象传递是不太现实的。下面就来说说，怎么传递对象。
+
+如果，您看过前面的介绍，如果您善于专注本质，勤于思考。您应该也会想到，我们说过，**Netty**的消息传递都是基于流，通过**ChannelBuffer**传递的，那么自然，**Object**也需要转换成**ChannelBuffer**来传递。好在**Netty**本身已经给我们写好了这样的转换工具。**ObjectEncoder**和**ObjectDecoder**。
+
+工具怎么用？再一次说说所谓的本质，我们之前也说过，**Netty**给我们处理自己业务的空间是在灵活的可子定义的**Handler**上的，也就是说，如果我们自己去做这个转换工作，那么也应该在**Handler**里去做。而**Netty**，提供给我们的**ObjectEncoder**和**Decoder**也恰恰是一组**Handler**。于是，修改**Server**和**Client**的启动代码：
+
+```java
 // 设置一个处理客户端消息和各种消息事件的类(Handler)
 bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
     @Override
@@ -22,8 +23,10 @@ bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 				.getClass().getClassLoader())),
 		new ObjectServerHandler());
     }
-});</pre>
-<pre class="brush:java;title:'客户端';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+});
+```
+
+```java
 // 设置一个处理服务端消息和各种消息事件的类(Handler)
 bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 	@Override
@@ -31,10 +34,12 @@ bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 		return Channels.pipeline(new ObjectEncoder(),
 				new ObjectClientHandler());
 	}
-});</pre>
-<p>
-	要传递对象，自然要有一个被传递模型，一个简单的Pojo，当然，实现序列化接口是必须的。</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:false;highlight:null;collapse:false;">
+});
+```
+
+要传递对象，自然要有一个被传递模型，一个简单的**Pojo**，当然，实现序列化接口是必须的。
+
+```java
 /**
  * @author lihzh
  * @alia OneCoder
@@ -53,10 +58,12 @@ public class Command implements Serializable {
 	public void setActionName(String actionName) {
 		this.actionName = actionName;
 	}
-}</pre>
-<p>
-	服务端和客户端里，我们自定义的Handler实现如下：</p>
-<pre class="brush:java;title:'ObjectServerHandler .java';first-line:1;pad-line-numbers:false;highlight:null;collapse:false;">
+}
+```
+
+服务端和客户端里，我们自定义的Handler实现如下：
+
+```java
 /**
  * 对象传递服务端代码
  * 
@@ -76,8 +83,10 @@ public class ObjectServerHandler extends SimpleChannelHandler {
 		// 打印看看是不是我们刚才传过来的那个
 		System.out.println(command.getActionName());
 	}
-}</pre>
-<pre class="brush:java;title:'ObjectClientHandler .java';first-line:1;pad-line-numbers:false;highlight:null;collapse:false;">
+}
+```
+
+```java
 /**
  * 对象传递，客户端代码
  * 
@@ -112,23 +121,20 @@ public class ObjectClientHandler extends SimpleChannelHandler {
 		channel.write(command);
 	}
 
-}</pre>
-<p>
-	启动后，服务端正常打印结果：Hello action.</p>
-<p>
-	<span style="font-family: Tahoma; font-size: 14px; ">简单梳理一下思路：</span></p>
-<div style="font-family: Tahoma; font-size: 14px; ">
-	<ol>
-		<li>
-			通过Netty传递，都需要基于流，以ChannelBuffer的形式传递。所以，Object -&gt; ChannelBuffer.</li>
-		<li>
-			Netty提供了转换工具，需要我们配置到Handler。</li>
-		<li>
-			样例从客户端 -&gt; 服务端，单向发消息，所以在客户端配置了编码，服务端解码。如果双向收发，则需要全部配置Encoder和Decoder。</li>
-	</ol>
-	<p>
-		这里需要注意，注册到Server的Handler是有顺序的，如果你颠倒一下注册顺序：</p>
-	<pre class="brush:java;first-line:1;pad-line-numbers:false;highlight:null;collapse:false;">
+}
+```
+
+启动后，服务端正常打印结果：**Hello action**.
+
+简单梳理一下思路：
+			
+1. 通过**Netty**传递，都需要基于流，以**ChannelBuffer**的形式传递。所以，**Object** -> **ChannelBuffer**.
+2. Netty提供了转换工具，需要我们配置到Handler。
+3. 样例从客户端 -> 服务端，单向发消息，所以在客户端配置了编码，服务端解码。如果双向收发，则需要全部配置**Encoder**和**Decoder**。
+
+这里需要注意，注册到**Server**的**Handler**是有顺序的，如果你颠倒一下注册顺序：
+
+```java
 bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 	@Override
 	public ChannelPipeline getPipeline() throws Exception {
@@ -137,8 +143,8 @@ bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
 						.getClass().getClassLoader()))
 				);
 	}
-});</pre>
-</div>
-<p>
-	结果就是，会先进入我们自己的业务，再进行解码。这自然是不行的，会强转失败。至此，你应该会用Netty传递对象了吧。</p>
+});
+```
+
+结果就是，会先进入我们自己的业务，再进行解码。这自然是不行的，会强转失败。至此，你应该会用**Netty**传递对象了吧。
 
