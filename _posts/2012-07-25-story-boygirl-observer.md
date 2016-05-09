@@ -1,25 +1,23 @@
 ---
 layout: post
 title: Java小故事 不舍得叫醒女孩的男孩 观察者模式
-date: 2012-07-25 20:56
+date: 2012-07-25 20:56 +0800
 author: onecoder
 comments: true
-categories: [Java, Java基础, observer, 小故事]
+tags: [Java]
+thread_key: 994
 ---
-<span style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">今天在梳理项目里一些老的代码逻辑和结构的时候，发现了一段观察者的代码。脑海里同时浮现出这样一个故事&hellip;&hellip;</span>
-<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-	&nbsp;</div>
-<blockquote>
-	<div style="font-family: Tahoma; font-size: 14px; text-align: -webkit-auto; ">
-		有一个女孩和一个男孩，他们在山里迷路了。晚上，他们都精疲力尽。男孩对女孩说，你睡会吧，我看着，有动静我叫你，然而&hellip;&hellip;</div>
-</blockquote>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+今天在梳理项目里一些老的代码逻辑和结构的时候，发现了一段观察者的代码。脑海里同时浮现出这样一个故事……
+
+> 有一个女孩和一个男孩，他们在山里迷路了。晚上，他们都精疲力尽。男孩对女孩说，你睡会吧，我看着，有动静我叫你，然而……
+
+```java
 /**
  * Java小故事，不舍得叫醒女孩的男孩
- * &lt;p&gt;
- * 有一个女孩和一个男孩，他们在山里迷路了。&lt;br&gt;
- * 晚上，他们都精疲力尽。男孩对女孩说，你睡会吧，我看着，有动静我叫你。&lt;br&gt;
- * 然而&hellip;&hellip;
+ * <p>
+ * 有一个女孩和一个男孩，他们在山里迷路了。<br>
+ * 晚上，他们都精疲力尽。男孩对女孩说，你睡会吧，我看着，有动静我叫你。<br>
+ * 然而……
  * 
  * @author lihzh
  * @alia OneCoder
@@ -78,5 +76,4 @@ public class ObserverBoyAndGirlMain {
 		}
 	}
 }
-</pre>
-
+```
