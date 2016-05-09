@@ -59,7 +59,7 @@ public class ObserverBoyAndGirlMain {
 		 */
 		public void wakeupGirl() {
 			setChanged();
-			notifyObservers(&quot;&quot;);
+			notifyObservers("");
 		}
 	}
 
@@ -72,7 +72,7 @@ public class ObserverBoyAndGirlMain {
 	public static class Girl implements Observer {
 		@Override
 		public void update(Observable o, Object arg) {
-			System.out.println(&quot;Thank you, I&#39;m up.&quot;);
+			System.out.println("Thank you, I'm up.");
 		}
 	}
 }
