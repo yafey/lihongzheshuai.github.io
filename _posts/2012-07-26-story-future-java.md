@@ -1,23 +1,22 @@
 ---
 layout: post
 title: Java小故事 我许你一个未来 Future
-date: 2012-07-26 21:41
+date: 2012-07-26 21:41 +0800
 author: onecoder
 comments: true
-categories: [future, Java, Java基础, 小故事]
+tags: [Java]
+thread_key: 999
 ---
-还是梳理代码，频频到Future这个字眼，很自然的让我想到了未来&hellip;&hellip;<br />
-<br />
-<blockquote>
-	<p>
-		还是那对男孩和女孩，女孩问男孩，你会娶我吗？男孩说，一定会，等我为你盖好一栋美丽的房子&hellip;&hellip;</p>
-</blockquote>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+还是梳理代码，频频到**Future**这个字眼，很自然的让我想到了未来。
+
+还是那对男孩和女孩，女孩问男孩，你会娶我吗？男孩说，一定会，等我为你盖好一栋美丽的房子……
+
+```java
 /**
  * Java小故事 我许你一个未来 Future
- * &lt;p&gt;
- * 还是那对男孩和女孩，女孩问男孩，你会娶我吗？&lt;br&gt;
- * 男孩说，一定会，等我为你盖好一栋美丽的房子&hellip;&hellip;
+ * <p>
+ * 还是那对男孩和女孩，女孩问男孩，你会娶我吗？<br>
+ * 男孩说，一定会，等我为你盖好一栋美丽的房子……
  * 
  * @author lihzh
  * @alia OneCoder
@@ -35,14 +34,14 @@ public class PromiseUAFuture {
 	 */
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		// 我许你一个未来
-		Future&lt;BeautifulHouse&gt; future = Executors.newSingleThreadExecutor().submit(new Boy());
+		Future<BeautifulHouse> future = Executors.newSingleThreadExecutor().submit(new Boy());
 		while (!future.isDone()) {
 			System.out.println(&quot;Sorry baby, the house is not ok.&quot;);
 		}
 		System.out.println(future.get());
 	}
 
-	public static class Boy implements Callable&lt;BeautifulHouse&gt; {
+	public static class Boy implements Callable<BeautifulHouse> {
 		@Override
 		public BeautifulHouse call() throws Exception {
 			Thread.sleep(5000);
@@ -58,5 +57,4 @@ public class PromiseUAFuture {
 		}
 	}
 }
-</pre>
-
+```
