@@ -36,7 +36,7 @@ public class PromiseUAFuture {
 		// 我许你一个未来
 		Future<BeautifulHouse> future = Executors.newSingleThreadExecutor().submit(new Boy());
 		while (!future.isDone()) {
-			System.out.println(&quot;Sorry baby, the house is not ok.&quot;);
+			System.out.println("Sorry baby, the house is not ok.");
 		}
 		System.out.println(future.get());
 	}
@@ -53,7 +53,7 @@ public class PromiseUAFuture {
 	public static class BeautifulHouse {
 		@Override
 		public String toString() {
-			return &quot;This is a beautiful house.&quot;;
+			return "This is a beautiful house.";
 		}
 	}
 }
