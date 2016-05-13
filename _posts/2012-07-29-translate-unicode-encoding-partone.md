@@ -30,7 +30,7 @@ thread_key: 1014
 
 最简单的理解这些事情的方式自然是从头去回顾。
 
-你可能会认为，我将会讲**EBCDIC**（<a href="http://www.coderli.com/" target="\_blank">OneCoder</a>注：<a href="http://zh.wikipedia.org/wiki/EBCDIC">Extended Binary Coded Decimal Interchange Code</a>） 这样非常古老的字符集。呵呵，我不会的。**EBCDIC** 跟你的生活没太大关系，我们不会去讲那么古老的东西。
+你可能会认为，我将会讲**EBCDIC**（<a href="http://www.coderli.com/" target="\_blank">OneCoder</a>注：<a href="http://zh.wikipedia.org/wiki/EBCDIC" target="\_blank">Extended Binary Coded Decimal Interchange Code</a>） 这样非常古老的字符集。呵呵，我不会的。**EBCDIC** 跟你的生活没太大关系，我们不会去讲那么古老的东西。
 
 追溯到**Unix**诞生，K&R发明了C语言的时代，任何东西都很简单。**EBCDIC** 就是在那个环境下产生的。
 
