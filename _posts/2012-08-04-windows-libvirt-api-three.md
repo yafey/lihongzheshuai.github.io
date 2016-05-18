@@ -129,13 +129,14 @@ signingkey
 
 最后是客户端的证书，过程类似，这里只列出主要过程和命令：
 
-1. 创建私钥:
+1、创建私钥:
+
 
 ```bash
 certtool --generate-privkey > clientkey.pem
 ```
 
-2. 创建client.info模版文件:
+2、创建client.info模版文件:
 
 ```
 country = GB
@@ -156,7 +157,7 @@ certtool --generate-certificate --load-privkey clientkey.pem \
   --template client.info --outfile clientcert.pem
 ```
 
-3. 拷贝证书到客户端的指定位置（**linux**）:
+3、拷贝证书到客户端的指定位置（**linux**）:
 
 ```bash
 cp clientkey.pem /etc/pki/libvirt/private/clientkey.pem
