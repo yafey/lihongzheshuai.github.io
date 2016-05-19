@@ -8,6 +8,8 @@ thread_key: 1894
 ---
 CentOS6.5系列默认安装的是MySQL5.1版本，并且默认的repo里也没有高版本的MySQL。
 
+<!--break-->
+
 # 卸载低版本MySQL
 
 先通过
