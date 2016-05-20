@@ -4,7 +4,7 @@ title: yum安装MySQL5.7
 tags: [MySQL]
 date: 2016-05-19 20:20:35 +0800
 comments: true
-thread_key: 1894
+thread_key: 1895
 ---
 CentOS6.5系列默认安装的是MySQL5.1版本，并且默认的repo里也没有高版本的MySQL。
 
