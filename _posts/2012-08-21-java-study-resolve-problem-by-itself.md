@@ -44,7 +44,7 @@ thread_key: 1093
 
 如果你了解，你就会知道，所有的接口的**API**都是根据这个**Javadoc**生成的。顺便，你还可以看到它的实现，加深你的理解，何乐而不为呢？
 
-```
+```java
 public String substring(int beginIndex, int endIndex) {
         if (beginIndex < 0) {
             throw new StringIndexOutOfBoundsException(beginIndex);
@@ -57,7 +57,7 @@ public String substring(int beginIndex, int endIndex) {
         }
         return ((beginIndex == 0) &amp;&amp; (endIndex == count)) ? this :
             new String(offset + beginIndex, endIndex - beginIndex, value);
-    }</pre>
+    }
 ```
 
 # 关于搜索引擎的使用
