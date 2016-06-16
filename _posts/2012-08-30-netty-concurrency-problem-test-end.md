@@ -1,12 +1,13 @@
 ---
 layout: post
 title: Java NIO框架Netty教程(十三)-并发访问测试(下)
-date: 2012-08-30 21:47
+date: 2012-08-30 21:47 +0800
 author: onecoder
 comments: true
-categories: [Coding生活, Netty, Netty, 并发]
+tags: [Netty]
+thread_key: 1116
 ---
-在上节(<a href="http://www.coderli.com/netty-concurrency-problem-test-two">《Java NIO框架Netty教程(十二)-并发访问测试(中)》</a>)，我们从各个角度对Netty并发的场景进行了测试。这节，我们将重点关注上节最后提到的问题。在多线程并发访问的情况下，会出现
+在上节(<a href="http://www.coderli.com/netty-concurrency-problem-test-two" target="\_blank">《Java NIO框架Netty教程(十二)-并发访问测试(中)》</a>)，我们从各个角度对**Netty**并发的场景进行了测试。这节，我们将重点关注上节最后提到的问题。在多线程并发访问的情况下，会出现
 <blockquote>
 <div>警告: EXCEPTION, please implement one.coder.netty.chapter.eight.ObjectClientHandler.exceptionCaught() for proper handling.</div>
 <div>java.net.ConnectException: Connection refused: no further information</div></blockquote>
@@ -38,11 +39,10 @@ categories: [Coding生活, Netty, Netty, 并发]
 这套配置在测试Restlet框架并发的时候，起到了明显的效果。
 <div></div>
 <div>然后，这次即使 <a href="http://www.coderli.com/">OneCoder</a> 修改配置，并发连接也没有明显的上升。 <a href="http://www.coderli.com/">OneCoder</a> 决定换个思路，启动多个进程对同一个服务进行持续访问，以证明之前的连接拒绝就是因为客户端多线程并发自身的问题(其实 <a href="http://www.coderli.com/">OneCoder</a> 一直非常怀疑是这个问题)还是服务端连接处理的问题。</div>
-<div>
-<div></div>
 <div>修改了一下客户端发动消息的代码，使其在其线程内部，不停的给服务端发送信息。</div>
-<div>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">/**
+
+```java
+	**
 	 * 发送Object
 	 * 
 	 * @param channel
@@ -69,11 +69,12 @@ categories: [Coding生活, Netty, Netty, 并发]
 			}
 		}).start();
 	}
-</pre>
-</div>
-</div>
+```
+
 启动多个客户端，效果如图：
-<div><img class="aligncenter" src="http://onecoder.qiniudn.com/8wuliao/CehmeXcf/4hFcy.jpg" alt="" width="469" height="296" /></div>
+
+![](http://onecoder.qiniudn.com/8wuliao/CehmeXcf/4hFcy.jpg)
+
 <div>果然，在单个进程数量控制合理的情况下，服务端可以处理所有请求，不会出现链接拒绝的情况。总连接数轻松达到4，5k。（ <a href="http://www.coderli.com/">OneCoder</a> 注：以前超过1000都容易出错。这里只是测试到以前完全没有办法支持的情形，并没有测试最大压力值。）</div>
 <div></div>
 <div>对于测试Netty服务端压力来说，这样的测试， <a href="http://www.coderli.com/">OneCoder</a> 认为完全可以起到效果，有参考价值。因为即使单进程网络连接方面无上限，单进程能启动的线程数也是有限制的，效率也一定会受到影响。所以，对于并发测试来说， <a href="http://www.coderli.com/">OneCoder</a> 认为可以采用上面的方式。</div>
