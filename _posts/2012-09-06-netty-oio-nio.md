@@ -17,8 +17,11 @@ thread_key: 1133
 ServerBootstrap bootstrap = new ServerBootstrap(
 				new OioServerSocketChannelFactory(
 						Executors.newCachedThreadPool(),
-						Executors.newFixedThreadPool(4)));</pre>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">ServerBootstrap bootstrap = new ServerBootstrap(
+						Executors.newFixedThreadPool(4)));
+```
+
+```java
+ServerBootstrap bootstrap = new ServerBootstrap(
 				new NioServerSocketChannelFactory(
 						Executors.newCachedThreadPool(),
 						Executors.newFixedThreadPool(4)));
