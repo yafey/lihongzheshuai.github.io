@@ -10,6 +10,7 @@ thread_key: 1158
 本来<a href="http://www.coderli.com">OneCoder</a>是在一遍搭建一个J2EE的开发环境，一遍记录过程以跟大家分享。没想到这个过程中，遇到了很多细节的错误，考虑到如果和原来的主线任务文章混在一起，有点让人不知所措的感觉，所以<a href="http://www.coderli.com">OneCoder</a>决定把这些问题的解决过程单独记录下来，以跟大家分享。
 
 在Eclipse中启动Tomcat，启动开始有如下信息提示。
+
 > 九月 28, 2012 10:18:12 上午 org.apache.catalina.core.AprLifecycleListener init<br>
 > SEVERE: An incompatible version 1.1.20 of the APR based Apache Tomcat Native library is installed, while Tomcat requires version 1.1.24
 
