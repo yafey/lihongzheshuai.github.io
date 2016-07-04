@@ -7,9 +7,7 @@ comments: true
 tags: [Java]
 thread_key: 1161
 ---
-<p>
-	<a href="http://www.coderli.com">OneCoder</a>准备自己慢慢写点东西，把离散的知识点汇总一下。给出的版本没什么特别的含义，只是<a href="http://www.coderli.com">OneCoder</a>目前使用的环境而已。</p>
-<div>
+<a href="http://www.coderli.com">OneCoder</a>准备自己慢慢写点东西，把离散的知识点汇总一下。给出的版本没什么特别的含义，只是<a href="http://www.coderli.com">OneCoder</a>目前使用的环境而已。
 	<ul>
 		<li>
 			IDE:Eclipse4.2 JUNO。</li>
@@ -151,12 +149,12 @@ public class FirstServlet extends HttpServlet {
 
 <div>
 	一个简单的Servlet就写好了。</div>
-<div>
-	运行一下？等等。我们知道一个web工程运行时依赖的jar包是需要放到WEB-INF/lib下的，这里明显看到lib下空的，并且我们的jar包是通过Maven管理的，难道要手动拷贝过去吗？<a href="http://www.coderli.com">OneCoder</a>以前还真干过这样的啥事，甚至还自己开发了脚本，做所谓的&ldquo;一键自动化&rdquo;工作。其实Eclipse里已经帮你做好了。在工程的Properties配置项里的Deployment Assembly配置里，配好Maven的依赖和部署即可，如图：</div>
+
+运行一下？等等。我们知道一个web工程运行时依赖的jar包是需要放到WEB-INF/lib下的，这里明显看到lib下空的，并且我们的jar包是通过Maven管理的，难道要手动拷贝过去吗？<a href="http://www.coderli.com">OneCoder</a>以前还真干过这样的啥事，甚至还自己开发了脚本，做所谓的&ldquo;一键自动化&rdquo;工作。其实Eclipse里已经帮你做好了。在工程的Properties配置项里的Deployment Assembly配置里，配好Maven的依赖和部署即可，如图：
+
 <div style="text-align: center; ">
 	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CiG3YOTp/e1swU.jpg" /></div>
-<div style="text-align: center; ">
-	&nbsp;</div>
+
 <div>
 	此时再运行一下，log正常输出，说明jar依赖过来了，一切都ok了。</div>
 <div style="text-align: center; ">
