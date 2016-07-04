@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Eclipse4.2+Tomcat7+Maven3+Servlet3.0 J2EE工程配置说明
-date: 2012-09-29 09:16
+date: 2012-09-29 09:16 +0800
 author: onecoder
 comments: true
-categories: [eclipse, logback, Maven, servlet3, Web开发]
+tags: [Java]
+thread_key: 1161
 ---
 <p>
 	<a href="http://www.coderli.com">OneCoder</a>准备自己慢慢写点东西，把离散的知识点汇总一下。给出的版本没什么特别的含义，只是<a href="http://www.coderli.com">OneCoder</a>目前使用的环境而已。</p>
@@ -27,93 +28,91 @@ categories: [eclipse, logback, Maven, servlet3, Web开发]
 		为什么都用最新版本？因为<a href="http://www.coderli.com">OneCoder</a>是个新版控呵呵。</div>
 	<div>
 		为了以后管理方便，先建一个全局的parent工程，统一控制jar包依赖的版本。然后新建一个Maven管理的Web工程，parent指定为<a href="https://code.google.com/p/onecoder/">onecoder-parent</a>工程。</div>
-	<div>
-		&nbsp;</div>
-	<div>
-		Parent pom.xml配置样例：(主要是版本变量定义，依赖包设置和编译级别设置)</div>
-	<div>
-		<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
-	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-	&lt;groupId&gt;onecoder-parent&lt;/groupId&gt;
-	&lt;artifactId&gt;onecoder-parent&lt;/artifactId&gt;
-	&lt;version&gt;0.1&lt;/version&gt;
-	&lt;packaging&gt;pom&lt;/packaging&gt;
-	&lt;properties&gt;
-		&lt;logback.version&gt;1.0.7&lt;/logback.version&gt;
-		&lt;slf4j.version&gt;1.7.1&lt;/slf4j.version&gt;
-		&lt;junit.version&gt;4.10&lt;/junit.version&gt;
-	&lt;/properties&gt;
-	&lt;dependencyManagement&gt;
-		&lt;dependencies&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;junit&lt;/groupId&gt;
-				&lt;artifactId&gt;junit&lt;/artifactId&gt;
-				&lt;version&gt;${junit.version}&lt;/version&gt;
-				&lt;scope&gt;test&lt;/scope&gt;
-			&lt;/dependency&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-				&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-				&lt;version&gt;${slf4j.version}&lt;/version&gt;
-			&lt;/dependency&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
-				&lt;artifactId&gt;logback-core&lt;/artifactId&gt;
-				&lt;version&gt;${logback.version}&lt;/version&gt;
-			&lt;/dependency&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
-				&lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
-				&lt;version&gt;${logback.version}&lt;/version&gt;
-			&lt;/dependency&gt;
-		&lt;/dependencies&gt;
-	&lt;/dependencyManagement&gt;
-	&lt;build&gt;
-		&lt;pluginManagement&gt;
-			&lt;plugins&gt;
-				&lt;plugin&gt;
-					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-					&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-					&lt;version&gt;2.3.2&lt;/version&gt;
-					&lt;configuration&gt;
-						&lt;verbose&gt;true&lt;/verbose&gt;
-						&lt;fork&gt;true&lt;/fork&gt;
-						&lt;executable&gt;${JAVA_HOME}/bin/javac&lt;/executable&gt;
-						&lt;compilerVersion&gt;1.7&lt;/compilerVersion&gt;
-						&lt;source&gt;1.7&lt;/source&gt;
-						&lt;target&gt;1.7&lt;/target&gt;
-					&lt;/configuration&gt;
-				&lt;/plugin&gt;
 
-				&lt;plugin&gt;
-					&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-					&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
-					&lt;version&gt;2.7.2&lt;/version&gt;
-				&lt;/plugin&gt;
-			&lt;/plugins&gt;
-		&lt;/pluginManagement&gt;
-	&lt;/build&gt;
-&lt;/project&gt;
-</pre>
-	</div>
-</div>
-<p>
-	logback的简要配置：</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-&lt;configuration&gt;  
-  &lt;appender name=&quot;console&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;  
-    &lt;encoder  class=&quot;ch.qos.logback.classic.encoder.PatternLayoutEncoder&quot;&gt;  
-      &lt;pattern&gt;%d{yyyy/MM/dd-HH:mm:ss} %level [%thread] %C - %msg%n&lt;/pattern&gt;  
-    &lt;/encoder &gt;  
-  &lt;/appender&gt;  
+Parent pom.xml配置样例：(主要是版本变量定义，依赖包设置和编译级别设置)
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>onecoder-parent</groupId>
+	<artifactId>onecoder-parent</artifactId>
+	<version>0.1</version>
+	<packaging>pom</packaging>
+	<properties>
+		<logback.version>1.0.7</logback.version>
+		<slf4j.version>1.7.1</slf4j.version>
+		<junit.version>4.10</junit.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-core</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<verbose>true</verbose>
+						<fork>true</fork>
+						<executable>${JAVA_HOME}/bin/javac</executable>
+						<compilerVersion>1.7</compilerVersion>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.7.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
+```
+	
+logback的简要配置：
+
+```xml
+<configuration>  
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">  
+    <encoder  class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">  
+      <pattern>%d{yyyy/MM/dd-HH:mm:ss} %level [%thread] %C - %msg%n</pattern>  
+    </encoder >  
+  </appender>  
   
-  &lt;root level=&quot;INFO&quot;&gt;  
-    &lt;appender-ref ref=&quot;console&quot; /&gt;  
-  &lt;/root&gt;  
-&lt;/configuration&gt;  
-</pre>
+  <root level="INFO">  
+    <appender-ref ref="console" />  
+  </root>  
+</configuration>  
+```
+
 <p>
 	扔到src/main/resources下。</p>
 <p style="text-align: center; ">
@@ -122,19 +121,17 @@ categories: [eclipse, logback, Maven, servlet3, Web开发]
 	&nbsp;</p>
 <div>
 	如果你此时不知所措，不放直接扔到Tomcat下启动一下，看报什么错，就知道缺什么了。解决错误的过程，可以学到很多东西。</div>
-<div>
-	&nbsp;</div>
-<div>
-	接下来应该写Servlet了。Servlet3.0的一大亮点就是支持注解配置。所以你会发现没有了web.xml配置文件。Servlet写起来也很简单。</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+接下来应该写Servlet了。Servlet3.0的一大亮点就是支持注解配置。所以你会发现没有了web.xml配置文件。Servlet写起来也很简单。
+
+```java
 /**
  * Servlet3.0 Servlet使用样例
  * @author lihzh
  * @alia OneCoder
  * @blog http://www.coderli.com
  */
-@WebServlet(name = &quot;FirstServlet&quot;, urlPatterns = { &quot;/firstservlet&quot;})
+@WebServlet(name = "FirstServlet", urlPatterns = { "/firstservlet"})
 public class FirstServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3038754482452604279L;
@@ -145,12 +142,13 @@ public class FirstServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		PrintWriter out = response.getWriter();
-		log.info(&quot;This is log&quot;);
-		out.println(&quot;hello,world...&quot;);
+		log.info("This is log");
+		out.println("hello,world...");
 		out.close();
 	}
-}</pre>
-</div>
+}
+```
+
 <div>
 	一个简单的Servlet就写好了。</div>
 <div>
