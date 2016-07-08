@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Java 解析CSV文件
-date: 2012-10-08 15:25
+date: 2012-10-08 15:25 +0800
 author: onecoder
 comments: true
-categories: [csv, Java, opencsv, 原创翻译, 翻译]
+tags: [Java]
+thread_key: 1170
 ---
 <p>
 	十一匆匆的就过去了，OneCoder过的也是有点恍惚。不知道都做了什么，心却有点散。做一篇翻译，权当收收心，找找感觉吧。</p>
@@ -30,22 +31,18 @@ categories: [csv, Java, opencsv, 原创翻译, 翻译]
 	&nbsp;</div>
 <div>
 	下面是我使用的一个例子：</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-String filePath = &quot;/Users/mneedham/data/awesome-csv-file.csv&quot;;
-CSVReader reader = new CSVReader(new FileReader(filePath), &#39;,&#39;);
 
-List&lt;String[]&gt; csvEntries = reader.readAll();
-Iterator&lt;String[]&gt; iterator = csvEntries.iterator();
+```java
+String filePath = "/Users/mneedham/data/awesome-csv-file.csv";
+CSVReader reader = new CSVReader(new FileReader(filePath), ',');
+
+List<String[]> csvEntries = reader.readAll();
+Iterator<String[]> iterator = csvEntries.iterator();
 
 while (iterator.hasNext()) {
     String[] row = iterator.next();
-    System.out.println(&quot;field 1: &quot; + row[0]);
+    System.out.println("field 1: " + row[0]);
 }
-</pre>
-</div>
-<div>
-	<div>
-		&nbsp;</div>
-	在它的项目<a href="http://opencsv.sourceforge.net/">主页</a>中有更多使用场景的莉子。</div>
+```
 
+在它的项目<a href="http://opencsv.sourceforge.net/">主页</a>中有更多使用场景的莉子。
