@@ -176,20 +176,16 @@ public PropertySourcesPlaceholderConfigurer placehodlerConfigurer() {
 ```
 
 这个bean用来使用替换变量符"${}"。这个替换符正式在DataSourceConfig中配置数据源使用的，这样的花，是否会造成Spring初始化Bean的生命周期的混乱呢。因为初始化dataSource Bean的时候需要上述bean，而初始化上述bean的时候，已经错过了DataSource bean的注入时机。那么如何解决呢，<a href="http://www.coderli.com">OneCoder</a>还是得求助官方文档。又是一遍又一遍的阅读，<a href="http://www.coderli.com">OneCoder</a>在@Bean注解的注释中，发现这样的一段话。
-		<div>
-			<blockquote>
-				<p>
-					A note on BeanFactoryPostProcessor-returning @Bean methods</p>
-				<p>
-					Special consideration must be taken for @Bean methods that return Spring BeanFactoryPostProcessor (BFPP) types. Because BFPP objects must be instantiated very early in the container lifecycle, they can interfere with processing of annotations such as @Autowired, @Value, and @PostConstruct within @Configuration classes. To avoid these lifecycle issues, mark BFPP-returning @Bean methods as static. For example:</p>
-				<p>
-					&nbsp;&nbsp;&nbsp;&nbsp; @Bean<br />
-					&nbsp;&nbsp;&nbsp;&nbsp; public static PropertyPlaceholderConfigurer ppc() {<br />
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // instantiate, configure and return ppc ...<br />
-					&nbsp;&nbsp;&nbsp;&nbsp; }<br />
-					By marking this method as static, it can be invoked without causing instantiation of its declaring @Configuration class, thus avoiding the above-mentioned lifecycle conflicts. Note however that static @Bean methods will not be enhanced for scoping and AOP semantics as mentioned above. This works out in BFPP cases, as they are not typically referenced by other @Bean methods. As a reminder, a WARN-level log message will be issued for any non-static @Bean methods having a return type assignable to BeanFactoryPostProcessor.</p>
-			</blockquote>
-		</div>
+
+> A note on BeanFactoryPostProcessor-returning @Bean methods
+> 				<p>
+> 					Special consideration must be taken for @Bean methods that return Spring BeanFactoryPostProcessor (BFPP) types. Because BFPP objects must be instantiated very early in the container lifecycle, they can interfere with processing of annotations such as @Autowired, @Value, and @PostConstruct within @Configuration classes. To avoid these lifecycle issues, mark BFPP-returning @Bean methods as static. For example:</p>
+> 				<p>
+> 					&nbsp;&nbsp;&nbsp;&nbsp; @Bean<br />
+> 					&nbsp;&nbsp;&nbsp;&nbsp; public static PropertyPlaceholderConfigurer ppc() {<br />
+> 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // instantiate, configure and return ppc ...<br />
+> 					&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+> 					By marking this method as static, it can be invoked without causing instantiation of its declaring @Configuration class, thus avoiding the above-mentioned lifecycle conflicts. Note however that static @Bean methods will not be enhanced for scoping and AOP semantics as mentioned above. This works out in BFPP cases, as they are not typically referenced by other @Bean methods. As a reminder, a WARN-level log message will be issued for any non-static @Bean methods having a return type assignable to BeanFactoryPostProcessor.</p>
 
 果然被我猜中了，这段意思大概是说，类似PropertyPlaceholderConfigurer这种的Bean是需要在其他Bean初始化之前完成的，这会影响到Spring Bean生命周期的控制，所以如果你用到了这样的Bean，需要把他们声明成Static的，这样就会不需要@Configuration的实例而调用，从而提前完成Bean的构造。并且，这里还提到，如果你没有把实现&nbsp;BeanFactoryPostProcessor接口的Bean声明为static的，他会给出警告。
 
