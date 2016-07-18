@@ -115,8 +115,8 @@ public class DefaultAppConfig {
 		Now both AppConfig and the imported DatabaseConfig can be bootstrapped by registering only AppConfig against the Spring context:<br />
 		new AnnotationConfigApplicationContext(AppConfig.class);</p>
 </blockquote>
-<p>
-	启动Tomcat，报错：</p>
+
+启动Tomcat，报错：
 <p style="text-align: center; ">
 	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/ClRKP144/q1Viq.jpg" style="height: 130px; width: 640px; " /></p>
 
@@ -192,17 +192,16 @@ public PropertySourcesPlaceholderConfigurer placehodlerConfigurer() {
 					By marking this method as static, it can be invoked without causing instantiation of its declaring @Configuration class, thus avoiding the above-mentioned lifecycle conflicts. Note however that static @Bean methods will not be enhanced for scoping and AOP semantics as mentioned above. This works out in BFPP cases, as they are not typically referenced by other @Bean methods. As a reminder, a WARN-level log message will be issued for any non-static @Bean methods having a return type assignable to BeanFactoryPostProcessor.</p>
 			</blockquote>
 		</div>
-		果然被我猜中了，这段意思大概是说，类似PropertyPlaceholderConfigurer这种的Bean是需要在其他Bean初始化之前完成的，这会影响到Spring Bean生命周期的控制，所以如果你用到了这样的Bean，需要把他们声明成Static的，这样就会不需要@Configuration的实例而调用，从而提前完成Bean的构造。并且，这里还提到，如果你没有把实现&nbsp;BeanFactoryPostProcessor接口的Bean声明为static的，他会给出警告。
-		<div>
-			&nbsp;</div>
-		<div>
-			<a href="http://www.coderli.com">OneCoder</a>赶紧去检查自己的控制台，果然发现了这样一句话：</div>
-		<div>
-			<blockquote>
+
+果然被我猜中了，这段意思大概是说，类似PropertyPlaceholderConfigurer这种的Bean是需要在其他Bean初始化之前完成的，这会影响到Spring Bean生命周期的控制，所以如果你用到了这样的Bean，需要把他们声明成Static的，这样就会不需要@Configuration的实例而调用，从而提前完成Bean的构造。并且，这里还提到，如果你没有把实现&nbsp;BeanFactoryPostProcessor接口的Bean声明为static的，他会给出警告。
+
+<a href="http://www.coderli.com">OneCoder</a>赶紧去检查自己的控制台，果然发现了这样一句话：
+
+<blockquote>
 				<p>
 					WARNING: @Bean method DefaultAppConfig.placehodlerConfigurer is non-static and returns an object assignable to Spring&#39;s BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method&#39;s declaring @Configuration class. Add the &#39;static&#39; modifier to this method to avoid these container lifecycle issues; see @Bean Javadoc for complete details</p>
-			</blockquote>
-			<p>
-				唉，本来<a href="http://www.coderli.com">OneCoder</a>是很重视警告的，这次怎么就没注意到呢。赶紧改成static的。重新启动。终于，一切OK了！</p>
-		</div>
+</blockquote>
+			
+唉，本来<a href="http://www.coderli.com">OneCoder</a>是很重视警告的，这次怎么就没注意到呢。赶紧改成static的。重新启动。终于，一切OK了！
+
 
