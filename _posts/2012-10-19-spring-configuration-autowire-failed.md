@@ -87,34 +87,31 @@ public class DefaultAppConfig {
 
 这里，这样配置的依据是参考Spring中@Configuration注解的注释说明：
 
-<blockquote>
-	<p>
-		With the @Import annotation</p>
-	<p>
-		@Configuration classes may be composed using the @Import annotation, not unlike the way that <import> works in Spring XML. Because @Configuration objects are managed as Spring beans within the container, imported configurations may be injected using @Autowired or @Inject:</p>
-	<p>
-		@Configuration<br />
-		public class DatabaseConfig {<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; @Bean<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; public DataSource dataSource() {<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // instantiate, configure and return DataSource<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; }<br />
-		}</p>
-	<p>
-		@Configuration<br />
-		@Import(DatabaseConfig.class)<br />
-		public class AppConfig {<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; @Inject DatabaseConfig dataConfig;</p>
-	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp; @Bean<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; public MyBean myBean() {<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // reference the dataSource() bean method<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new MyBean(dataConfig.dataSource());<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; }<br />
-		}<br />
-		Now both AppConfig and the imported DatabaseConfig can be bootstrapped by registering only AppConfig against the Spring context:<br />
-		new AnnotationConfigApplicationContext(AppConfig.class);</p>
-</blockquote>
+> With the @Import annotation
+> 
+> @Configuration classes may be composed using the @Import annotation, not unlike the way that works in Spring XML. Because @Configuration objects are managed as Spring beans within the container, imported configurations may be injected using @Autowired or @Inject:</p>
+> 
+> @Configuration
+> public class DatabaseConfig {
+>      @Bean
+>      public DataSource dataSource() {
+>          // instantiate, configure and return DataSource
+>      }
+> }
+> 
+> @Configuration
+> @Import(DatabaseConfig.class)
+> public class AppConfig {
+>      @Inject DatabaseConfig dataConfig;
+> 
+>      @Bean
+>      public MyBean myBean() {
+>          // reference the dataSource() bean method
+>          return new MyBean(dataConfig.dataSource());
+>      }
+> }
+> Now both AppConfig and the imported DatabaseConfig can be bootstrapped by registering only AppConfig against the Spring context:
+> new AnnotationConfigApplicationContext(AppConfig.class);
 
 启动Tomcat，报错：
 <p style="text-align: center; ">
