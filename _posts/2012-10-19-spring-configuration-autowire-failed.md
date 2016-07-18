@@ -110,6 +110,7 @@ public class DefaultAppConfig {
 >          return new MyBean(dataConfig.dataSource());
 >      }
 > }
+> 
 > Now both AppConfig and the imported DatabaseConfig can be bootstrapped by registering only AppConfig against the Spring context:
 > new AnnotationConfigApplicationContext(AppConfig.class);
 
