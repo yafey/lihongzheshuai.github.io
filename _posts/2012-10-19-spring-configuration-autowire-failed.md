@@ -85,8 +85,8 @@ public class DefaultAppConfig {
 }
 ```
 
-<p>
-	这里，这样配置的依据是参考Spring中@Configuration注解的注释说明：</p>
+这里，这样配置的依据是参考Spring中@Configuration注解的注释说明：
+
 <blockquote>
 	<p>
 		With the @Import annotation</p>
@@ -197,10 +197,8 @@ public PropertySourcesPlaceholderConfigurer placehodlerConfigurer() {
 
 <a href="http://www.coderli.com">OneCoder</a>赶紧去检查自己的控制台，果然发现了这样一句话：
 
-<blockquote>
-				<p>
-					WARNING: @Bean method DefaultAppConfig.placehodlerConfigurer is non-static and returns an object assignable to Spring&#39;s BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method&#39;s declaring @Configuration class. Add the &#39;static&#39; modifier to this method to avoid these container lifecycle issues; see @Bean Javadoc for complete details</p>
-</blockquote>
+> WARNING: @Bean method DefaultAppConfig.placehodlerConfigurer is non-static and returns an object assignable to Spring&#39;s BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method&#39;s declaring @Configuration class. Add the &#39;static&#39; modifier to this method to avoid these container lifecycle issues; see @Bean Javadoc for complete details
+
 			
 唉，本来<a href="http://www.coderli.com">OneCoder</a>是很重视警告的，这次怎么就没注意到呢。赶紧改成static的。重新启动。终于，一切OK了！
 
