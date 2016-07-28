@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 我还是程序员
-date: 2012-12-14 09:57
+date: 2012-12-14 09:57 +0800
 author: onecoder
 comments: true
-categories: [coder, 心情, 心情, 程序员]
+tags: [日记]
+thread_key: 1256
 ---
 <p>
 	&nbsp; &nbsp; 有一段时间没来了，日子不论是忙是闲，过的都飞快。<a href="http://www.coderli.com">OneCoder</a>的心态也起伏不定，让您见笑。</p>
