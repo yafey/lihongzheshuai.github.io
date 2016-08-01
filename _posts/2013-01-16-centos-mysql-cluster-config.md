@@ -1,10 +1,11 @@
 ---
 layout: post
 title: CentOS下 MySQL Cluster NDB 7.2 部署实践
-date: 2013-01-16 14:33
+date: 2013-01-16 14:33 +0800
 author: onecoder
 comments: true
-categories: [BigData, bigdta, centos, Cluster, mysql]
+tags: [MySQL]
+thread_key: 1286
 ---
 <p>
 	实验需要，<a href="http://www.coderli.com">OneCoder</a>打算亲自部署一下MySQL Cluster环境。VMware环境中，虚拟化三台CentOS5.4 x64虚拟机。</p>
@@ -21,7 +22,7 @@ categories: [BigData, bigdta, centos, Cluster, mysql]
 <p>
 	<strong>MySQL Cluster构成</strong></p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CzorQ2zk/PrQHF.png" style="width: 583px; height: 372px;" /></p>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CzorQ2zk/PrQHF.jpg" style="width: 583px; height: 372px;" /></p>
 <blockquote>
 	<p>
 		Each MySQL Cluster host computer must have the correct executable programs installed. A host running an SQL node must have installed on it a MySQL Server binary (mysqld). Management nodes require the management server daemon (ndb_mgmd); data nodes require the data node daemon (ndbd or ndbmtd). It is not necessary to install the MySQL Server binary on management node hosts and data node hosts. It is recommended that you also install the management client (ndb_mgm) on the management server host.</p>
