@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL Cluster 初用初测小结
-date: 2013-01-19 09:29
+date: 2013-01-19 09:29 +0800
 author: onecoder
 comments: true
-categories: [BigData, Java, jdbk, mysql cluster]
+tags: [MySQL]
+thread_key: 1296
 ---
 <p>
 	基于上篇搭建的环境，验证一些基本功能和性能需求。这里先说一下功能使用的问题。<a href="http://www.coderli.com">OneCoder</a>也是第一次用。摸索着来，仅做一个记录。</p>
@@ -37,9 +38,10 @@ show tables;</pre>
 mysql&gt; SOURCE /usr/local/mysql/share/ndb_dist_priv.sql;
 mysql&gt; CALL mysql.mysql_cluster_move_privileges();
 </pre>
-<p>
-	即可完成权限共享，现在在一个终端设置的权限就是集群共享的了。在用SQLYog测试，果然均可以链接了。下面开始开发JDBC链接MySQL的代码：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+即可完成权限共享，现在在一个终端设置的权限就是集群共享的了。在用SQLYog测试，果然均可以链接了。下面开始开发JDBC链接MySQL的代码：</p>
+
+```java
 /**
   * 向数据库中插入数据
   *
@@ -55,12 +57,12 @@ private void insertDataToTable(Connection conn, String tableName,
 long totalRowCount, long perRowCount) throws SQLException {
 conn.setAutoCommit(false);
 long start = System.currentTimeMillis();
-String sql = &quot;insert into &quot; + tableName + &quot; VALUES(?,?,?)&quot;;
-System.out.println(&quot;Begin to prepare statement.&quot;);
+String sql = "insert into " + tableName + " VALUES(?,?,?)";
+System.out.println("Begin to prepare statement.");
 PreparedStatement statement = conn.prepareStatement(sql);
-for (int j = 0; j &lt; TOTAL_ROW_COUNT / BATCH_ROW_COUNT; j++) {
+for (int j = 0; j < TOTAL_ROW_COUNT / BATCH_ROW_COUNT; j++) {
 long batchStart = System.currentTimeMillis();
-for (int i = 0; i &lt; BATCH_ROW_COUNT; i++) {
+for (int i = 0; i < BATCH_ROW_COUNT; i++) {
 long id = j * BATCH_ROW_COUNT + i;
 String name_pre = String.valueOf(id);
 statement.setLong(1, id);
@@ -68,21 +70,22 @@ statement.setString(2, name_pre);
 statement.setString(3, name_pre);
 statement.addBatch();
 }
-System.out.println(&quot;It&#39;s up to batch count: &quot; + BATCH_ROW_COUNT);
+System.out.println("It's up to batch count: " + BATCH_ROW_COUNT);
 statement.executeBatch();
 conn.commit();
 long batchEnd = System.currentTimeMillis();
-System.out.println(&quot;Batch data commit finished. Time cost: &quot; + (batchEnd - batchStart));
+System.out.println("Batch data commit finished. Time cost: " + (batchEnd - batchStart));
 }
 long end = System.currentTimeMillis();
-System.out.println(&quot;All data insert finished. Total time cost: &quot; + (end - start));
+System.out.println("All data insert finished. Total time cost: " + (end - start));
 }
-</pre>
+```
+
 <p>
 	开始设置BATCH_ROW_COUNT为5w，结果报错：</p>
 <blockquote>
 	<p>
-		java.sql.BatchUpdateException: Got temporary error 233 &#39;Out of operation records in transaction coordinator (increase MaxNoOfConcurrentOperations)&#39; from NDBCLUSTER</p>
+		java.sql.BatchUpdateException: Got temporary error 233 'Out of operation records in transaction coordinator (increase MaxNoOfConcurrentOperations)' from NDBCLUSTER</p>
 </blockquote>
 <p>
 	意思比较明显，超过了<strong>MaxNoOfConcurrentOperations</strong>设置的值。该值默认为：32768。你可以通过修改config.ini里的配置改变默认值。不过有人提到，修改该值的同事，你也需要修改</p>
@@ -93,21 +96,21 @@ System.out.println(&quot;All data insert finished. Total time cost: &quot; + (en
 <blockquote>
 	<p>
 		Begin to prepare statement.<br />
-		It&#39;s up to batch count: 20000<br />
+		It's up to batch count: 20000<br />
 		Batch data commit finished. Time cost: 20483<br />
-		It&#39;s up to batch count: 20000<br />
+		It's up to batch count: 20000<br />
 		Batch data commit finished. Time cost: 19768<br />
-		It&#39;s up to batch count: 20000<br />
+		It's up to batch count: 20000<br />
 		Batch data commit finished. Time cost: 20136<br />
-		It&#39;s up to batch count: 20000<br />
+		It's up to batch count: 20000<br />
 		Batch data commit finished. Time cost: 19958<br />
 		&hellip;&hellip;.<br />
-		java.sql.BatchUpdateException: The table &#39;bigdata_cluster&#39; is full</p>
+		java.sql.BatchUpdateException: The table 'bigdata_cluster' is full</p>
 </blockquote>
 <p>
 	无语&hellip;&hellip;表满了。共写入了88w条数据。每次batch写入时间稳定。再测试条件查询耗时：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
 
+```java
 /**
   * 查询特定的一个或者一组数据，打印查询耗时
   *
@@ -119,16 +122,17 @@ System.out.println(&quot;All data insert finished. Total time cost: &quot; + (en
   */
 private void searchData(Connection conn, String tableName) throws SQLException {
 long start = System.currentTimeMillis();
-String sql = &quot;select * from &quot; + tableName + &quot; where name = ?&quot;;
+String sql = "select * from " + tableName + " where name = ?";
 PreparedStatement statement = conn.prepareStatement(sql);
-statement.setString(1, &quot;300&quot;);
+statement.setString(1, "300");
 ResultSet resultSet = statement.executeQuery();
 resultSet.first();
-System.out.println(&quot;Name is: &quot; + resultSet.getObject(&quot;name&quot;));
+System.out.println("Name is: " + resultSet.getObject("name"));
 long end = System.currentTimeMillis();
-System.out.println(&quot;Query one row from 88w record cost time: &quot; + (end - start));
+System.out.println("Query one row from 88w record cost time: " + (end - start));
 }
-</pre>
+```
+
 <p>
 	通过另一个sql节点，根据没有索引的name字段查询耗时约1.4s，有索引的id查询耗时20ms左右。</p>
 <p>
@@ -138,7 +142,7 @@ System.out.println(&quot;Query one row from 88w record cost time: &quot; + (end 
 		DataMemory=80M&nbsp;&nbsp;&nbsp; # How much memory to allocate for data storage<br />
 		IndexMemory=18M&nbsp;&nbsp; # How much memory to allocate for index storage<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # For DataMemory and IndexMemory, we have used the<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # default values. Since the &quot;world&quot; database takes up<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # default values. Since the "world" database takes up<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # only about 500KB, this should be more than enough for<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # this example Cluster setup.</p>
 </blockquote>
@@ -157,7 +161,7 @@ ndb_mgm&gt; all report memoryusage
 	测试删除数据，又遇到提示：</p>
 <blockquote>
 	<p>
-		ERROR 1297 (HY000): Got temporary error 233 &#39;Out of operation records in transaction coordinator (increase MaxNoOfConcurrentOperations)&#39; from NDBCLUSTER</p>
+		ERROR 1297 (HY000): Got temporary error 233 'Out of operation records in transaction coordinator (increase MaxNoOfConcurrentOperations)' from NDBCLUSTER</p>
 </blockquote>
 <p>
 	看来真的得调整<strong>MaxNoOfConcurrentOperations</strong>参数的大小了。根据虚拟机内存情况（据说1约需要1kb内存。因此10w，大约100m内存），调整如下：</p>
@@ -170,19 +174,17 @@ ndb_mgm&gt; all report memoryusage
 	重启，测试删除11w数据，通过。同时，再次测试向新表写入100w条数据，以20w为一组，也顺利通过了。</p>
 <blockquote>
 	<p>
-		It&#39;s up to batch count: 200000<br />
+		It's up to batch count: 200000<br />
 		Batch data commit finished. Time cost: 268642<br />
-		It&#39;s up to batch count: 200000<br />
+		It's up to batch count: 200000<br />
 		Batch data commit finished. Time cost: 241301<br />
-		It&#39;s up to batch count: 200000<br />
+		It's up to batch count: 200000<br />
 		Batch data commit finished. Time cost: 209329<br />
-		It&#39;s up to batch count: 200000<br />
+		It's up to batch count: 200000<br />
 		Batch data commit finished. Time cost: 207634<br />
-		It&#39;s up to batch count: 200000<br />
+		It's up to batch count: 200000<br />
 		Batch data commit finished. Time cost: 241746<br />
 		All data insert finished. Total time cost: 1168703</p>
 </blockquote>
 <p>
-	目前的使用情况大致如此，接下来<a href="http://www.coderli.com">OneCoder</a>打算测试一下集群节点添加和数据自动分区读写情况。等有了结论在与大家分享。<br />
-	&nbsp;</p>
-
+	目前的使用情况大致如此，接下来<a href="http://www.coderli.com">OneCoder</a>打算测试一下集群节点添加和数据自动分区读写情况。等有了结论在与大家分享。<br /></p>
