@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL Cluster 使用小测小结(2)
-date: 2013-01-23 17:27
+date: 2013-01-23 17:27 +0800
 author: onecoder
 comments: true
-categories: [BigData, bigdata, error, mysql cluster]
+tags: [MySQL]
+thread_key: 1302
 ---
 <p>
 	承接之前的初测，题目本来想叫深入测试的，不过想想太大了，就还叫使用的一个小结吧。</p>
@@ -49,9 +50,11 @@ categories: [BigData, bigdata, error, mysql cluster]
 	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CAtAIi6Q/q7QBH.jpg" style="width: 656px; height: 252px;" /></p>
 <p>
 	通过</p>
-<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-ndb_mgm&gt;all report memory
-</pre>
+
+```bash
+ndb_mgm>all report memory
+```
+
 <p>
 	查看内存占用：</p>
 <p style="text-align: center;">
@@ -66,9 +69,11 @@ ndb_mgm&gt;all report memory
 </blockquote>
 <p>
 	这个问题确实有由于修改了值引起的，但是找了半天一直没有正常的解决。考虑到现在data存储都是测试数据，所以考虑在data节点采用：</p>
-<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-shell&gt;ndbd --initial-start --foreground
-</pre>
+
+```bash
+shell>ndbd --initial-start --foreground
+```
+
 <p>
 	的方式重启节点，并通过foreground的方式查看启动日志。最后，倒是正常启动成功了，只是数据确实被&quot;initial&quot;干净了。重新灌数据吧。还拿100w试验。数据灌入效率差不多，只是数据在两个节点上被复制两份了</p>
 <p>
@@ -94,6 +99,3 @@ shell&gt;ndbd --initial-start --foreground
 	再次调用查询接口。正常返回数据。</p>
 <p>
 	目前为止，我们还差最关心的数据自动分片，分节点保存的问题没有验证清楚。随后，我们将针对此问题再进行进一步的验证。</p>
-<p>
-	&nbsp;</p>
-
