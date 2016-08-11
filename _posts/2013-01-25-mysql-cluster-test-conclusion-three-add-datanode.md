@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL Cluster 使用小测小结(3)-数据节点添加和数据分配
-date: 2013-01-25 11:53
+date: 2013-01-25 11:53 +0800
 author: onecoder
 comments: true
-categories: [BigData, bigdata, data node, mysql cluster, nodegroup]
+tags: [MySQL]
+threay_key: 1305
 ---
 <p>
 	继续<a href="http://www.coderli.com">OneCoder</a>之前提出的要验证的问题，为了方便测试MySQL Cluster的数据分片功能，我们设置集群节点配置如下：</p>
@@ -65,14 +66,18 @@ categories: [BigData, bigdata, data node, mysql cluster, nodegroup]
 	<span style="text-align: center;">目前数据并没有自动调配。我们先继续写入数据测试，看看集群容量是否真的扩容了，并观察后续空间使用状况。数据库现有数据23w。直接继续写入数据，仍然提示空间不足。</span></p>
 <p>
 	观察到，新加入的节点是no nodegroup 状态。所以我们通过：</p>
-<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-ndb_mgm&gt;create nodegroup 3;
-</pre>
+
+```bash
+ndb_mgm>create nodegroup 3;
+```
+
 <p>
 	来创建nodegroup。然后再调整分区数据：</p>
-<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-mysql&gt; alter online table data_house reorganize partition;
-</pre>
+
+```bash
+mysql> alter online table data_house reorganize partition;
+```
+
 <p>
 	发现分区果然有变化了。再次继续写入数据，成功！</p>
 <p style="text-align: center;">
@@ -83,4 +88,3 @@ mysql&gt; alter online table data_house reorganize partition;
 	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CAK89857/Txxu3.jpg" style="width: 273px; height: 481px;" /></p>
 <p>
 	通过工具也可看到，数据库里已经有42w数据了。最终两个节点共写入50w数据。查询效率仍然是20ms左右。至此，MySQL Cluster的一些基本的功能特性，都验证完成了。不过想用于生产环境还需要更多的考量，目前网上也有很多改造过的开源和商业版本，如果有需要可以具体考察一下。</p>
-
