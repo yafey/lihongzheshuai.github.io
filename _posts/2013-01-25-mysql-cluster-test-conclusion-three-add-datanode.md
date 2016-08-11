@@ -5,7 +5,7 @@ date: 2013-01-25 11:53 +0800
 author: onecoder
 comments: true
 tags: [MySQL]
-threay_key: 1305
+thread_key: 1305
 ---
 <p>
 	继续<a href="http://www.coderli.com">OneCoder</a>之前提出的要验证的问题，为了方便测试MySQL Cluster的数据分片功能，我们设置集群节点配置如下：</p>
