@@ -6,6 +6,10 @@ date: 2016-08-15 17:29:49 +0800
 comments: true
 thread_key: 1897
 ---
+记录Elasticsearch集群搭建的过程。
+
+<!--break-->
+
 # 安装JDK 8
 
 官方推荐的版本是1.8.0_73 以上。因此首先安装jdk。安装之前下载的jdk-8u77版
