@@ -9,8 +9,8 @@ layout: default
   <ul class="post-list">
     {% for post in paginator.posts %}
       <li>
+        <span class="post-meta ds-thread-count" data-thread-key="{{ post.thread_key }}" data-count-type="comments"></span>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <span class="ds-thread-count" data-thread-key="{{ post.thread_key }}" data-count-type="comments"></span>
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
