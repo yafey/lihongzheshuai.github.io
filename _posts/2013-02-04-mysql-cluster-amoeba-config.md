@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL Cluster读写分离验证-Amoeba环境搭建
-date: 2013-02-04 21:02
+date: 2013-02-04 21:02 +0800
 author: onecoder
 comments: true
-categories: [amoeba, BigData, mysql cluster]
+tags: [MySQL]
+thread_key: 1320
 ---
 <p>
 	对MySQL Cluster的学习还在继续，这次<a href="http://www.coderli.com">OneCoder</a>是利用Amoeba搭建一个可读写分离、均衡负载的MySQL集群环境。</p>
