@@ -4,6 +4,7 @@ title: CentOS下vsftpd服务配置说明
 tags: [Linux]
 date: 2016-08-05 09:52:27 +0800
 comments: true
+author: onecoder
 thread_key: 1896
 ---
 项目需要用到分用户的FTP服务器，因此花了一天时间学习了vsftpd服务的搭建和配置说明。记录如下。
