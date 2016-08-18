@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MacOS下纯shell模式Github使用简介
-date: 2013-02-18 09:30
+date: 2013-02-18 09:30 +0800
 author: onecoder
 comments: true
-categories: [git, github, MacOS, macos, shell]
+tags: [git]
+thread_key: 1326
 ---
 <p>
 	为了同步在MacOS下和Windows下编写的C++练习代码，同时也想多学一些命令行的操作，<a href="http://www.coderli.com">OneCoder</a>决定鼓捣一下Mac OS X下的Git代码管理，抛弃以往完全依赖工具界面的操作方式，完全采用shell的操作模式，加深理解。</p>
