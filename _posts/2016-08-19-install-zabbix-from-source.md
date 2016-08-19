@@ -8,6 +8,10 @@ author: onecoder
 thread_key: 1898
 ---
 
+Zabbix 源码编译部署说明。
+
+<!--break-->
+
 # 源码编译
 
 ## 源码下载
