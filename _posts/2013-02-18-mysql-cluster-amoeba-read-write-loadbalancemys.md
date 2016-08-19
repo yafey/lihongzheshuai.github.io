@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL Cluster SQL节点负载均衡、读写分离验证-基于Amoeba
-date: 2013-02-18 21:42
+date: 2013-02-18 21:42 +0800
 author: onecoder
 comments: true
-categories: [ameoba, BigData, mysql cluster, 读写分离]
+tags: [MySQL]
+thread_key: 1329
 ---
 <p>
 	龙年完成的Amoeba环境初步搭建工作，蛇年开始进行读写分离和负载均衡的验证工作。先祝大家蛇年一切顺利。上回的工作我们只是完成Amoeba框架的引入，但是并不满足读写分离场景的要求，因为最基本的，SQL节点只有一个。<br />
@@ -66,4 +67,3 @@ categories: [ameoba, BigData, mysql cluster, 读写分离]
 </blockquote>
 <p>
 	从第四点可以联想到，我们测试的环境是基于MySQL Cluster的多个SQL节点，底层的Data node自然是数据同步的，甚至都不存在他说的保持库表一致的问题。<a href="http://www.coderli.com">OneCoder</a>也认为，Amoeba在设计之初的使用场景底层应该是基于独立的MySQL节点的。这也是<a href="http://www.coderli.com">OneCoder</a>接下来考虑的验证工作：）</p>
-
