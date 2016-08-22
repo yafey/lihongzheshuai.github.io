@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL-Amoeba负载均衡、读写分离功能验证
-date: 2013-02-19 22:27
+date: 2013-02-19 22:27 +0800
 author: onecoder
 comments: true
-categories: [amoeba, BigData, mysql, rule, 读写分离]
+tags: [MySQL]
+thread_key: 1329
 ---
 <p>
 	由于MySQL Cluster自身就实现了数据的自动同步等功能，在此之上架一层Amoeba基本只起到了分担SQL层负载的的作用，所以我们很有必要基于传统的单点MySQL服务之上的 Amoeba都能帮我们做些什么。</p>
