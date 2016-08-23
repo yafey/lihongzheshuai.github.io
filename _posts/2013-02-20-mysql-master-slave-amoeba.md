@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL主从配置-Amoeba读写分离验证
-date: 2013-02-20 16:25
+date: 2013-02-20 16:25 +0800
 author: onecoder
 comments: true
-categories: [amoeba, BigData, master-slave, mysql, 主从]
+tags: [MySQL]
+thread_key: 1337
 ---
 <p>
 	继续我们的验证工作，这次是搭建MySQL的主从配置，再利用Amoeba实现读写分离，搭建一个相对有实际意义的MySQL集群环境。</p>
