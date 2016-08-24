@@ -1,13 +1,17 @@
 ---
 layout: post
 title: MySQL Cluster写入效率测试
-date: 2013-02-27 23:10
+date: 2013-02-27 23:10 +0800
 author: onecoder
 comments: true
-categories: [BigData, mysql cluster, 写入测试, 性能]
+tags: [MySQL]
+thread_key: 1358
 ---
 <p>
 	MySQL Cluster使用到目前为止遇到渴望得到答案的问题，也是直接影响使用的问题就是MySQL Cluster的写入效率问题和Cluster是否适合大数据存储、如何配置存储的问题。</p>
+
+<!--break-->
+
 <p>
 	在之前的测试中MySQL Cluster的写入效率一直不佳，这也是直接影响能否使用MySQL Cluster的关键。现在我们来仔细测试一下。使用的环境略有变化。</p>
 <p>
@@ -27,7 +31,7 @@ IndexMemory=300M   # How much memory to allocate for index storage
 
                   # For DataMemory and IndexMemory, we have used the
 
-                  # default values. Since the &quot;world&quot; database takes up
+                  # default values. Since the "world" database takes up
 
                   # only about 500KB, this should be more than enough for
 
@@ -39,7 +43,8 @@ MaxNoOfLocalOperations=1320000
 </pre>
 <p>
 	测试代码如下：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 /**
       * 向数据库中插入数据
       *
@@ -55,13 +60,13 @@ MaxNoOfLocalOperations=1320000
                  long totalRowCount, long perRowCount, long startIndex)
                  throws SQLException {
            conn.setAutoCommit( false);
-           String sql = &quot;insert into &quot; + tableName + &quot; VALUES(?,?,?)&quot;;
-           System. out.println( &quot;Begin to prepare statement.&quot;);
+           String sql = "insert into " + tableName + " VALUES(?,?,?)";
+           System. out.println( "Begin to prepare statement.");
            PreparedStatement statement = conn.prepareStatement(sql);
             long sum = 0L;
-            for ( int j = 0; j &lt; TOTAL_ROW_COUNT / BATCH_ROW_COUNT; j++) {
+            for ( int j = 0; j < TOTAL_ROW_COUNT / BATCH_ROW_COUNT; j++) {
                  long batchStart = System. currentTimeMillis();
-                 for ( int i = 0; i &lt; BATCH_ROW_COUNT; i++) {
+                 for ( int i = 0; i < BATCH_ROW_COUNT; i++) {
                       long id = j * BATCH_ROW_COUNT + i + startIndex;
                      String name_pre = String. valueOf(id);
                      statement.setLong(1, id);
@@ -69,22 +74,23 @@ MaxNoOfLocalOperations=1320000
                      statement.setString(3, name_pre);
                      statement.addBatch();
                 }
-                System. out.println( &quot;It&#39;s up to batch count: &quot; + BATCH_ROW_COUNT);
+                System. out.println( "It's up to batch count: " + BATCH_ROW_COUNT);
                 statement.executeBatch();
                 conn.commit();
                  long batchEnd = System. currentTimeMillis();
                  long cost = batchEnd - batchStart;
-                System. out.println( &quot;Batch data commit finished. Time cost: &quot;
+                System. out.println( "Batch data commit finished. Time cost: "
                            + cost);
                 sum += cost;
            }
-           System. out.println( &quot;All data insert finished. Total time cost: &quot;
+           System. out.println( "All data insert finished. Total time cost: "
                      + sum);
-           System. out.println( &quot;Avg cost: &quot;
+           System. out.println( "Avg cost: "
                      + sum/5);
      }
 
-</pre>
+```
+
 <p>
 	分下列情景进行写入测试。</p>
 <p>
@@ -112,7 +118,8 @@ MaxNoOfLocalOperations=1320000
 	<strong>&nbsp; &nbsp; 双线程并发写入测试</strong></p>
 <p>
 	由于只有两个SQL节点，所以这里只采用双线程写入的方法进行测试。代码上采用了简单的硬编码</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 /**
       * 多线程并行写入测试
       *
@@ -132,7 +139,7 @@ MaxNoOfLocalOperations=1320000
                            dataMachine.insertDataToTable(conn, TABLE_NAME_DATAHOUSE,
                                      500, 100, 0);
                             long end1 = System.currentTimeMillis();
-                           System. out.println( &quot;Thread 1 cost: &quot; + (end1 - start));
+                           System. out.println( "Thread 1 cost: " + (end1 - start));
                      } catch (SQLException e) {
                            e.printStackTrace();
                      }
@@ -150,7 +157,7 @@ MaxNoOfLocalOperations=1320000
                            dataMachine.insertDataToTable(conn, TABLE_NAME_DATAHOUSE,
                                      500, 100, 500);
                             long end2 = System.currentTimeMillis();
-                           System. out.println( &quot;Thread 2 cost: &quot; + (end2 - start));
+                           System. out.println( "Thread 2 cost: " + (end2 - start));
                      } catch (SQLException e) {
                            e.printStackTrace();
                      }
@@ -159,8 +166,8 @@ MaxNoOfLocalOperations=1320000
            t1.start();
            t2.start();
      }
+```
 
-</pre>
 <p>
 	测试结果：</p>
 <p>
@@ -224,4 +231,3 @@ MaxNoOfLocalOperations=1320000
 	注：由于各自测试环境的差异，测试数据仅可做内部比较，不可外部横向对比。仅供参考。</p>
 <p>
 	写入测试，要做的还很多，不过暂时告一段落。大数据存储和查询测试，随后进行。</p>
-
