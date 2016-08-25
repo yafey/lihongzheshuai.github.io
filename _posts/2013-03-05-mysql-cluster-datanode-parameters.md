@@ -1,54 +1,55 @@
 ---
 layout: post
 title: MySQL Cluster Data Node配置参数列表及说明
-date: 2013-03-05 13:38
+date: 2013-03-05 13:38 +0800
 author: onecoder
 comments: true
-categories: [BigData, DataNode, mysql cluster, 参数, 翻译]
+tags: [MySQL]
+thread_key: 1368
 ---
 <ul>
 	<li>
-		<span style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">Id</span></li>
+		<span >Id</span></li>
 </ul>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
-	<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the Id data node configuration parameter">
+<div >
+	<table border="1" >
 		<colgroup>
 			<col />
 			<col />
 			<col />
 			<col />
 		</colgroup>
-		<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+		<thead s>
+			<tr >
+				<th >
 					Effective Version</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Type/Units</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Default</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Range/Values</th>
 			</tr>
 		</thead>
-		<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+		<tbody s>
+			<tr >
+				<td >
 					NDB 7.2.0</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					unsigned</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					[none]</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					1 - 48</td>
 			</tr>
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-					<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;N</td>
+			<tr >
+				<td colspan="4" >
+					<span >Restart Type:</strong></span>&nbsp;N</td>
 			</tr>
 		</tbody>
 	</table>
 	集群内部节点的唯一标识，取值范围从1-48。目前被废弃，建议用NodeId替换。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			ExecuteOnComputer</li>
@@ -61,424 +62,424 @@ categories: [BigData, DataNode, mysql cluster, 参数, 翻译]
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						name</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						[none]</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						...</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;S</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;S</td>
 				</tr>
 			</tbody>
 		</table>
 		在[computer]章节配置。值指向配置过的Id。用于指定节点运行的主机。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			HostName</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the HostName data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						name or IP address</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						localhost</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						...</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;S</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;S</td>
 				</tr>
 			</tbody>
 		</table>
 		用于指定data节点运行的主机。值配置主机名或者IP。默认值为localhost。该参数和ExecuteOnComptuter作用相同。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			ServerPort</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the ServerPort data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						unsigned</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						[none]</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						1 - 64K</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;N</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;N</td>
 				</tr>
 			</tbody>
 		</table>
 		集群中的每个节点需要一个端口跟其他节点通信。默认该参数的值是动态生成，一保证在同一个计算机上的多个节点不会使用同一个端口号。所以，一般不设置该值。该值在[ndbd]章节配置。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			NodeGroup</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the NodeGroup data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						&nbsp;</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						[none]</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						0 - 65536</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;IS</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;IS</td>
 				</tr>
 			</tbody>
 		</table>
 		用于将data节点分配到指定的NodeGroup中。在集群初次启动后该参数是只读的，并且不能用于在线重新分配数据节点。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	该参数主要用来在运行的MySQL集群中添加新的node group，而不用滚动重启。建议在以后考虑添加到集群的节点上设置该值。建议65536。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			NoOfReplicas</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the NoOfReplicas data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						integer</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						2</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						1 - 4</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;IS</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;IS</td>
 				</tr>
 			</tbody>
 		</table>
 		全局设置，仅可以设置在[ndbd default]配置段。用于指定表数据在集群中复制的份数。同时也指定了node group中的节点数。一个node group是一组保存相同信息的节点群。因此，同一个node group的节点，尽量不要运行在同一个计算机上，以免单点故障造成数据丢失。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	该参数最大值为4，不过目前只有1，2是实际支持的。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			DataDir</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the DataDir data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						path</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						.</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						...</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;IN</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;IN</td>
 				</tr>
 			</tbody>
 		</table>
 		指定trace文件,log文件,pid文件和错误日志的存放位置。默认是data节点进程的工作目录。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			FileSystemPath</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the FileSystemPath data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						path</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						DataDir</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						...</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;IN</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;IN</td>
 				</tr>
 			</tbody>
 		</table>
 		用于指定保存metadata,REDO日志, UNDO日志(用于磁盘存储表), 数据文件的保存路径。默认值为DataDir指定的值。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			BackupDataDir</li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the BackupDataDir data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						path</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						[see text]</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						...</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;IN</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;IN</td>
 				</tr>
 			</tbody>
 		</table>
 		备份文件保存路径。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			<b><font color="#E30000">Data Memory</font></b></li>
 	</ul>
 	<div>
-		<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the DataMemory data node configuration parameter">
+		<table border="1" >
 			<colgroup>
 				<col />
 				<col />
 				<col />
 				<col />
 			</colgroup>
-			<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+			<thead s>
+				<tr >
+					<th >
 						Effective Version</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Type/Units</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Default</th>
-					<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+					<th >
 						Range/Values</th>
 				</tr>
 			</thead>
-			<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+			<tbody s>
+				<tr >
+					<td >
 						NDB 7.2.0</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						bytes</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						80M</td>
-					<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+					<td >
 						1M - 1024G</td>
 				</tr>
-				<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-					<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-						<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;N</td>
+				<tr >
+					<td colspan="4" >
+						<span >Restart Type:</strong></span>&nbsp;N</td>
 				</tr>
 			</tbody>
 		</table>
 		定义用于存储数据的内存空间。所以一定要保证有足够的物理内存。</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	分配给DataMemory的内存空间同时保存实际数据和索引。每条记录有16byte的开销。此外，每条记录还需要额外的空间，因为记录保存在具有128byte页面开销的32kb页中。每个页面有少量的浪费，因为每条记录仅保存在 一个页面中。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	对于变长的字段，数据保存DataMemory定义的在不同数据页面中。变长的字段也使用定长保存，额外使用4字节指向变长部分。变长部分，有2byte开销另外加上每个属性2字节。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	最大的记录大小为14000字节。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	DataMemory定义的内存空间同样也用于保存有序索引，使用约10byte每字节。表中的每行数据都表现在有序索引中。用户常错误的认为所有的索引都保存的IndexMemeory定义的内存中，实际上只有主键和唯一hash索引使用IndexMemory; 有序索引使用DataMemory分配的内存空间。然而，在创建逐渐或者唯一hash索引的时候同时也在该键上创建一个有序索引。除非你在创建索引的时候显示指定USING HASH。可以通过ndb_desc -d dbname_table_name查看详情。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	目前，每个分区最大hash索引容量为512MB。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	DataMemory同样保存UNDO信息。每次更新的未变化的数据的副本保存的DataMemory中。同事还有每个副本的引用在有序索引中。只有数据插入事物调后，旧数据的备份才会删除，因此大事物需要更多的内存空间。</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<ul>
 		<li>
 			大事物比小事物慢</li>
@@ -497,9 +498,9 @@ categories: [BigData, DataNode, mysql cluster, 参数, 翻译]
 	<div>
 		IndexMemory</div>
 </div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	&nbsp;</div>
-<div style="font-family: Tahoma; orphans: 2; text-align: -webkit-auto; widows: 2;">
+<div >
 	<table border="1" style="margin: 0px 0px 10px; padding: 0px; border: none; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-spacing: 0px; border-collapse: collapse; max-width: 660px; font-family: Helvetica, Arial, sans-serif; line-height: 16px;" summary="This table provides type and value information for the IndexMemory data node configuration parameter">
 		<colgroup>
 			<col />
@@ -507,32 +508,32 @@ categories: [BigData, DataNode, mysql cluster, 参数, 翻译]
 			<col />
 			<col />
 		</colgroup>
-		<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+		<thead s>
+			<tr >
+				<th >
 					Effective Version</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Type/Units</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Default</th>
-				<th style="margin: 0px; padding: 3px; border: 0.1em solid rgb(128, 128, 128); outline: 0px; vertical-align: baseline;">
+				<th >
 					Range/Values</th>
 			</tr>
 		</thead>
-		<tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;">
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+		<tbody s>
+			<tr >
+				<td >
 					NDB 7.2.0</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					bytes</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					18M</td>
-				<td style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
+				<td >
 					1M - 1T</td>
 			</tr>
-			<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background-color: transparent;">
-				<td colspan="4" style="margin: 0px; padding: 0px 5px; border: 0.1em outset gray; outline: 0px; font-size: 13px; vertical-align: baseline; background-color: transparent;">
-					<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;"><strong style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline;">Restart Type:</strong></span>&nbsp;N</td>
+			<tr >
+				<td colspan="4" >
+					<span >Restart Type:</strong></span>&nbsp;N</td>
 			</tr>
 		</tbody>
 	</table>
