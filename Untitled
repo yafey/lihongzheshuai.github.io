@@ -1,0 +1,4 @@
+wget http://repo.mysql.com/yum/mysql-5.7-community/el/6/x86_64/mysql-community-common-5.7.14-1.el6.x86_64.rpm
+wget http://repo.mysql.com/yum/mysql-5.7-community/el/6/x86_64/mysql-community-client-5.7.14-1.el6.x86_64.rpm
+wget http://repo.mysql.com/yum/mysql-5.7-community/el/6/x86_64/mysql-community-libs-5.7.14-1.el6.x86_64.rpm
+wget http://cdn.mysql.com//Downloads/MySQL-5.7/mysql-community-server-5.7.14-1.el6.x86_64.rpm
