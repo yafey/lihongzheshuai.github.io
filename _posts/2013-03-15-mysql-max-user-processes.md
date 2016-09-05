@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MySQL 用户并发数限制问题解决
-date: 2013-03-15 17:35
+date: 2013-03-15 17:35 +0800
 author: onecoder
 comments: true
-categories: [mysql, MySQL, mysqlslap, ulimit]
+tags: [MySQL]
+thread_key: 1397
 ---
 <p>
 	对MySQL进行并发测试过程中遇到的一个小问题，记录一下。</p>
@@ -17,10 +18,9 @@ categories: [mysql, MySQL, mysqlslap, ulimit]
 <p>
 	Linux系统的open files数已经修改。当然仍然报错。ulimit -a命令，可查看当前系统限制情况</p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CIeAZiCc/nlHDT.png" style="width: 392px; height: 259px;" /></p>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CIeAZiCc/nlHDT.jpg" style="width: 392px; height: 259px;" /></p>
 <p>
 	<strong>max user processes = 1024</strong></p>
 <br />
 <p>
 	通过ulimit -u 10000命令修改当前session的限制值，然后重启MySQL，问题解决。如果你想使此值永久生效，可配置在/etc/profile 中。</p>
-
