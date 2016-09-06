@@ -36,9 +36,9 @@ int main() {
      createMatrix(smatrix);
      GET_ARRAY_LEN(smatrix,length);
      printMatrix(smatrix);
-     printf(&quot;Array length is %d\n&quot;,length);
+     printf("Array length is %d\n",length);
      transposeMatrix(smatrix, transMatrix);
-     printf(&quot;Print transpose matrix: \n&quot;);
+     printf("Print transpose matrix: \n");
      printMatrix(transMatrix);
     return 0;
 }
@@ -88,16 +88,16 @@ void printMatrix(sparse_matrix *matrix) {
                     int curRow = (*(matrix + j)).row,
                     curCol = (*(matrix + j)).col;
                     if (i == curRow && k == curCol) {
-                         printf(&quot;%d\t&quot;, (*(matrix+j)).value);
+                         printf("%d\t", (*(matrix+j)).value);
                          print = true;
                          startIndex++;
                     }
                }
                if (!print) {
-                    printf(&quot;%d\t&quot;, 0);
+                    printf("%d\t", 0);
                }
           }
-          printf(&quot;\n&quot;);
+          printf("\n");
      }
 }
 // 求稀疏矩阵的转置矩阵，即交换行列的位置
