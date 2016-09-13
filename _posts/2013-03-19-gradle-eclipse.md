@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Gradle初试
-date: 2013-03-19 22:07
+date: 2013-03-19 22:07 +0800
 author: onecoder
 comments: true
-categories: [eclipse, Gradle, Java基础, Maven, plugin]
+tags: [Gradle]
+thread_key: 1414
 ---
 <p>
 	Gradle是什么就不多说了，跟Maven是同类型的工具。Spring和Hibernate都早已经迁移了过来。官网地址：<a href="http://www.gradle.org">http://www.gradle.org</a>。最新稳定版为1.4</p>
@@ -40,37 +41,35 @@ categories: [eclipse, Gradle, Java基础, Maven, plugin]
 <p>
 	我们就在Eclipse中尝试gradle，通过configure-&gt;convert to gradle project，将工程变为Gradle管理的工程。</p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CIS3KSBi/OqHZL.png" style="width: 630px; height: 139px;" /></p>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CIS3KSBi/OqHZL.jpg" style="width: 630px; height: 139px;" /></p>
 <p>
 	然后编写build.gradle配置文件。</p>
 <p>
 	&nbsp;</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
 
-
-
-
-apply plugin: &#39;java&#39;
-group=&#39;onecoder&#39;
-version=&#39;1.0&#39;
+```groovy
+apply plugin: 'java'
+group='onecoder'
+version='1.0'
 repositories {
 mavenCentral()
-mavenRepo url: &quot;https://oss.sonatype.org/content/repositories/opensymphony-releases&quot;
-mavenRepo url: &quot;http://dev.anyframejava.org/maven/repo&quot;
+mavenRepo url: "https://oss.sonatype.org/content/repositories/opensymphony-releases"
+mavenRepo url: "http://dev.anyframejava.org/maven/repo"
 }
 sourceSets {
 main
 }
 dependencies {
-compile &quot;io.netty:netty:3.6.3.Final&quot;
-compile &quot;ch.qos.logback:logback-core:1.0.7&quot;
-compile &quot;org.slf4j:slf4j-api:1.7.3&quot;
-compile &quot;javax.mail:mail:1.4.4&quot;
-compile &quot;org.apache.httpcomponents:httpclient:4.2.2&quot;
-compile &quot;org.hyperic:sigar:1.6.4&quot;
-compile &quot;net.sourceforge.groboutils:groboutils-core:5&quot;
+compile "io.netty:netty:3.6.3.Final"
+compile "ch.qos.logback:logback-core:1.0.7"
+compile "org.slf4j:slf4j-api:1.7.3"
+compile "javax.mail:mail:1.4.4"
+compile "org.apache.httpcomponents:httpclient:4.2.2"
+compile "org.hyperic:sigar:1.6.4"
+compile "net.sourceforge.groboutils:groboutils-core:5"
 }
-</pre>
+```
+
 <br />
 <p>
 	然后fresh all一下，即可自动下载依赖了。相对pom.xml来说，配置文件看起来确实清晰简单多了。这里有很多配置，OneCoder还没有弄清楚，这里只是简单的试用，并且把个人联系的工程迁移了过来。细节问题，留待以后使用中慢慢研究吧。<br />
