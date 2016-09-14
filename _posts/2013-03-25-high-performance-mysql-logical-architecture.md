@@ -1,10 +1,11 @@
 ---
 layout: post
 title: High Performance MySQL 翻译 第一章 MySQL架构和历史 - 逻辑架构
-date: 2013-03-25 23:11
+date: 2013-03-25 23:11 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 翻译]
+tags: [High performance mysql]
+thread_key: 1418
 ---
 <p>
 	《High Performance MySQL》是OneCoder正在阅读的书，利用茶余饭后时间进行的阅读和翻译，日积月累。</p>
