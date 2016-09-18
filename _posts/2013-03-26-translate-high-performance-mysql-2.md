@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《High Performance MySQL》翻译(2) 连接管理和安全 优化和执行
-date: 2013-03-26 22:39
+date: 2013-03-26 22:39 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, mysql, 原创翻译, 翻译]
+tags: [MySQL]
+thread_key: 1420
 ---
 <p>
 	接上篇，第一章 MySQL架构和历史</p>
