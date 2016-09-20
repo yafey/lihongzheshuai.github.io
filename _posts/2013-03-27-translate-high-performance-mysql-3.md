@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《High Performance MySQL》翻译(3) 第一章 并发控制
-date: 2013-03-27 21:46
+date: 2013-03-27 21:46 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 翻译]
+tags: [MySQL]
+thread_key: 1422
 ---
 <p>
 	<br />
