@@ -9,7 +9,7 @@ thread_key: 1899
 ---
 上手学习Scala语言。先熟悉一下语法。对于Scala笔者也是完全的新手，对scala的设计思想和实现原理没有太多了解。错误在所难免，还望发现后不吝指教。
 
-<!-- break -->
+<!--break-->
 
 # Hello World
 
