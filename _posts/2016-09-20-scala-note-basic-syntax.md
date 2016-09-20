@@ -9,6 +9,8 @@ thread_key: 1899
 ---
 上手学习Scala语言。先熟悉一下语法。对于Scala笔者也是完全的新手，对scala的设计思想和实现原理没有太多了解。错误在所难免，还望发现后不吝指教。
 
+<!-- break -->
+
 # Hello World
 
 基础环境配置直接利用IntelliJ提供的Scala插件，会自动下载Scala开发包并配置好开发环境。直接从我们熟悉的“Hello world”开始对Scala的认知过程。
@@ -98,21 +100,21 @@ object DataType {
 
 上述代码输出结果如下：
 
-> a Int : 2147483647
-> a Long: 9223372036854775807
-> a Float: 3.2
-> a Double: 3.2
-> Single Line String: Single Line String
-> Multiple Lines String: Multiple Lines String
->          Line One
->          Line Two
->          Line Three
+> a Int : 2147483647  
+> a Long: 9223372036854775807  
+> a Float: 3.2  
+> a Double: 3.2  
+> Single Line String: Single Line String  
+> Multiple Lines String: Multiple Lines String  
+>          Line One  
+>          Line Two  
+>          Line Three  
 > 
-> 1.2000000000000002
-> true
-> true
-> true
-> true
+> 1.2000000000000002  
+> true  
+> true  
+> true  
+> true  
 
 详情参考：[http://www.runoob.com/scala/scala-data-types.html](http://www.runoob.com/scala/scala-data-types.html)
 
@@ -223,38 +225,38 @@ object Loop {
 
 第一个就是普通的for循环输出从1-10 的数字
 
-> Value of i: 1
-> Value of i: 2
-> Value of i: 3
-> Value of i: 4
-> Value of i: 5
-> Value of i: 6
-> Value of i: 7
-> Value of i: 8
-> Value of i: 9
-> Value of i: 10
+> Value of i: 1  
+> Value of i: 2  
+> Value of i: 3  
+> Value of i: 4  
+> Value of i: 5  
+> Value of i: 6  
+> Value of i: 7  
+> Value of i: 8  
+> Value of i: 9  
+> Value of i: 10  
 
 第二个实际相当于Java中的二层循环。输出所有可能的组合结果，有个细微的区别，对于变量j，使用了**until**代替**to**，所以j的取值范围不包括3。
 
-> Value of i: 1
-> Value of j: 1
-> Value of i: 1
-> Value of j: 2
-> Value of i: 2
-> Value of j: 1
-> Value of i: 2
-> Value of j: 2
-> Value of i: 3
-> Value of j: 1
-> Value of i: 3
-> Value of j: 2
+> Value of i: 1  
+> Value of j: 1  
+> Value of i: 1  
+> Value of j: 2  
+> Value of i: 2  
+> Value of j: 1  
+> Value of i: 2  
+> Value of j: 2  
+> Value of i: 3  
+> Value of j: 1  
+> Value of i: 3  
+> Value of j: 2  
 
 第三个循环是Java没有的特性，yield，对于满足if条件的变量保存起来，存入返回值的数组。因此输出为：
 
-> 2
-> 4
-> 6
-> 8
-> 10
+> 2  
+> 4  
+> 6  
+> 8  
+> 10  
 
 函数部分是scala的核心，包含的特性较多，scala号称多范式语言支持函数式编程，，笔者准备在下篇文章里单独介绍。
