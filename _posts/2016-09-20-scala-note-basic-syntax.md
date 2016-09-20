@@ -44,6 +44,8 @@ def main(args: Array[String]): Unit = {
 
 与Java有较大区别，没有Java中的基本数据类型，只有int等基本数据类型的包装类。一切皆对象。scala继承关系图
 
+![](/images/post/scala-syntax/scala-extends.png)
+
 其中Unit等同于Java中的void，所以我们的main函数代码里有个Unit的返回值。Nothing是一切对象的子类。Any是一切对象的基类。Null代表空值或者空引用。AnyRef是一切引用对象的超类。通过代码来理解一下。
 
 ```scala
