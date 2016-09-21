@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Scala学习笔- 函数
+title: Scala学习笔记 - 函数
 tags: [Scala]
 date: 2016-09-21 16:36:32 +0800
 comments: true
