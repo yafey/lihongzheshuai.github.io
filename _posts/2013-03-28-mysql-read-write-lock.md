@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《High Performance MySQL》概译 读/写锁
-date: 2013-03-28 21:31
+date: 2013-03-28 21:31 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译]
+tags: [MySQL]
+thread_key: 1425
 ---
 <p>
 	今天在微博看到消息该书的中文版已经翻译完成即将发售，所以OneCoder不再进行全文翻译，只会以类似读书笔记的方式记录文章大意和自己的理解。每天阅读的不会太多，因为只是休息的时候阅读，学习的重心最近在Hadoop上。</p>
