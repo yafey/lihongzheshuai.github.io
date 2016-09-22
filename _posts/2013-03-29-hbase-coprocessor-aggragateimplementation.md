@@ -1,10 +1,11 @@
 ---
 layout: post
 title: HBase 利用Coprocessor实现聚合函数
-date: 2013-03-29 20:53
+date: 2013-03-29 20:53 +0800
 author: onecoder
 comments: true
-categories: [coprocessor, doublecolumninterpreter, Hadoop, hbase]
+tags: [HBase]
+thread_key: 1427
 ---
 <p>
 	HBase默认不支持聚合函数（sum,avg等）。可利用HBase的coprocessor特性实现。这样做的好处是利用regionserver在服务端进行运算。效率高，避免客户端取回大量数据，占用网络带宽，消耗大量内存等。</p>
@@ -12,19 +13,22 @@ categories: [coprocessor, doublecolumninterpreter, Hadoop, hbase]
 	实现方式：</p>
 <p>
 	利用HBase提供的endPoint类型的AggregateImplementation Coprocess，配合AggregationClient访问客户端实现RegionServer端的集合计算。AggregationClient访问代码如下：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-aggregationClient.avg(Bytes. toBytes(&quot;TableName&quot;), ci, scan);
-</pre>
+
+```java
+aggregationClient.avg(Bytes. toBytes("TableName"), ci, scan);
+```
+
 <p>
 	scan即为要计算列的查询条件。这里有一个ColumnInterperter类型的参数ci。即列解释器，用于解析列中的值。HBase默认提供了LongColumnInterpreter。而我要处理的值是double类型的，所以先实现了一个DoubleColumnInterpreter。（从JIRA上看Doulbe类型的解释器好像正在开发中）。ColumnInterpreter接口的实现会在AggregateImplementation</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 /**
 * Double类型的列解释器实现
 *
  * @author OneCoder
 */
 public class DoubleColumnInterpreter implements
-           ColumnInterpreter&lt;Double, Double&gt; {
+           ColumnInterpreter<Double, Double> {
 
      @Override
      public void write(DataOutput out) throws IOException {
@@ -111,17 +115,18 @@ public class DoubleColumnInterpreter implements
                      .doubleValue());
      }
 }
-</pre>
+```
+
 <p>
 	导出jar包上传到HBase Region节点的lib下。然后配置RegionServer的Coprocessor。在服务端hbase-site.xml中，增加</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
 
+```xml
+<property>
+            <name >hbase.coprocessor.region.classes </name >
+           <value >org.apache.hadoop.hbase.coprocessor.AggregateImplementation </value >
+ </property >    
+```
 
-&lt;property&gt;
-            &lt;name &gt;hbase.coprocessor.region.classes &lt;/name &gt;
-           &lt;value &gt;org.apache.hadoop.hbase.coprocessor.AggregateImplementation &lt;/value &gt;
- &lt;/property &gt;    
-</pre>
 <p>
 	重启服务，使配置和jar生效。然后调用AggregationClient中提供的avg, max等聚合函数，即可在region端计算出结果，返回。</p>
 
