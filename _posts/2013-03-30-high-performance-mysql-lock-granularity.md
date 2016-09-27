@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《HighPerformance MySQL》概译 锁的粒度
-date: 2013-03-30 14:20
+date: 2013-03-30 14:20 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 翻译]
+tags: [MySQL]
+thread_key: 1430
 ---
 <p>
 	一种提高共享资源并发效率的方式是合理的规划锁的范围。仅仅锁住你要修改的部分当然比全表锁住要好。所以，我们尽可能的最小化锁的范围，因为不相干的部分，本身也互不干扰。</p>
