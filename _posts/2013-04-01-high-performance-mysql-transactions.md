@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《HighPerformance MySQL》概译 事务
-date: 2013-04-01 21:40
+date: 2013-04-01 21:40 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 翻译]
+tags: [MySQL]
+thread_key: 1433
 ---
 <p>
 	<strong>事务</strong></p>
