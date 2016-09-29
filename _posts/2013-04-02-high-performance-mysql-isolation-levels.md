@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《HighPerformance MySQL》概译 隔离等级
-date: 2013-04-02 20:03
+date: 2013-04-02 20:03 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 翻译]
+tags: [MySQL]
+thread_key: 1433
 ---
 <p>
 	<strong>隔离等级</strong></p>
