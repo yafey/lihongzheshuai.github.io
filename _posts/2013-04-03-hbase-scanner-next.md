@@ -1,10 +1,11 @@
 ---
 layout: post
 title: HBase“扫描器”scanner使用和优化
-date: 2013-04-03 20:46
+date: 2013-04-03 20:46 +0800
 author: onecoder
 comments: true
-categories: [hadoop, Hadoop, hbase, scanner]
+tags: [HBase]
+thread_key: 1440
 ---
 <p>
 	HBase在扫描数据的时候，使用scanner表扫描器。HTable通过一个Scan实例，调用getScanner(scan)来获取扫描器。可以配置扫描起止位，以及其他的过滤条件。通过迭代器返回查询结果，使用起来虽然不是很方便，不过并不复杂。但是这里有一点可能被忽略的地方，就是返回的scanner迭代器，每次调用next的获取下一条记录的时候，默认配置下会访问一次RegionServer。这在网络不是很好的情况下，对性能的影响是很大的。测试中，未配置前，一个业务的消耗时间为：</p>
