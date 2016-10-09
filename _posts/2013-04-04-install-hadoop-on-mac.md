@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Mac下 Hadoop部署简介(Mac OSX 10.8.3 + Hadoop-1.0.4)
-date: 2013-04-04 16:30
+date: 2013-04-04 16:30 +0800
 author: onecoder
 comments: true
-categories: [hadoop, Hadoop, hdfs, mac]
+tags: [Hadoop]
+thread_key: 1444
 ---
 <p>
 	OneCoder在自己的笔记本上部署Hadoop环境用于研究学习，记录部署过程和遇到的问题。</p>
