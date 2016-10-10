@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 《HighPerformance MySQL》概译 死锁
-date: 2013-04-06 22:31
+date: 2013-04-06 22:31 +0800
 author: onecoder
 comments: true
-categories: [high performance mysql, 原创翻译, 死锁, 翻译]
+tags: [MySQL]
+thread_key: 1447
 ---
 <p>
 	当多个事务同时持有和请求同一资源上的锁而产生循环依赖的时候就产生了死锁。死锁发生在事务试图以不同的顺序锁定资源。以StockPrice表上的两个事务为例：</p>
