@@ -18,3 +18,8 @@
   books:
     - name: 《Maven实战》
       url: http://pan.baidu.com/s/1i5pneWd
+
+- category: 开源书籍
+  books:
+    - name: 《Elasticsearch 指南》（原创翻译 + 注释说明）
+      url: https://es.lihongzhe.com
