@@ -5,6 +5,7 @@ date: 2013-07-04 22:00 +0800
 author: onecoder
 comments: true
 tags: [Spring]
+thread_key: 1465
 ---
 <p>
 	最近用Hessian4.0.7做文件上传，先给出自己做试验的样例代码，写在tomcat7下，采用servlet3.0，配置代码如下：</p>
