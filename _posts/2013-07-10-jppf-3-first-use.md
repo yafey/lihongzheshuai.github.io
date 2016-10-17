@@ -18,10 +18,11 @@ thread_key: 1465
 	依次分别运行driver包里的startDriver.bat和node包里的startNode.bat启动driver和node<br />
 	&nbsp;</p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CZYYlUkw/143a0G.png" style="width: 630px; height: 817px;" /></p>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CZYYlUkw/143a0G.jpg" style="width: 630px; height: 817px;" /></p>
 <p>
 	然后，开发jppf应用，JPPF在application-template包中提供了任务模版，只需参照文档稍作修改即可：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
  public static void main(String args[]) {
            TaskFlowOne taskOne = new TaskFlowOne();
             try {
@@ -33,7 +34,7 @@ thread_key: 1465
                 JPPFJob job = new JPPFJob();
                  // give this job a readable unique id that we can use to monitor and
                  // manage it.
-                job.setName( &quot;Template Job Id&quot;);
+                job.setName( "Template Job Id");
                  // add a task to the job.
                 job.addTask(taskOne);
                 job.setBlocking( true);
@@ -42,14 +43,14 @@ thread_key: 1465
                  // The results are returned as a list of JPPFTask instances,
                  // in the same order as the one in which the tasks where initially
                  // added the job.
-                List&lt;JPPFTask&gt; results = jppfClient.submit(job);
+                List<JPPFTask> results = jppfClient.submit(job);
                 JPPFTask jTask = results.get(0);
                 System. out.println(jTask.getResult());
                  // process the results
                 TaskFlowTwo taskTwo = new TaskFlowTwo();
                 job.addTask(taskTwo);
                 job.setBlocking( true);
-                List&lt;JPPFTask&gt; resultsTow = jppfClient.submit(job);
+                List<JPPFTask> resultsTow = jppfClient.submit(job);
                 JPPFTask jTaskTow = resultsTow.get(1);
                 System. out.println(jTaskTow.getResult());
            } catch (Exception e) {
@@ -59,14 +60,13 @@ thread_key: 1465
                       jppfClient.close();
            }
      }
+```
 
-
-</pre>
 <p>
 	一个并行计算的任务，就是一个JPPFJob，每个job含有多个task，task之间是并行执行的，如果有多个nod节点，会按照其负载均衡策略分配到多个node上执行。通过client提交(submit)job后，会返回执行结果，为一个JPPFTask列表，列表里包含你add到job中每个task及其运行结果，作为后续计算处理之用。任务调用支持阻塞和非阻塞。</p>
 <p>
 	admin-ui中还提供了对节点状态和资源占用，任务信息等监控，总体来说上手很快，很好用：</p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CZYYj63X/mGMq3.png" style="height: 312px; width: 630px;" /><br />
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/CZYYj63X/mGMq3.jpg" style="height: 312px; width: 630px;" /><br />
 	&nbsp;</p>
 
