@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 并行计算框架JPPF3.3.4试用
-date: 2013-07-10 09:52
+date: 2013-07-10 09:52 +0800
 author: onecoder
 comments: true
-categories: [JPPF, JPPF, 并行计算]
+tags: [JPPF]
+thread_key: 1465
 ---
 <p>
 	先说一个挺有意思的事情，就在OneCoder准备记录试用过程的时候，给大家截图下载页面的时候，发现最新版本变成3.3.4了。于是，我也只好重新下载了：）</p>
