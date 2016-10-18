@@ -1,10 +1,11 @@
 ---
 layout: post
 title: JPPF并行计算框架类加载机制研究
-date: 2013-07-12 20:56
+date: 2013-07-12 20:56 +0800
 author: onecoder
 comments: true
-categories: [classloader, Java, JPPF, JPPF, 并行计算]
+tags: [JPPF]
+thread_key: 1471
 ---
 <p>
 	不算什么深入的研究，主要是了解下JPPF中类的加载和隔离机制。</p>
