@@ -25,7 +25,7 @@ thread_key: 1484
 	下载最新版3.4.5：http://zookeeper.apache.org/releases.html#download<br />
 	解压，在conf下增加配置文件zoo.cfg，可参考zoo-sample.cfg的配置修改，主要修改dataDir路径位置</p>
 <p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/D53mXBUn/FRU4s.png" /></p>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/D53mXBUn/FRU4s.jpg" /></p>
 <p>
 	启动zookeeper：</p>
 <pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
