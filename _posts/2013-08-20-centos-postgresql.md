@@ -47,6 +47,7 @@ bin>postgres -D data
 >psql
 ```
 
-客户端连接到数据库，查看数据库信息。具体命令可通过help查看。<p style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/D6i7wR1G/Z650t.jpg" style="width: 630px; height: 459px;" /></p>
+客户端连接到数据库，查看数据库信息。具体命令可通过help查看。
+
+<img alt="" src="http://onecoder.qiniudn.com/8wuliao/D6i7wR1G/Z650t.jpg" style="width: 630px; height: 459px;" />
 
