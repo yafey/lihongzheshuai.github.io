@@ -1,21 +1,22 @@
 ---
 layout: post
 title: 计数排序Java实现
-date: 2013-09-12 12:46
+date: 2013-09-12 12:46 +0800
 author: onecoder
 comments: true
-categories: [Java, Java 排序, 排序, 算法导论, 计数排序]
+tags: [Java]
+thread_key: 1493
 ---
-<p>
-	计数排序&mdash;&mdash;线性排序算法《算法导论》8.2</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+计数排序&mdash;&mdash;线性排序算法《算法导论》8.2
+
+```java
 package com.coderli.algorithm.arrayandsort;
 
 /**
- * 《算法导论》8.2 计数排序 线性排序算法&lt;br&gt;
+ * 《算法导论》8.2 计数排序 线性排序算法<br>
  * 
- * &lt;pre&gt;
- * 计数排序假设&lt;b&gt;n个输入元素的每一个都是介于0到k之间的整数。&lt;/b&gt;
+ * <pre>
+ * 计数排序假设<b>n个输入元素的每一个都是介于0到k之间的整数。</b>
  * k为某个整数，k = O(n)时。技术排序的运行事件为&Theta;(n)
  * 
  * 
@@ -32,15 +33,15 @@ public class CountSort {
 		int[] countArray = new int[k];
 		int[] outArray = new int[sortArray.length];
 		// 给元数组中的数字计数
-		for (int i = 0; i &lt; sortArray.length; i++) {
+		for (int i = 0; i < sortArray.length; i++) {
 			countArray[sortArray[i]] = countArray[sortArray[i]] + 1;
 		}
 		// 计算元素位置
-		for (int j = 1; j &lt; k; j++) {
+		for (int j = 1; j < k; j++) {
 			countArray[j] = countArray[j] + countArray[j - 1];
 		}
 		// 排序到输出数组
-		for (int h = sortArray.length - 1; h &gt;= 0; h--) {
+		for (int h = sortArray.length - 1; h >= 0; h--) {
 			outArray[countArray[sortArray[h]] - 1] = sortArray[h];
 			countArray[sortArray[h]] = countArray[sortArray[h]] - 1;
 		}
@@ -51,8 +52,5 @@ public class CountSort {
 	}
 }
 
-
-</pre>
-<p>
-	&nbsp;</p>
+```
 
