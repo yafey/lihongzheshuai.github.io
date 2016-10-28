@@ -1,13 +1,14 @@
 ---
 layout: post
 title: 《Gradle user guide》原创翻译 — 第六章 构建脚本基础
-date: 2013-09-21 08:48
+date: 2013-09-21 08:48 +0800
 author: onecoder
 comments: true
-categories: [Gradle, gradle, user guide]
+tags: [Gradle]
+thread_key: 1506
 ---
-<div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd">
-	译者注：从第六章开始翻译，为了个人学习需要，先省略了前面已经了解和不太相关部分。见谅。<br />
+
+译者注：从第六章开始翻译，为了个人学习需要，先省略了前面已经了解和不太相关部分。见谅。<br />
 	<br />
 	6.1 项目和任务<br />
 	<br />
@@ -27,18 +28,16 @@ categories: [Gradle, gradle, user guide]
 	例子6.1 第一个构建脚本<br />
 	<br />
 	build.gradle<br />
-	<pre>
+
+```groovy
 task hello {
     doLast {
-        println &#39;Hello world!&#39;
+        println 'Hello world!'
     }
 }}
+```
 
-
-</pre>
-	<p>
-		<br />
-		在命令行中，进入包含脚本的目录然后通过gradle -q hello命令执行构建脚本。<br />
+在命令行中，进入包含脚本的目录然后通过gradle -q hello命令执行构建脚本。<br />
 		<br />
 		例子6.2 执行构建脚本<br />
 		<br />
@@ -54,7 +53,7 @@ task hello {
 			<tr>
 				<td>
 					-q选项做了什么？<br />
-					用户手册中的大多数例子都是用-q选项执行的。这会屏蔽Gradle&#39;s 日志信息，因此只会显示任务的输出信息。这会使用户手册中的例子的输出简洁一些。如果你不想可以不使用该选项。参见第18章，记录更详细的日志，影响Gradle输出的命令行选项。</td>
+					用户手册中的大多数例子都是用-q选项执行的。这会屏蔽Gradle's 日志信息，因此只会显示任务的输出信息。这会使用户手册中的例子的输出简洁一些。如果你不想可以不使用该选项。参见第18章，记录更详细的日志，影响Gradle输出的命令行选项。</td>
 			</tr>
 		</tbody>
 	</table>
@@ -63,6 +62,5 @@ task hello {
 	如果你认为这看起来和Ant的目标相似，那么你答对了。Gradle的任务就等于Ant中的目标(target)。不过，如你将要看到的那样，它强大的多。我们使用了与Ant不用的术语，是因为我们觉得任务比目标更贴切。不过，这里术语的使用与Ant产生了冲突，在Ant称命令为任务，如javac或copy。所以，当我们说任务的时候，我们都是指Gradle里的任务，等价于Ant里的目标。如果我们讨论Ant里的任务(Ant命令)，我们会说ant 任务。<br />
 	<br />
 	译者注：接下来会直接翻译第七章的内容，因为和译者直接相关。是关于构建Java工程的。</div>
-<div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd">
-	&nbsp;</div>
+
 
