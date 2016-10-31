@@ -1,13 +1,13 @@
 ---
 layout: post
 title: 《Gradle user guide》翻译 — 第七章 Java快速开始
-date: 2013-09-21 21:36
+date: 2013-09-21 21:36 +0800
 author: onecoder
 comments: true
-categories: [Gradle, gradle, 用户手册, 翻译]
+tags: [Gradle]
+thread_key: 1509
 ---
-<div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd">
-	7.1 Java插件
+7.1 Java插件
 	<p>
 		如我们所了解的，Gradle是一个通用的构建工具。它可以通过你的构建脚本实现几乎任何你想做的事情。不过，作为开箱即用的产品，它不会做任何构建脚本不包含的任务。</p>
 	大多数的Java项目都跟基础情况很相似：你需要编译你的Java源文件，执行单元测试，并且创建一个包含你的类的JAR包。如果你不需要为每个项目编写这些代码那将很好。幸运的是，你确实不需要去做。Gradle通过插件解决了这个问题。插件是Gradle的扩展，它用某种方式配置了你的项目，通常是添加一些预先配置好的任务去做一些有用的事情。Gradle包含了很多插件，你也可以很方便的编写你自己的插件并与别人共享之。一个这方面的插件就是Java插件。该插件给你项目增加了一些任务，这些任务可以编译你源代码、执行单元测试，并能打包JAR文件。
