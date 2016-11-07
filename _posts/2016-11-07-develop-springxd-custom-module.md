@@ -9,6 +9,8 @@ thread_key: 1903
 ---
 SpringXD中的Job实际即为Spring Batch中的Job，因此我们先按照Spring Batch的规范开发一个简单的Job。
 
+<!--break-->
+
 项目依赖：
 
 ```xml
