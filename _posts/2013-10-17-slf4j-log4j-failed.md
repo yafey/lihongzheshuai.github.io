@@ -15,10 +15,12 @@ thread_key: 1530
 </blockquote>
 
 在使用log4j2+slf4j的时候遇到这个错误提示，这不到类。在slf4j的官网有正好有相应的说明。需要添加依赖包
+
 <blockquote>
 	<p>
 		slf4j-api-1.7.5.jar
 		slf4j-simple-1.7.5.jar
+	</p>
 </blockquote>
 
 在Gradle的build.gradle配置文件种添加依赖
@@ -33,5 +35,5 @@ compile(
 )}
 ```
 
-刷新工程。再次输出，问题解决。</span></p>
+刷新工程。再次输出，问题解决。
 
