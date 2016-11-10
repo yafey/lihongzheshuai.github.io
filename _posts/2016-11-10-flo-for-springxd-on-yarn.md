@@ -12,6 +12,8 @@ thread_key: 1904
 从Pivotal官方下载Flo for XD 1.0.1版本
 [https://network.pivotal.io/products/p-spring-flo](https://network.pivotal.io/products/p-spring-flo)
 
+<!--break-->
+
 解压flo-spring-xd-admin-ui-client-1.3.1.RELEASE.zip
 
 ```bash
