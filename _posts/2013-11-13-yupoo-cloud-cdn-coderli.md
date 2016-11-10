@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 又拍云存储试用体验
-date: 2013-11-13 23:44
+date: 2013-11-13 23:44 +0800
 author: onecoder
 comments: true
-categories: [cdn, 又拍云, 站点运营]
+tags: [站点运营]
+thread_key: 1537
 ---
 <p>
 	首先，感谢又拍云存储赞助的存储空间。让我的小站以可以体验一下CDN加速的快感。<br />
