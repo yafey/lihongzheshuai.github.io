@@ -52,4 +52,4 @@ bin/xd-yarn submit
 
 通过浏览器访问admin-ui，Flo出现了
 
-![](images/post/flo-for-springxd-on-yarn/flo-for-xd.png)
+![](/images/post/flo-for-springxd-on-yarn/flo-for-xd.png)
