@@ -1,10 +1,11 @@
 ---
 layout: post
 title: log4j 和 java.lang.OutOfMemoryError PermGen space
-date: 2013-11-24 23:09
+date: 2013-11-24 23:09 +0800
 author: onecoder
 comments: true
-categories: [heap, Java进阶, log4j, permgen]
+tags: [Log4j]
+thread_key: 1554
 ---
 <p>
 	还是<a href="http://www.coderli.com">OneCoder</a>在项目中沙箱的问题，用classloader隔离做的沙箱，反复运行用户的任务，出现永生区内存溢出：<br />
@@ -19,7 +20,8 @@ categories: [heap, Java进阶, log4j, permgen]
 	试验思想，基本思想就是循环创建Classloader手动加载包，并通过反射调用包中的代码，考察在外部loader有无引用的情况下，PermGen区的变化情况。监控工具，即为JDK自带的Java VisualVM。</p>
 <p>
 	场景一、无引用</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.permgen.leak;
 
 import java.io.File;
@@ -48,10 +50,10 @@ public static void main(String[] args) throws InterruptedException,
 MalformedURLException, ClassNotFoundException {
 
      ExecutorService es = new ThreadPoolExecutor(1, 10, 5L,
-     TimeUnit.SECONDS, new SynchronousQueue&lt;Runnable&gt;());
+     TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
      ClassloaderPermGenLeakTest clpg = new ClassloaderPermGenLeakTest();
 
-     for (int i = 0; i &lt; 1; i++) {
+     for (int i = 0; i < 1; i++) {
           es.execute(clpg.new ExecutroRun());
      }
      Thread.sleep(2000000);
@@ -70,33 +72,32 @@ public void run() {
 
 private void permLeak() throws Exception {
      Thread.sleep(5000);
-     List&lt;Object&gt; insList = new ArrayList&lt;Object&gt;();
+     List<Object> insList = new ArrayList<Object>();
      ClassLoader _temp = Thread.currentThread().getContextClassLoader();
-     for (int i = 0; i &lt; 100; i++) {
+     for (int i = 0; i < 100; i++) {
           URL[] urls = getURLS();
           URLClassLoader urlClassloader = new URLClassLoader(urls, null);
-          Class&lt;?&gt; logfClass = Class.forName(&quot;org.apache.commons.logging.LogFactory&quot;, true,
+          Class<?> logfClass = Class.forName("org.apache.commons.logging.LogFactory", true,
                 urlClassloader);
-          Method getLog = logfClass.getMethod(&quot;getLog&quot;, String.class);
-          getLog.invoke(logfClass, &quot;logName&rdquo;);        (100);
-          System.out.println(&quot;print: &quot; + i);
+          Method getLog = logfClass.getMethod("getLog", String.class);
+          getLog.invoke(logfClass, "logName&rdquo;);        (100);
+          System.out.println("print: " + i);
      }
 }
 
 private URL[] getURLS() throws MalformedURLException {
-     File libDir = new File(&quot;src/main/java/com/coderli/permgen/leak/lib&quot;);
+     File libDir = new File("src/main/java/com/coderli/permgen/leak/lib");
      File[] subFiles = libDir.listFiles();
      int count = subFiles.length;
      URL[] urls = new URL[count];
-     for (int i = 0; i &lt; count; i++) {
+     for (int i = 0; i < count; i++) {
           urls[i] = subFiles[i].toURI().toURL();
      }
      return urls;
      }
 }
+```
 
-
-</pre>
 <p>
 	从代码可见，在自定义的100个Classloader里，我们只是通过反射调用了LogFactory里的getLog方法，对于该方法返回的实例，并没有保存。所以没有引用，可正常回收。</p>
 <p style="text-align: center;">
@@ -109,7 +110,8 @@ private URL[] getURLS() throws MalformedURLException {
 	场景二、持有引用</p>
 <p>
 	修改代码如下：</p>
-<pre class="brush:csharp;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.permgen.leak;
 
 import java.io.File;
@@ -134,16 +136,16 @@ import java.util.concurrent.TimeUnit;
 public class ClassloaderPermGenLeakTest {
 
 
-private List&lt;Object&gt; insList = new ArrayList&lt;Object&gt;();
+private List<Object> insList = new ArrayList<Object>();
 
 public static void main(String[] args) throws InterruptedException,
 MalformedURLException, ClassNotFoundException {
 
      ExecutorService es = new ThreadPoolExecutor(1, 10, 5L,
-     TimeUnit.SECONDS, new SynchronousQueue&lt;Runnable&gt;());
+     TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
      ClassloaderPermGenLeakTest clpg = new ClassloaderPermGenLeakTest();
 
-     for (int i = 0; i &lt; 1; i++) {
+     for (int i = 0; i < 1; i++) {
           es.execute(clpg.new ExecutroRun());
      }
      Thread.sleep(2000000);
@@ -163,33 +165,32 @@ private class ExecutroRun implements Runnable {
 
 private void permLeak() throws Exception {
      Thread.sleep(5000);
-     for (int i = 0; i &lt; 100; i++) {
+     for (int i = 0; i < 100; i++) {
           URL[] urls = getURLS();
           URLClassLoader urlClassloader = new URLClassLoader(urls, null);
-          Class&lt;?&gt; logfClass = Class.forName(
-               &quot;org.apache.commons.logging.LogFactory&quot;, true,
+          Class<?> logfClass = Class.forName(
+               "org.apache.commons.logging.LogFactory", true,
                urlClassloader);
-          Method getLog = logfClass.getMethod(&quot;getLog&quot;, String.class);
-          Object result = getLog.invoke(logfClass, &quot;logName&quot;);
+          Method getLog = logfClass.getMethod("getLog", String.class);
+          Object result = getLog.invoke(logfClass, "logName");
           insList.add(result);
-          System.out.println(&quot;print: &quot; + i);
+          System.out.println("print: " + i);
      }
 }
 
 private URL[] getURLS() throws MalformedURLException {
-     File libDir = new File(&quot;src/main/java/com/coderli/permgen/leak/lib&quot;);
+     File libDir = new File("src/main/java/com/coderli/permgen/leak/lib");
      File[] subFiles = libDir.listFiles();
      int count = subFiles.length;
      URL[] urls = new URL[count];
-     for (int i = 0; i &lt; count; i++) {
+     for (int i = 0; i < count; i++) {
           urls[i] = subFiles[i].toURI().toURL();
      }
      return urls;
      }
 }
+```
 
-
-</pre>
 <p>
 	在外部增加一个list存放内部反射出来的对象，并保证list对象被引用。</p>
 <p style="text-align: center;">
@@ -209,7 +210,7 @@ private URL[] getURLS() throws MalformedURLException {
 	<p>
 		More sneaky problems</p>
 	<p>
-		I don&#39;t blame you if you didn&#39;t see the problem with the Level class: it&#39;s sneaky. Last year we had some undeployment problems in our application server. My team, in particular Edward Chou, spent some time to track them all down. Next to the problem withLevel, here are some other problems Edward and I encountered. For instance, if you happen to use some of the Apache Commons BeanHelper&#39;s code: there&#39;s a static cache in that code that refers to Method objects. The Method object holds a reference to the class the Method points to. Not a problem if the Apache Commons code is loaded in your application&#39;s classloader. However, you do have a problem if this code is also present in the classpath of the application server because those classes take precedence. As a result now you have references to classes in your application from the application server&#39;s classloader... a classloader leak!</p>
+		I don't blame you if you didn't see the problem with the Level class: it's sneaky. Last year we had some undeployment problems in our application server. My team, in particular Edward Chou, spent some time to track them all down. Next to the problem withLevel, here are some other problems Edward and I encountered. For instance, if you happen to use some of the Apache Commons BeanHelper's code: there's a static cache in that code that refers to Method objects. The Method object holds a reference to the class the Method points to. Not a problem if the Apache Commons code is loaded in your application's classloader. However, you do have a problem if this code is also present in the classpath of the application server because those classes take precedence. As a result now you have references to classes in your application from the application server's classloader... a classloader leak!</p>
 	<p>
 		I did not mentiond yet the simplest recipe for disaster: a thread started by the application while the thread does not exit after the application is underplayed.</p>
 </blockquote>
