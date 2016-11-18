@@ -10,7 +10,7 @@ thread_key: 1558
 <p>
 	日志是项目中必用的东西，日志产品里最普及应该就是log4j了。(logback这里暂不讨论。) 先看一下常用的log4j的用法，一般来说log4j都会配合slf4j或者common-logging使用，这里已slf4j为例。添加gradle依赖：</p>
 
-```xml
+```groovy
 dependencies {
 compile('log4j:log4j:1.2.17',
 'org.slf4j:slf4j-api:1.7.5',
