@@ -11,8 +11,8 @@ thread_key: 1562
 
 >
 Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:114)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)</br>
+		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.Objec	tRepresentation.<init>(ObjectRepresentation.java:114)
 
 
 <!--break-->
