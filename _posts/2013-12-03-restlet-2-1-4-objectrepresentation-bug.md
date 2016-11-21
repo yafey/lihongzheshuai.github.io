@@ -8,17 +8,16 @@ tags: [Restlet]
 thread_key: 1562
 ---
 <a href="http://www.coderli.com">OneCoder</a>使用Restlet最新版2.1.4开发样例，却一直抛出异常：
-<blockquote>
-	<p>
-		Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</p>
-<p>	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:114)</p>
-</blockquote>
+
+>
+Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)<br />
+		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:114)
+
 
 <!--break-->
 
-<p>
-	无论怎么设置MediaType都无效，无奈只能查看次构造函数的源码：</p>
+无论怎么设置MediaType都无效，无奈只能查看次构造函数的源码：
 
 
 ```java
