@@ -11,10 +11,10 @@ thread_key: 1562
 	<a href="http://www.coderli.com">OneCoder</a>使用Restlet最新版2.1.4开发样例，却一直抛出异常：</p>
 <blockquote>
 	<p>
-		Exception in thread &quot;main&quot; java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</p>
+		Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</p>
 	<p>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.&lt;init&gt;(ObjectRepresentation.java:203)<br />
-		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.&lt;init&gt;(ObjectRepresentation.java:114)</p>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)<br />
+		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:114)</p>
 </blockquote>
 <p>
 	无论怎么设置MediaType都无效，无奈只能查看次构造函数的源码：</p>
@@ -30,14 +30,14 @@ public ObjectRepresentation(Representation serializedRepresentation,
                 MediaType. APPLICATION_JAVA_OBJECT)) {
             if (!VARIANT_OBJECT_BINARY_SUPPORTED ) {
                 throw new IllegalArgumentException(
-                        &quot;SECURITY WARNING: The usage of ObjectInputStream when &quot;
-                                + &quot;deserializing binary presentations from unstrusted &quot;
-                                + &quot;sources can lead to malicious attacks. As pointed &quot;
-                                + &quot;here (https://github.com/restlet/restlet-framework-java/issues/778), &quot;
-                                + &quot;the ObjectInputStream class is able to force the JVM to execute unwanted &quot;
-                                + &quot;Java code. Thus, the support of such format has been disactivated &quot;
-                                + &quot;by default. You can activate this support by turning on the following system property: &quot;
-                                + &quot;org.restlet.representation.ObjectRepresentation.VARIANT_OBJECT_BINARY_SUPPORTED.&quot; );
+                        "SECURITY WARNING: The usage of ObjectInputStream when "
+                                + "deserializing binary presentations from unstrusted "
+                                + "sources can lead to malicious attacks. As pointed "
+                                + "here (https://github.com/restlet/restlet-framework-java/issues/778), "
+                                + "the ObjectInputStream class is able to force the JVM to execute unwanted "
+                                + "Java code. Thus, the support of such format has been disactivated "
+                                + "by default. You can activate this support by turning on the following system property: "
+                                + "org.restlet.representation.ObjectRepresentation.VARIANT_OBJECT_BINARY_SUPPORTED." );
             }
             setMediaType(MediaType.APPLICATION_JAVA_OBJECT );
             InputStream is = serializedRepresentation.getStream();
@@ -45,7 +45,7 @@ public ObjectRepresentation(Representation serializedRepresentation,
             if (classLoader != null) {
                 ois = new ObjectInputStream(is) {
                     @Override
-                    protected Class&lt;?&gt; resolveClass(
+                    protected Class<?> resolveClass(
                             java.io.ObjectStreamClass desc)
                             throws java.io.IOException,
                             java.lang.ClassNotFoundException {
@@ -63,26 +63,26 @@ public ObjectRepresentation(Representation serializedRepresentation,
 
             if (is.read() != -1) {
                 throw new IOException(
-                        &quot;The input stream has not been fully read.&quot;);
+                        "The input stream has not been fully read.");
             }
 
 
             ois.close();
         } else if (VARIANT_OBJECT_XML_SUPPORTED
-                &amp;&amp; serializedRepresentation.getMediaType().equals(
+                && serializedRepresentation.getMediaType().equals(
                         MediaType.APPLICATION_JAVA_OBJECT_XML )) {
             if (!VARIANT_OBJECT_XML_SUPPORTED ) {
                 throw new IllegalArgumentException(
-                        &quot;SECURITY WARNING: The usage of XMLDecoder when &quot;
-                                + &quot;deserializing XML presentations from unstrusted &quot;
-                                + &quot;sources can lead to malicious attacks. As pointed &quot;
-                                + &quot;here (http://blog.diniscruz.com/2013/08/using-xmldecoder-to-execute-server-side.html), &quot;
-                                + &quot;the XMLDecoder class is able to force the JVM to &quot;
-                                + &quot;execute unwanted Java code described inside the XML &quot;
-                                + &quot;file. Thus, the support of such format has been &quot;
-                                + &quot;disactivated by default. You can activate this &quot;
-                                + &quot;support by turning on the following system property: &quot;
-                                + &quot;org.restlet.representation.ObjectRepresentation.VARIANT_OBJECT_XML_SUPPORTED.&quot; );
+                        "SECURITY WARNING: The usage of XMLDecoder when "
+                                + "deserializing XML presentations from unstrusted "
+                                + "sources can lead to malicious attacks. As pointed "
+                                + "here (http://blog.diniscruz.com/2013/08/using-xmldecoder-to-execute-server-side.html), "
+                                + "the XMLDecoder class is able to force the JVM to "
+                                + "execute unwanted Java code described inside the XML "
+                                + "file. Thus, the support of such format has been "
+                                + "disactivated by default. You can activate this "
+                                + "support by turning on the following system property: "
+                                + "org.restlet.representation.ObjectRepresentation.VARIANT_OBJECT_XML_SUPPORTED." );
             }
             setMediaType(MediaType.APPLICATION_JAVA_OBJECT_XML );
             InputStream is = serializedRepresentation.getStream();
@@ -92,16 +92,16 @@ public ObjectRepresentation(Representation serializedRepresentation,
 
             if (is.read() != -1) {
                 throw new IOException(
-                        &quot;The input stream has not been fully read.&quot;);
+                        "The input stream has not been fully read.");
             }
 
 
             decoder.close();
         }
         throw new IllegalArgumentException(
-                &quot;The serialized representation must have this media type: &quot;
+                "The serialized representation must have this media type: "
                         + MediaType.APPLICATION_JAVA_OBJECT .toString()
-                        + &quot; or this one: &quot;
+                        + " or this one: "
                         + MediaType.APPLICATION_JAVA_OBJECT_XML .toString());
     }
 ```
