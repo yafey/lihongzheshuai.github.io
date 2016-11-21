@@ -10,8 +10,8 @@ thread_key: 1562
 <a href="http://www.coderli.com">OneCoder</a>使用Restlet最新版2.1.4开发样例，却一直抛出异常：
 
 >
-Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)</br>
+Exception in thread "main" java.lang.IllegalArgumentException : The serialized representation must have this media type: application/x-java-serialized-object or this one: application/x-java-serialized-object+xml<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.ObjectRepresentation.<init>(ObjectRepresentation.java:203)<br/>
 		&nbsp;&nbsp;&nbsp;&nbsp; at org.restlet.representation.Objec	tRepresentation.<init>(ObjectRepresentation.java:114)
 
 
