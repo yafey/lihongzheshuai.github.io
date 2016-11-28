@@ -30,8 +30,17 @@ layout: default
     </script>
     -->
   <!-- 多说公共JS代码 end -->
-  <!-- UY BEGIN -->
-<div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1626453"></script>
-<!-- UY END -->
+  <script type="text/javascript">
+(function(){
+var url = "http://widget.weibo.com/distribution/comments.php?width=0&url=auto&brandline=y&appkey=4120045406&dpc=1";
+url = url.replace("url=auto", "url=" + encodeURIComponent(document.URL));
+document.write('<iframe id="WBCommentFrame" src="' + url + '" scrolling="no" frameborder="0" style="width:100%"></iframe>');
+})();
+</script>
+<script src="http://tjs.sjs.sinajs.cn/open/widget/js/widget/comment.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+window.WBComment.init({
+    "id": "WBCommentFrame"
+});
+</script>>
 </article>
