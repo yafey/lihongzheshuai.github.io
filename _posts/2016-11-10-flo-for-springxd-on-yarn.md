@@ -5,7 +5,7 @@ tags: [SpringXD]
 date: 2016-11-10 11:16:33 +0800
 comments: true
 author: onecoder
-
+thread_key: 1904
 ---
 配置Spring Flo可在SpringXD的admin-ui页面提供拖拽式的组合job的定义。
 
