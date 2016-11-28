@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Restlet2.1.6发布，修正ObjectRepresentation的构造函数问题
-date: 2013-12-16 13:28
+date: 2013-12-16 13:28 +0800
 author: onecoder
 comments: true
-categories: [Java, objectrepresentation, restlet, restlet]
+tags: [Restlet]
+thread_key: 1583
 ---
 <p>
 	<a href="http://www.coderli.com\">OneCoder</a>在Restlet 2.1.4中 匪夷所思的ObjectRepresentation的构造函数中，提到过在使用2.1.4的时候遇到的异常</p>
