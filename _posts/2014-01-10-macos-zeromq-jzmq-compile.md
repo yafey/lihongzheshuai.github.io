@@ -1,10 +1,11 @@
 ---
 layout: post
 title: MacOS10.9 下 ZeroMQ4.0.3和Java Binding安装部署
-date: 2014-01-10 21:04
+date: 2014-01-10 21:04 +0800
 author: onecoder
 comments: true
-categories: [jzmq, mac, zeromq, zeromq]
+tags: [ZeroMQ]
+thread_key: 1616
 ---
 <p>
 	ZeroMQ是什么可以自己去官网了解。<br />
