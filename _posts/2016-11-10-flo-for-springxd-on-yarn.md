@@ -1,5 +1,5 @@
 ---
-layout: postjiathis
+layout: post
 title: On Yarn模式下 Spring Flo for SpringXD UI部署
 tags: [SpringXD]
 date: 2016-11-10 11:16:33 +0800

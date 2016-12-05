@@ -1,5 +1,5 @@
 ---
-layout: postjiathis
+layout: post
 title: SpringXD on yarn 使用Container工作组
 tags: [SpringXD]
 date: 2016-12-01 15:56:57 +0800
