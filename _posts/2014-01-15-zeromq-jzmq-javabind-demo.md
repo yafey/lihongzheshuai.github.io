@@ -1,10 +1,11 @@
 ---
 layout: post
 title: ZeroMQ 初学 Java Binding验证代码
-date: 2014-01-15 21:20
+date: 2014-01-15 21:20 +0800
 author: onecoder
 comments: true
-categories: [Java, jzmq, zeromq, zeromq]
+tags: [ZeroMQ]
+thread_key: 1622
 ---
 <div>
 	学习ZeroMQ使用，根据官方文档介绍，写了如下Java验证代码。仅供参考。需要依赖jzmq的jar包和本地库。</div>
@@ -13,11 +14,10 @@ categories: [Java, jzmq, zeromq, zeromq]
 <div>
 	1、请求-响应模式</div>
 <div style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVlVf9/u01Cb.png" /></div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'服务端代码：';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVlVf9/u01Cb.jpg" /></div>
+
+
+```java
 package com.coderli.zeromq.requestreplay;
 
 
@@ -26,7 +26,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ 请求响应模式验证代码 &lt;br&gt;
+ * ZeroMQ 请求响应模式验证代码 <br>
  * 此为服务端
  *
  * @author OneCoder
@@ -43,17 +43,17 @@ public class ReplayServer extends JZMQBase {
           ZMQ.Socket socket = context.socket(ZMQ. REP);
           socket.bind( LOCAL_ADDRESS); // 绑定服务地址及端口
            for (;;) {
-              System. out.println( &quot;Server start.&quot;);
+              System. out.println( "Server start.");
               socket.recv();
-              String str = &quot;Ok, I&#39;m server&quot;;
+              String str = "Ok, I'm server";
               socket.send(str);
           }
      }
 }
-</pre>
-</div>
-<div>
-	<pre class="brush:java;title:'客户端代码：';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```
+
+
+```java
 package com.coderli.zeromq.requestreplay;
 
 
@@ -62,7 +62,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ 请求响应模式验证代码 &lt;br&gt;
+ * ZeroMQ 请求响应模式验证代码 <br>
  * 此为客户端
  *
  * @author OneCoder
@@ -89,10 +89,10 @@ public class RequestClient extends JZMQBase {
            for (;;) {
                try {
                     long time = System. nanoTime();
-                   socket.send( &quot;Hello, currentTime: &quot; + count);
+                   socket.send( "Hello, currentTime: " + count);
                     byte[] recs = socket.recv();
                     long end = System. nanoTime();
-                   System. out.println( new String(recs) + &quot; Cost time: &quot;
+                   System. out.println( new String(recs) + " Cost time: "
                              + (end - time));
                    count++;
                    Thread. sleep(1000);
@@ -102,27 +102,18 @@ public class RequestClient extends JZMQBase {
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
 <div>
 	测试结果，单线程请求-相应一次的耗时大概在450us。</div>
-<div>
-	&nbsp;</div>
+
 <div>
 	2、Publish-subscribe</div>
-<div>
-	&nbsp;</div>
+
 <div style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVlspt/Sg75e.png" /></div>
-<div>
-	&nbsp;</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'发布者代码：';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVlspt/Sg75e.jpg" /></div>
+
+```java
 package com.coderli.zeromq.pubsub;
 
 
@@ -136,7 +127,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ 发布订阅模式Java验证代码 &lt;br&gt;
+ * ZeroMQ 发布订阅模式Java验证代码 <br>
  * 此为发布者
  *
  * @author OneCoder
@@ -157,18 +148,14 @@ public class Publisher extends JZMQBase {
               String s = String. valueOf(i);
                long time = System. nanoTime();
               socket.send(s + String. valueOf(time));
-              System. out.println( &quot;发布了新消息，时间：&quot; + time + &quot; 类型：&quot; + s);
+              System. out.println( "发布了新消息，时间：" + time + " 类型：" + s);
               Thread. sleep(2000);
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'订阅者1代码：';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```java
 package com.coderli.zeromq.pubsub;
 
 
@@ -179,7 +166,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ 发布订阅模式Java验证代码 &lt;br&gt;
+ * ZeroMQ 发布订阅模式Java验证代码 <br>
  * 此为订阅者1号
  *
  * @author OneCoder
@@ -194,7 +181,7 @@ public class SubscriberOne extends JZMQBase {
            // 指定模式为请求模式
           ZMQ.Socket socket = context.socket(ZMQ. SUB);
            // 创建订阅者，必须要过主题过滤器
-           byte[] filter = &quot;1&quot;.getBytes();
+           byte[] filter = "1".getBytes();
           socket.subscribe(filter);
           socket.connect( LOCAL_ADDRESS);
            for (;;) {
@@ -204,17 +191,13 @@ public class SubscriberOne extends JZMQBase {
               String msg = new String(recs,1,recs.length-1);
                long pubTime = Long. valueOf(msg);
                long costTime = receiveTime - pubTime;
-              System. out.println( &quot;Receive: &quot; + oriMsg + &quot; Cost time: &quot; + costTime);
+              System. out.println( "Receive: " + oriMsg + " Cost time: " + costTime);
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'订阅者2号：';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```java
 package com.coderli.zeromq.pubsub;
 
 
@@ -225,7 +208,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ 发布订阅模式Java验证代码 &lt;br&gt;
+ * ZeroMQ 发布订阅模式Java验证代码 <br>
  * 此为订阅者2号
  *
  * @author OneCoder
@@ -240,7 +223,7 @@ public class SubscriberTwo extends JZMQBase{
            // 指定模式为请求模式
           ZMQ.Socket socket = context.socket(ZMQ. SUB);
            // 创建订阅者，必须要过主题过滤器
-           byte[] filter = &quot;2&quot;.getBytes();
+           byte[] filter = "2".getBytes();
           socket.subscribe(filter);
           socket.connect( LOCAL_ADDRESS);
            for (;;) {
@@ -250,17 +233,13 @@ public class SubscriberTwo extends JZMQBase{
               String msg = new String(recs,1,recs.length-1);
                long pubTime = Long. valueOf(msg);
                long costTime = receiveTime - pubTime;
-              System. out.println( &quot;Receive: &quot; + oriMsg + &quot; Cost time: &quot; + costTime);
+              System. out.println( "Receive: " + oriMsg + " Cost time: " + costTime);
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	&nbsp;</div>
+
 <div>
 	&nbsp; &nbsp;* 发布者中随机发布开头为1或者2的消息。</div>
 <div>
@@ -280,11 +259,9 @@ public class SubscriberTwo extends JZMQBase{
 <div>
 	想象一下这样的场景，如果需要统计各个机器的日志，我们需要将统计任务分发到各个节点机器上，最后收集统计结果，做一个汇总。PipeLine比较适合于这种场景，他的结构图，如图3所示。</div>
 <div style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVl5to/WRcmX.png" /></div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'Pusher:';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DsNVl5to/WRcmX.jpg" /></div>
+
+```java
 package com.coderli.zeromq.pipeline;
 
 import org.zeromq.ZMQ;
@@ -292,7 +269,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Pipeline模式Java验证代码 &lt;br&gt;
+ * ZeroMQ Pipeline模式Java验证代码 <br>
  * 此为主Pusher
  *
  * @author OneCoder
@@ -311,20 +288,16 @@ public class MainPusher extends JZMQBase {
            for (;;) {
                long time = System. nanoTime();
               socket.send(String. valueOf(time));
-              System. out.println( &quot;发布了新消息，时间：&quot; + time);
+              System. out.println( "发布了新消息，时间：" + time);
               Thread. sleep(2000);
           }
      }
 
 
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'Worker 1:';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```java
 package com.coderli.zeromq.pipeline;
 
 import org.zeromq.ZMQ;
@@ -332,7 +305,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Pipeline模式Java验证代码 &lt;br&gt;
+ * ZeroMQ Pipeline模式Java验证代码 <br>
  * 此为中转worker
  *
  * @author OneCoder
@@ -355,19 +328,15 @@ public class WorkerOne extends JZMQBase {
               String oriMsg = new String(recs);
                long pubTime = Long. valueOf(oriMsg);
                long costTime = receiveTime - pubTime;
-              System. out.println( &quot;Receive: &quot; + oriMsg + &quot; Cost time: &quot; + costTime);
-              sender.send( &quot;1&quot; + oriMsg);
-              System. out.println( &quot;Send to sinker.&quot;);
+              System. out.println( "Receive: " + oriMsg + " Cost time: " + costTime);
+              sender.send( "1" + oriMsg);
+              System. out.println( "Send to sinker.");
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;title:'Worker 2:';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```java
 package com.coderli.zeromq.pipeline;
 
 import org.zeromq.ZMQ;
@@ -375,7 +344,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Pipeline模式Java验证代码 &lt;br&gt;
+ * ZeroMQ Pipeline模式Java验证代码 <br>
  * 此为中转worker
  *
  * @author OneCoder
@@ -399,17 +368,15 @@ public class WorkerTwo extends JZMQBase {
                long pubTime = Long. valueOf(oriMsg);
                long costTime = receiveTime - pubTime;
               System. out
-                        .println( &quot;Receive: &quot; + oriMsg + &quot; Cost time: &quot; + costTime);
-              sender.send( &quot;2&quot; + oriMsg);
-              System. out.println( &quot;Send to sinker.&quot;);
+                        .println( "Receive: " + oriMsg + " Cost time: " + costTime);
+              sender.send( "2" + oriMsg);
+              System. out.println( "Send to sinker.");
           }
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	<pre class="brush:java;title:'Sinker:';first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+```java
 package com.coderli.zeromq.pipeline;
 
 import org.zeromq.ZMQ;
@@ -417,7 +384,7 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Pipeline模式Java验证代码 &lt;br&gt;
+ * ZeroMQ Pipeline模式Java验证代码 <br>
  * 此为最终sinker
  *
  * @author OneCoder
@@ -439,13 +406,12 @@ public class Sinker extends JZMQBase {
               String msg = new String(recs,1,recs.length-1);
                long pubTime = Long. valueOf(msg);
                long costTime = receiveTime - pubTime;
-              System. out.println( &quot;Receive: &quot; + oriMsg + &quot; Cost time: &quot; + costTime);
+              System. out.println( "Receive: " + oriMsg + " Cost time: " + costTime);
           }
      }
 }
+```
 
-</pre>
-</div>
 <div>
 	以上只是一些初级结构的初步使用，对于我来说重点还是研究router模式，实现N对M集群的定向通信。随后会公布研究代码</div>
 
