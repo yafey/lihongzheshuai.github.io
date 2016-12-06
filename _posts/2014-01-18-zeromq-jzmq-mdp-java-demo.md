@@ -1,19 +1,18 @@
 ---
 layout: post
 title: ZeroMQ研究 Majordomo Protocol， Java样例实现
-date: 2014-01-18 11:32
+date: 2014-01-18 11:32 +0800
 author: onecoder
 comments: true
-categories: [Java, jzmq, mdp, zeromq, zeromq]
+tags: [ZeroMQ]
+thread_key: 1624
 ---
-<div>
-	&nbsp;</div>
 <div>
 	最近研究利用zeromq实现多对多的双向自由收发。在官方上发现了MDP协议，经过验证貌似可行。正在开发中，将验证代码分享如下。</div>
 <div>
 	&nbsp;</div>
 <div style="text-align: center;">
-	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DtceMQG4/Gdysx.png" /></div>
+	<img alt="" src="http://onecoder.qiniudn.com/8wuliao/DtceMQG4/Gdysx.jpg" /></div>
 <div>
 	&nbsp;</div>
 <div>
@@ -30,7 +29,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty frame</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPW01&quot; (six bytes, representing MDP/Worker v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPW01" (six bytes, representing MDP/Worker v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: 0x01 (one byte, representing READY)</div>
 	<div>
@@ -44,7 +43,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty frame</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPW01&quot; (six bytes, representing MDP/Worker v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPW01" (six bytes, representing MDP/Worker v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: 0x02 (one byte, representing REQUEST)</div>
 	<div>
@@ -62,7 +61,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty frame</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPW01&quot; (six bytes, representing MDP/Worker v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPW01" (six bytes, representing MDP/Worker v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: 0x03 (one byte, representing REPLY)</div>
 	<div>
@@ -80,7 +79,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty frame</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPW01&quot; (six bytes, representing MDP/Worker v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPW01" (six bytes, representing MDP/Worker v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: 0x04 (one byte, representing HEARTBEAT)</div>
 	<div>
@@ -92,7 +91,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty frame</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPW01&quot; (six bytes, representing MDP/Worker v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPW01" (six bytes, representing MDP/Worker v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: 0x05 (one byte, representing DISCONNECT)</div>
 </blockquote>
@@ -110,7 +109,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty (zero bytes, invisible to REQ application)</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPC01&quot; (six bytes, representing MDP/Client v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPC01" (six bytes, representing MDP/Client v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: Service name (printable string)</div>
 	<div>
@@ -124,7 +123,7 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	<div>
 		&nbsp; &nbsp;* Frame 0: Empty (zero bytes, invisible to REQ application)</div>
 	<div>
-		&nbsp; &nbsp;* Frame 1: &quot;MDPC01&quot; (six bytes, representing MDP/Client v0.1)</div>
+		&nbsp; &nbsp;* Frame 1: "MDPC01" (six bytes, representing MDP/Client v0.1)</div>
 	<div>
 		&nbsp; &nbsp;* Frame 2: Service name (printable string)</div>
 	<div>
@@ -138,8 +137,8 @@ categories: [Java, jzmq, mdp, zeromq, zeromq]
 	&nbsp;</div>
 <div>
 	Broker：</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -159,8 +158,8 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为核心Broker模块
  *
  */
@@ -171,22 +170,22 @@ public class Broker extends JZMQBase {
            // 服务名
            public final String name;
            // 请求信息队列
-          Deque&lt;ZMsg&gt; requests;
+          Deque<ZMsg> requests;
            // 待用worker队列
-          Deque&lt;Worker&gt; waiting; // List of waiting workers
+          Deque<Worker> waiting; // List of waiting workers
 
 
            public Service(String name) {
                this. name = name;
-               this. requests = new ArrayDeque&lt;ZMsg&gt;();
-               this. waiting = new ArrayDeque&lt;Worker&gt;();
+               this. requests = new ArrayDeque<ZMsg>();
+               this. waiting = new ArrayDeque<Worker>();
           }
      }
 
 
      private static class Worker {
            // worker的唯一标识
-           @SuppressWarnings( &quot;unused&quot;)
+           @SuppressWarnings( "unused")
           String identity; // Identity of worker
            // 目标worker地址
           ZFrame address; // Address frame to route to
@@ -203,9 +202,9 @@ public class Broker extends JZMQBase {
 
      private ZContext ctx;
      private ZMQ.Socket socket;
-     private Map&lt;String, Service&gt; services;
-     private Map&lt;String, Worker&gt; workers;
-     private Deque&lt;Worker&gt; waiting;
+     private Map<String, Service> services;
+     private Map<String, Worker> workers;
+     private Deque<Worker> waiting;
 
 
      public static void main(String[] args) {
@@ -216,9 +215,9 @@ public class Broker extends JZMQBase {
 
 
      public Broker() {
-           this. services = new HashMap&lt;String, Service&gt;();
-           this. workers = new HashMap&lt;String, Worker&gt;();
-           this. waiting = new ArrayDeque&lt;Worker&gt;();
+           this. services = new HashMap<String, Service>();
+           this. workers = new HashMap<String, Worker>();
+           this. waiting = new ArrayDeque<Worker>();
            this. ctx = new ZContext();
            this. socket = ctx.createSocket(ZMQ. ROUTER);
      }
@@ -232,10 +231,10 @@ public class Broker extends JZMQBase {
                if (items.pollin(0)) {
                    ZMsg msg = ZMsg. recvMsg(socket);
                     if (msg == null) {
-                        System. out.println( &quot;接收到的消息为null。&quot; );
+                        System. out.println( "接收到的消息为null。" );
                          break; // Interrupted
                    }
-                   System. out.println( &quot;I: received message:\n&quot;);
+                   System. out.println( "I: received message:\n");
                    msg.dump(System. out);
                     // 根据协议栈规则读取数据，此处需要注意broker接受到的协议栈格式
                    ZFrame sender = msg.pop();
@@ -246,7 +245,7 @@ public class Broker extends JZMQBase {
                    } else if (MDP.W_WORKER.frameEquals(header))
                         processWorker(sender, msg);
                     else {
-                        System. out.println( &quot;E: invalid message:\n&quot;);
+                        System. out.println( "E: invalid message:\n");
                         msg.dump(System. out);
                         msg.destroy();
                    }
@@ -272,8 +271,8 @@ public class Broker extends JZMQBase {
       * 处理客户端请求的，用于分发给指定的worker.
       */
      private void processClient(ZFrame sender, ZMsg msg) {
-           if (msg.size() &lt; 2) {
-              System. out.println( &quot;消息栈不完整，不能发送&quot; );
+           if (msg.size() < 2) {
+              System. out.println( "消息栈不完整，不能发送" );
                return;
           }
           ZFrame serviceFrame = msg.pop();
@@ -284,15 +283,15 @@ public class Broker extends JZMQBase {
 
 
      private void processWorker(ZFrame sender, ZMsg msg) {
-           if (msg.size() &lt; 1) {
-              System. out.println( &quot;回复给客户端的消息不完整，不能发送。&quot; );
+           if (msg.size() < 1) {
+              System. out.println( "回复给客户端的消息不完整，不能发送。" );
           }
           ZFrame command = msg.pop();
            boolean workerReady = workers.containsKey(sender.strhex());
           Worker worker = requireWorker(sender);
            if (MDP. W_READY.frameEquals(command)) {
                if (workerReady) {
-                   System. out.println( &quot;删除worker：&quot; + sender.strhex());
+                   System. out.println( "删除worker：" + sender.strhex());
                    deleteWorker(worker, true);
               } else {
                    ZFrame serviceFrame = msg.pop();
@@ -302,7 +301,7 @@ public class Broker extends JZMQBase {
               }
           } else if (MDP. W_REPLY.frameEquals(command)) {
                if (workerReady) {
-                   System. out.println( &quot;开始给客户端相应&quot; );
+                   System. out.println( "开始给客户端相应" );
                    ZFrame client = msg.unwrap();
                    msg.addFirst(worker. service. name);
                    msg.addFirst(MDP. C_CLIENT.newFrame());
@@ -313,7 +312,7 @@ public class Broker extends JZMQBase {
                    deleteWorker(worker, true);
               }
           } else {
-              System. out.print( &quot;不合法的消息结构&quot; );
+              System. out.print( "不合法的消息结构" );
               msg.dump(System. out);
           }
           msg.destroy();
@@ -321,7 +320,7 @@ public class Broker extends JZMQBase {
 
 
      private void deleteWorker(Worker worker, boolean disconnect) {
-          System. out.println( &quot;删除worker&quot;);
+          System. out.println( "删除worker");
            if (disconnect) {
               sendToWorker(worker, MDP. W_DISCONNECT, null, null);
           }
@@ -339,7 +338,7 @@ public class Broker extends JZMQBase {
            if (worker == null) {
               worker = new Worker(identity, address.duplicate());
                workers.put(identity, worker);
-              System. out.println( &quot;注册了新的worker：&quot; + identity);
+              System. out.println( "注册了新的worker：" + identity);
           }
            return worker;
      }
@@ -359,7 +358,7 @@ public class Broker extends JZMQBase {
 
      private void bind(String endpoint) {
            socket.bind(endpoint);
-          System. out.println( &quot;Broker版定在端口： &quot; + endpoint);
+          System. out.println( "Broker版定在端口： " + endpoint);
      }
 
 
@@ -393,24 +392,17 @@ public class Broker extends JZMQBase {
           msg.addFirst(command.newFrame());
           msg.addFirst(MDP. W_WORKER.newFrame());
           msg.wrap(worker. address.duplicate());
-          System. out.println( &quot;给worker发送命令： [&quot; + command + &quot;]。&quot;);
+          System. out.println( "给worker发送命令： [" + command + "]。");
           msg.dump(System. out);
           msg.send( socket);
      }
 }
+```
 
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	&nbsp;</div>
 <div>
 	ClientAPI:</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -421,8 +413,8 @@ import org.zeromq.ZMsg;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为Client端依赖的API。
  *
  */
@@ -469,7 +461,7 @@ public class ClientAPI {
           }
            client = ctx.createSocket(ZMQ. REQ);
            client.connect( broker);
-          System. out.println( &quot;连接到Broker：&quot; + broker );
+          System. out.println( "连接到Broker：" + broker );
      }
 
 
@@ -485,13 +477,13 @@ public class ClientAPI {
 
           request.push( new ZFrame(service));
           request.push(MDP. C_CLIENT.newFrame());
-          System. out.println( &quot;发送消息给worker：&quot; + service);
+          System. out.println( "发送消息给worker：" + service);
           request.dump(System. out);
           ZMsg reply = null;
 
 
            int retriesLeft = retries;
-           while (retriesLeft &gt; 0 &amp;&amp; !Thread.currentThread().isInterrupted()) {
+           while (retriesLeft > 0 &amp;&amp; !Thread.currentThread().isInterrupted()) {
               request.duplicate().send( client);
               ZMQ.Poller items = new ZMQ.Poller(1);
               items.register( client, ZMQ.Poller. POLLIN);
@@ -499,7 +491,7 @@ public class ClientAPI {
                     break; // 超时退出
                if (items.pollin(0)) {
                    ZMsg msg = ZMsg. recvMsg(client);
-                   System. out.println( &quot;接收到消息。&quot; );
+                   System. out.println( "接收到消息。" );
                    msg.dump(System. out);
                    ZFrame header = msg.pop();
                    header.destroy();
@@ -510,10 +502,10 @@ public class ClientAPI {
               } else {
                    items.unregister( client);
                     if (--retriesLeft == 0) {
-                        System. out.println( &quot;超过重试次数，错误。退出。&quot; );
+                        System. out.println( "超过重试次数，错误。退出。" );
                          break;
                    }
-                   System. out.println( &quot;没有收到回应，重试。&quot; );
+                   System. out.println( "没有收到回应，重试。" );
                    reconnectToBroker();
               }
           }
@@ -526,16 +518,12 @@ public class ClientAPI {
            ctx.destroy();
      }
 }
-</pre>
-</div>
-<div>
-	&nbsp;</div>
+```
+
 <div>
 	ClientOne:</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -546,8 +534,8 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为Client端一号，定向发给1、2号worker
  *
  */
@@ -559,15 +547,15 @@ public class ClientOne extends JZMQBase {
 
 
            int count;
-           for (count = 0; count &lt; 1; count++) {
+           for (count = 0; count < 1; count++) {
               ZMsg request = new ZMsg();
               ZMsg reply = null;
                long start = System. nanoTime();
               request.addString(String. valueOf(start));
                if (count % 2 == 1) {
-                   reply = clientSession.send( &quot;one&quot;, request);
+                   reply = clientSession.send( "one", request);
               } else {
-                   reply = clientSession.send( &quot;two&quot;, request);
+                   reply = clientSession.send( "two", request);
               }
                if (reply != null)
                    reply.destroy();
@@ -577,20 +565,18 @@ public class ClientOne extends JZMQBase {
           }
 
 
-          System. out.printf( &quot;%d requests/replies processed\n&quot;, count);
+          System. out.printf( "%d requests/replies processed\n", count);
           clientSession.destroy();
      }
 }
-</pre>
-</div>
+```
+
 <div>
 	&nbsp;</div>
 <div>
 	WorkerAPI:</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -684,11 +670,11 @@ public class WorkerAPI {
                    ZMsg msg = ZMsg. recvMsg(worker);
                     if (msg == null)
                          break; // Interrupted
-                   System. out.print( &quot;接收到数据：&quot; );
+                   System. out.print( "接收到数据：" );
                     long time = System. nanoTime();
                     long endTime = Long
                              . valueOf(new String(msg.getLast().getData()));
-                   System. out.println( &quot;消耗时间：&quot; + (time - endTime));
+                   System. out.println( "消耗时间：" + (time - endTime));
                    msg.dump(System. out);
                    ZFrame empty = msg.pop();
                    empty.destroy();
@@ -700,7 +686,7 @@ public class WorkerAPI {
                         command.destroy();
                          return msg;
                    } else {
-                        System. out.println( &quot;不合法的消息结构。&quot; );
+                        System. out.println( "不合法的消息结构。" );
                         msg.dump(System. out);
                    }
                    command.destroy();
@@ -717,16 +703,14 @@ public class WorkerAPI {
            ctx.destroy();
      }
 }
-</pre>
-</div>
+```
+
 <div>
 	&nbsp;</div>
 <div>
 	WorkerOne:</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -737,8 +721,8 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为Worker端，定向回复给调用的client
  *
  */
@@ -749,7 +733,7 @@ public class WorkerOne extends JZMQBase {
       * @param args
       */
      public static void main(String[] args) {
-          WorkerAPI workerSession = new WorkerAPI(BROKER_FRONT_END, &quot;one&quot; );
+          WorkerAPI workerSession = new WorkerAPI(BROKER_FRONT_END, "one" );
 
 
           ZMsg reply = null;
@@ -762,16 +746,14 @@ public class WorkerOne extends JZMQBase {
           workerSession.destroy();
      }
 }
-</pre>
-</div>
+```
+
 <div>
 	&nbsp;</div>
 <div>
 	WorkerTwo：</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -782,8 +764,8 @@ import com.coderli.zeromq.JZMQBase;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为Worker端，定向回复给调用的client
  *
  */
@@ -794,7 +776,7 @@ public class WorkerTwo extends JZMQBase {
       * @param args
       */
      public static void main(String[] args) {
-          WorkerAPI workerSession = new WorkerAPI(BROKER_FRONT_END, &quot;two&quot; );
+          WorkerAPI workerSession = new WorkerAPI(BROKER_FRONT_END, "two" );
 
 
           ZMsg reply = null;
@@ -807,16 +789,14 @@ public class WorkerTwo extends JZMQBase {
           workerSession.destroy();
      }
 }
-</pre>
-</div>
+```
+
 <div>
 	&nbsp;</div>
 <div>
 	MDP常量类：</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.zeromq.majordomoprotocol;
 
 
@@ -827,15 +807,15 @@ import org.zeromq.ZFrame;
 
 
 /**
- * ZeroMQ Majordomo Protocol协议验证&lt;br&gt;
- * 用于实现多client、多worker实现双向指定目标数据收发 &lt;br&gt;
+ * ZeroMQ Majordomo Protocol协议验证<br>
+ * 用于实现多client、多worker实现双向指定目标数据收发 <br>
  * 此为常量类
  *
  */
 public enum MDP {
 
 
-     C_CLIENT(&quot;MDPC01&quot;), W_WORKER(&quot;MDPW01&quot;),
+     C_CLIENT("MDPC01"), W_WORKER("MDPW01"),
 
 
      W_READY(1), W_REQUEST(2), W_REPLY(3), W_HEARTBEAT(4), W_DISCONNECT (5);
@@ -849,7 +829,7 @@ public enum MDP {
      }
 
 
-     MDP(int value) { // watch for ints&gt;255, will be truncated
+     MDP(int value) { // watch for ints>255, will be truncated
            byte b = ( byte) (value &amp; 0xFF);
            this. data = new byte[] { b };
      }
@@ -864,17 +844,14 @@ public enum MDP {
            return Arrays. equals(data, frame.getData());
      }
 }
+```
 
-</pre>
-</div>
 <div>
 	&nbsp;</div>
 <div>
 	附，基类代码</div>
-<div>
-	&nbsp;</div>
-<div>
-	<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 /**
  * @author lihzh
  * @date 2014年1月14日 上午9:32:01
@@ -882,31 +859,19 @@ public enum MDP {
 public abstract class JZMQBase {
 
 
-     protected static String LOCAL_ADDRESS = &quot;tcp://127.0.0.1:1234&quot;;
-     protected static String LOCAL_ADDRESS_PUSHER = &quot;tcp://127.0.0.1:2345&quot;;
-     protected static String LOCAL_ADDRESS_ROUTER = &quot;tcp://127.0.0.1:3456&quot;;
-     protected static String LOCAL_ADDRESS_DECLARER = &quot;tcp://127.0.0.1:4567&quot;;
+     protected static String LOCAL_ADDRESS = "tcp://127.0.0.1:1234";
+     protected static String LOCAL_ADDRESS_PUSHER = "tcp://127.0.0.1:2345";
+     protected static String LOCAL_ADDRESS_ROUTER = "tcp://127.0.0.1:3456";
+     protected static String LOCAL_ADDRESS_DECLARER = "tcp://127.0.0.1:4567";
 
 
-     protected static String BROKER_FRONT_END = &quot;tcp://127.0.0.1:4000&quot;;
-     protected static String BROKER_BACK_END = &quot;tcp://127.0.0.1:4001&quot;;
+     protected static String BROKER_FRONT_END = "tcp://127.0.0.1:4000";
+     protected static String BROKER_BACK_END = "tcp://127.0.0.1:4001";
 }
-</pre>
-</div>
-<div>
-	&nbsp;</div>
-<div>
-	<div>
-		&nbsp;</div>
-	<div>
-		代码介绍：</div>
-	<div>
-		&nbsp;</div>
-	<div>
-		其实原理很简单，主要利用ZeroMQ底层封装好的发送接受协议，来事先给指定的客户端发送消息。由于zeromq是基于socket的，所以本质上只能点对点通信。所以要事先多对多中心，就需要中间的一个转发器。即Broker。在Broker中记录了目标地址，这个地址ZeroMQ底层提供的，必须使用保存起来，用于下次发送时使用。</div>
-	<div>
-		&nbsp;</div>
-</div>
-<div>
-	&nbsp;</div>
+```
+
+代码介绍：
+
+其实原理很简单，主要利用ZeroMQ底层封装好的发送接受协议，来事先给指定的客户端发送消息。由于zeromq是基于socket的，所以本质上只能点对点通信。所以要事先多对多中心，就需要中间的一个转发器。即Broker。在Broker中记录了目标地址，这个地址ZeroMQ底层提供的，必须使用保存起来，用于下次发送时使用。
+
 
