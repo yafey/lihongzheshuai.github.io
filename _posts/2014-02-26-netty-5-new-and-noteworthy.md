@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Netty5.x中新增和值得注意的点
-date: 2014-02-26 23:50
+date: 2014-02-26 23:50 +0800
 author: onecoder
 comments: true
-categories: [5.x, Java, Netty, Netty]
+tags: [Netty]
+thread_key: 1630
 ---
 <div>
 	最近事情多，OneCoder折腾了好几天，总算翻译完成了。</div>
