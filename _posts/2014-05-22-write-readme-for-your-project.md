@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 为项目编写Readme.MD文件
-date: 2014-05-22 00:27
+date: 2014-05-22 00:27 +0800
 author: onecoder
 comments: true
-categories: [Git, git, markdown, readme, shurnim]
+tags: [Markdown]
+thread_key: 1653
 ---
 <p>
 	了解一个项目，恐怕首先都是通过其Readme文件了解信息。如果你以为Readme文件都是随便写写的那你就错了。github，oschina git gitcafe的代码托管平台上的项目的Readme.MD文件都是有其特有的语法的。称之为Markdown语法。基本规则如下：</p>
