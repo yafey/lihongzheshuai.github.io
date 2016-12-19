@@ -1,10 +1,11 @@
 ---
 layout: post
 title: OneCoder的shurnim-storage项目
-date: 2014-05-23 00:03
+date: 2014-05-23 00:03 +0800
 author: onecoder
 comments: true
-categories: [Coding生活, onecoder, qiniu, shurnim-storage, upyun]
+tags: [日记]
+thread_key: 1659
 ---
 <h1>
 	shurnim-storage</h1>
@@ -43,39 +44,44 @@ categories: [Coding生活, onecoder, qiniu, shurnim-storage, upyun]
 <p>
 	<br />
 	加入OSC仓库</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-				&lt;repositories&gt;
-            		&lt;repository&gt;
-            			&lt;id&gt;nexus&lt;/id&gt;
-            			&lt;name&gt;local private nexus&lt;/name&gt;
-            			&lt;url&gt;http://maven.oschina.net/content/groups/public/&lt;/url&gt;
-            			&lt;releases&gt;
-            				&lt;enabled&gt;true&lt;/enabled&gt;
-            			&lt;/releases&gt;
-            			&lt;snapshots&gt;
-            				&lt;enabled&gt;false&lt;/enabled&gt;
-            			&lt;/snapshots&gt;
-            		&lt;/repository&gt;
-            	&lt;/repositories&gt;
-</pre>
+
+```xml
+				<repositories>
+            		<repository>
+            			<id>nexus</id>
+            			<name>local private nexus</name>
+            			<url>http://maven.oschina.net/content/groups/public/</url>
+            			<releases>
+            				<enabled>true</enabled>
+            			</releases>
+            			<snapshots>
+            				<enabled>false</enabled>
+            			</snapshots>
+            		</repository>
+            	</repositories>
+```
+
 <p>
 	<br />
 	加入依赖</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-&lt;dependency&gt;
-			  &lt;groupId&gt;com.coderli&lt;/groupId&gt;
-			  &lt;artifactId&gt;shurnim-storage&lt;/artifactId&gt;
- 			  &lt;version&gt;0.1-alpha&lt;/version&gt;
-			&lt;/dependency&gt;
 
-</pre>
+```xml
+<dependency>
+			  <groupId>com.coderli</groupId>
+			  <artifactId>shurnim-storage</artifactId>
+ 			  <version>0.1-alpha</version>
+			</dependency>
+```
+
 <p>
 	项目采用Gradle管理依赖，可通过gradle编译Jar</p>
 <p>
 	在项目目录执行</p>
-<pre class="brush:shell;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```groovy
 gradle jar
-</pre>
+```
+
 <h3>
 	最后</h3>
 <p>
