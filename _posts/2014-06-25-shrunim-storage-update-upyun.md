@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 关于Shurnim-storage项目更新和喜获奖
-date: 2014-06-25 20:52
+date: 2014-06-25 20:52 +0800
 author: onecoder
 comments: true
-categories: [cdn, Coding生活, qiniu, shurnim, upyun]
+tags: [日记]
+thread_key: 1768
 ---
 <p>
 	前端时间参加了又拍云存储的开发者大赛，没想到今天公布名单居然得了一等奖，小意外：）</p>
@@ -19,9 +20,11 @@ categories: [cdn, Coding生活, qiniu, shurnim, upyun]
 	说巧不巧的，这个项目本来一直没有更新，昨天正好我有一个需求，因为购买的又拍图片管家最近要到期了，所以我想把图片都迁移到七牛上。因为七牛现在每个月10g以内都是免费的。所以打算拿来当图床。当然，网站的CDN加速，还是用的又拍的赞助：）</p>
 <p>
 	考虑到以前发布过的文章中的图片已经有外链地址。所以，而这里二级域名的变化是不可避免的。不过这里有一个好办法，就是如果仅仅前缀二级域名变化的，可以通过在数据执行：</p>
-<pre class="brush:sql;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-UPDATE  `wp_posts` set post_content=replace(post_content,&#39;http://8wuliao.v.yupoo.com/&#39;,&#39;http://onecoder.qiniudn.com&#39;);
-</pre>
+
+```
+UPDATE  `wp_posts` set post_content=replace(post_content,'http://8wuliao.v.yupoo.com/','http://onecoder.qiniudn.com');
+```
+
 <p>
 	进行全部替换。那么我们只要保持后面的相对路径不变即可。好在七牛这方面比较简单，因为他是key-value式存储，所以你只要把key设置成想要的路径即可，而不要考虑文件的时间存储位置。</p>
 <p>
@@ -41,4 +44,3 @@ UPDATE  `wp_posts` set post_content=replace(post_content,&#39;http://8wuliao.v.y
 </blockquote>
 <p>
 	慢慢实现，不着急：）</p>
-
