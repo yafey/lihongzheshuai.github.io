@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Java面试题系列-1 实现单例模式
-date: 2014-08-12 15:22
+date: 2014-08-12 15:22 +0800
 author: onecoder
 comments: true
-categories: [Coding生活, 单例, 笔试, 面试]
+tags: [Java]
+thread_key: 1793
 ---
 <p>
 	好久没有更新博客了，<a href="http://www.coderli.com">OneCoder</a>没挂，只是儿子出生，忙了一个多月。生活节奏有点小乱。这期间也抽空换了份工作，坚持技术路线不动摇。So，抓紧调整一下状态，继续读书，写码。</p>
@@ -15,12 +16,13 @@ categories: [Coding生活, 单例, 笔试, 面试]
 <p>
 	进入正题，Singleton模式是什么，这里不解释，直接上代码。这里分享了5种写法，并附上了评论。有好有坏，大家自行理解。</p>
 <br />
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.interview;
 
 /**
-* 常见面试题：实现单例模式 &lt;br&gt;
-* 《剑指offer》，第二章，面试题2 &lt;br&gt;
+* 常见面试题：实现单例模式 <br>
+* 《剑指offer》，第二章，面试题2 <br>
 * 这里给出五种写法和对应的评论
 *
 * @author lihzh
@@ -28,8 +30,8 @@ package com.coderli.interview;
 */
 public class Singleton {
       /**
-      * 写法一 &lt;br&gt;
-      * 最直接的初级写法，忽略了对多线程并发的考虑。 &lt;br&gt;
+      * 写法一 <br>
+      * 最直接的初级写法，忽略了对多线程并发的考虑。 <br>
       * 不推荐
       *
       * @author OneCoder
@@ -51,9 +53,9 @@ public class Singleton {
           }
      }
       /**
-      * 写法二 &lt;br&gt;
-      * 考虑到多线程并发的情况，加锁控制。 &lt;br&gt;
-      * 功能正确，但是效率不高，每次获取实例都需要先获取锁。 &lt;br&gt;
+      * 写法二 <br>
+      * 考虑到多线程并发的情况，加锁控制。 <br>
+      * 功能正确，但是效率不高，每次获取实例都需要先获取锁。 <br>
       * 不推荐
       *
       * @author OneCoder
@@ -75,9 +77,9 @@ public class Singleton {
           }
      }
       /**
-      * 写法三 &lt;br&gt;
-      * 考虑到多线程并发的情况，加锁控制。 &lt;br&gt;
-      * 同时考虑到效率问题，进行二次判断，只在需要创建新实例的时候加锁。获取的时候无锁 &lt;br&gt;
+      * 写法三 <br>
+      * 考虑到多线程并发的情况，加锁控制。 <br>
+      * 同时考虑到效率问题，进行二次判断，只在需要创建新实例的时候加锁。获取的时候无锁 <br>
       * 勉强过关
       *
       *
@@ -105,10 +107,10 @@ public class Singleton {
           }
      }
       /**
-      * 写法四 &lt;br&gt;
-      * 考虑到多线程并发的情况，利用Java执行原理，静态方法执行一次 &lt;br&gt;
-      * 无锁，效率高 &lt;br&gt;
-      * 缺点：无论使用与否，都预先初始化完成。浪费资源。 &lt;br&gt;
+      * 写法四 <br>
+      * 考虑到多线程并发的情况，利用Java执行原理，静态方法执行一次 <br>
+      * 无锁，效率高 <br>
+      * 缺点：无论使用与否，都预先初始化完成。浪费资源。 <br>
       * 推荐写法的一种
       *
       *
@@ -129,8 +131,8 @@ public class Singleton {
      }
     
       /**
-      * 写法四 &lt;br&gt;
-      * 考虑到多线程并发的情况，通过内部类实现按序初始化，且无锁 &lt;br&gt;
+      * 写法四 <br>
+      * 考虑到多线程并发的情况，通过内部类实现按序初始化，且无锁 <br>
       * 最推荐的写法
       *
       *
@@ -153,8 +155,4 @@ public class Singleton {
      }
 
 }
-
-</pre>
-<p>
-	&nbsp;</p>
-
+```
