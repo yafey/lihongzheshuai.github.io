@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Java面试题系列-1 实现单例模式
+title: Java面试题 实现单例模式
 date: 2014-08-12 15:22 +0800
 author: onecoder
 comments: true
