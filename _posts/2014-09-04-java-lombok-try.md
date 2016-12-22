@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 点滴积累 Lombok  实用且有想法的jar
-date: 2014-09-04 00:27
+date: 2014-09-04 00:27 +0800
 author: onecoder
 comments: true
-categories: [Java, Java进阶, Lombok]
+tags: [Lombok]
+thread_key: 1800
 ---
 <p>
 	官网：<a href="http://projectlombok.org/">http://projectlombok.org/</a></p>
@@ -12,12 +13,15 @@ categories: [Java, Java进阶, Lombok]
 	通过官网的视频，可以看到Lombok可以帮助我们节约很多机械而繁琐的代码。例如在写Pojo类或者Log的时候。写段代码体会一下：</p>
 <p>
 	Gradle依赖配置：</p>
-<pre class="brush:groovy;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
-&#39;org.projectlombok:lombok:1.14.4&rsquo;
-</pre>
+
+```groovy
+'org.projectlombok:lombok:1.14.4'
+```
+
 <p>
 	验证代码：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 package com.coderli.lombok;
 
 import lombok.Data;
@@ -41,8 +45,8 @@ public class LombokTest {
           log.info(&quot;Print log with Lombok&quot;);
      }
 }
+```
 
-</pre>
 <p>
 	可以看到，代码中没有声明log对象，我们却是可以直接使用。这就是Lombok的作用。在类生配置了@Log注解，类中就可以直接使用log对象。</p>
 <p>
@@ -58,4 +62,3 @@ public class LombokTest {
 	Lombok的更多功能，大家可以自己体会一下。确实是个很有想法的项目。佩服。</p>
 <p>
 	太晚了，休息了。晚安。</p>
-
