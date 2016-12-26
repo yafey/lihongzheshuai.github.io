@@ -4,7 +4,8 @@ title: 关于ShallowEtagHeaderFilter 大文件下载Out of memory问题解决
 date: 2014-09-14 13:50
 author: onecoder
 comments: true
-categories: [filter, Java, Java进阶, ShallowEtagHeaderFilter]
+tags: [Java]
+thread_key: 1805
 ---
 <p>
 	最近解决大文件下载的问题，遇到一个&quot;Out of memory&quot;的exception。建厂controller层的代码，发现是用BufferdOutputStream写入Response中的，缓冲区也只有8m，按理说不应该出现内存溢出的。</p>
@@ -20,30 +21,31 @@ categories: [filter, Java, Java进阶, ShallowEtagHeaderFilter]
 	解决方案</p>
 <p>
 	考虑到大部分url还是需要该拦截器进行过滤的，只是需要排除掉跟文件下载相关的url。所以这里OneCoder决定复写该Filter，设置一个黑名单，复写其中的doFilterInternal方法，对于黑名单中的url都直接传递给下一个filter，否则super一下，继续走原来的逻辑。</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;">
+
+```java
 /**
  * The filter is used for resolving the big file download problem when using
  * {@link ShallowEtagHeaderFilter}. The urls on the black list will be passed
  * directly to the next filter in the chain, the others will be filtered as
  * before.
- * &lt;p&gt;
- * Sample:&lt;br&gt;
- * {@code &lt;filter&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;filter-name&gt;BigFileEtagFilter&lt;/filter-name&gt;}&lt;br&gt;
+ * <p>
+ * Sample:<br>
+ * {@code <filter>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code<filter-name>BigFileEtagFilter</filter-name>}<br>
  * &amp;nbsp&amp;nbsp&amp;nbsp
- * {@code&lt;filter-class&gt;com.coderli.filter.BigFileDownloadEtagHeaderFilter&lt;/filter-class&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;!-- url sperators includes: blank space ; , and /r/n.
- * Black list is optional.&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;init-param&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;param-name&gt;blackListURL&lt;/param-name&gt;}&lt;br&gt;
+ * {@code<filter-class>com.coderli.filter.BigFileDownloadEtagHeaderFilter</filter-class>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code<!-- url sperators includes: blank space ; , and /r/n.
+ * Black list is optional.>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code<init-param>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp {@code<param-name>blackListURL</param-name>}<br>
  * &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp
- * {@code &lt;param-value&gt; /aa /bb/** /cc/* &lt;/param-value&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;/init-param&gt;}&lt;br&gt;
- * {@code&lt;/filter&gt;}&lt;br&gt;
- * {@code&lt;filter-mapping&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;filter-name&gt;BigFileEtagFilter&lt;/filter-name&gt;}&lt;br&gt;
- * &amp;nbsp&amp;nbsp&amp;nbsp {@code&lt;url-pattern&gt;/*&lt;/url-pattern&gt;}&lt;br&gt;
- * {@code&lt;/filter-mapping&gt;}
+ * {@code <param-value> /aa /bb/** /cc/* </param-value>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code</init-param>}<br>
+ * {@code</filter>}<br>
+ * {@code<filter-mapping>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code<filter-name>BigFileEtagFilter</filter-name>}<br>
+ * &amp;nbsp&amp;nbsp&amp;nbsp {@code<url-pattern>/*</url-pattern>}<br>
+ * {@code</filter-mapping>}
  * 
  * @author li_hongzhe@nhn.com
  * @date 2014-9-12 9:46:38
@@ -126,7 +128,7 @@ public class BigFileDownloadEtagHeaderFilter extends ShallowEtagHeaderFilter {
 			return NULL_STRING_ARRAY;
 		}
 		String[] urlArray = urlStr.split(URL_SPLIT_PATTERN);
-		List&lt;String&gt; urlList = new ArrayList&lt;String&gt;();
+		List<String> urlList = new ArrayList<String>();
 
 		for (String url : urlArray) {
 			url = url.trim();
@@ -138,9 +140,8 @@ public class BigFileDownloadEtagHeaderFilter extends ShallowEtagHeaderFilter {
 		return urlList.toArray(NULL_STRING_ARRAY);
 	}
 }
+```
 
-
-</pre>
 <p>
 	OneCoder也是参考网上有人提供的现成的样例，做了简单修改而已：<a href="http://jinnianshilongnian.iteye.com/blog/1663481">http://jinnianshilongnian.iteye.com/blog/1663481</a></p>
 <p>
