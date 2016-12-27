@@ -1,10 +1,11 @@
 ---
 layout: post
 title: Spring Batch 初探、使用样例
-date: 2014-09-28 18:52
+date: 2014-09-28 18:52 +0800
 author: onecoder
 comments: true
-categories: [batch, Java, sample, Spring, Spring]
+tags: [Spring]
+thread_key: 1821
 ---
 <p>
 	工作里用到了Spring Batch项目，以前我也是做并行计算的，听说过Spring Batch不过并没有去具体了解过。今天抽空看看官方文档进行下初步的了解。</p>
@@ -33,12 +34,14 @@ categories: [batch, Java, sample, Spring, Spring]
 </ul>
 <p>
 	Job Config Sample：</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
-&lt;job id=&quot;footballJob&quot;&gt;
-    &lt;step id=&quot;playerload&quot; next=&quot;gameLoad&quot;/&gt;
-    &lt;step id=&quot;gameLoad&quot; next=&quot;playerSummarization&quot;/&gt;
-    &lt;step id=&quot;playerSummarization&quot;/&gt;&lt;/job&gt;
-</pre>
+
+```xml
+<job id="footballJob">
+    <step id="playerload" next="gameLoad"/>
+    <step id="gameLoad" next="playerSummarization"/>
+    <step id="playerSummarization"/></job>
+```
+
 <p>
 	<em>JobInstance</em></p>
 <p>
@@ -80,19 +83,21 @@ ExecutionContext ecJob = jobExecution.getExecutionContext();
 <p>
 	JobRepository是关于前面提到的Job模版(Stereotypes)的持久化机制。提供了对了JobLauncher，Job和Step实现类的CRUD操作。当初次加载Job的时候，从repository中获取 JobExecution，在执行的过程中，StepExecution和JobExectuion的实现类通过repository持久化。</p>
 <pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
-&lt;job-repository id=&quot;jobRepository&quot;/&gt;
+<job-repository id="jobRepository"/>
 </pre>
 <p>
 	<em>JobLauncher</em></p>
 <p>
 	JobLauncher是用于用指定的JobParameters加载Job的接口。</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 public interface JobLauncher {
 
     public JobExecution run(Job job, JobParameters jobParameters)
                 throws JobExecutionAlreadyRunningException, JobRestartException;
 }
-</pre>
+```
+
 <p>
 	Item Reader、 Item Writer、Item Processor</p>
 <p style="text-align: center;">
@@ -101,71 +106,77 @@ public interface JobLauncher {
 	分别用于读、写和转换业务数据。转换即是进行数据模型的转换。</p>
 <p>
 	<em>命名空间（Batch Namesapce）</em></p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
-&lt;beans:beans xmlns=&quot;http://www.springframework.org/schema/batch&quot;
-     xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;
-     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-     xsi:schemaLocation=&quot;
+
+```xml
+<beans:beans xmlns="http://www.springframework.org/schema/batch"
+     xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/batch
-           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd&quot;&gt;</pre>
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+```
+
 <p>
 	<strong>完整使用样例：</strong></p>
 <p>
 	配置文件 batch-context.xml</p>
-<pre class="brush:xml;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
-&lt;beans:beans xmlns= &quot;http://www.springframework.org/schema/batch&quot;
-     xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot; xmlns:xsi= &quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-     xsi:schemaLocation=&quot;
+
+```xml
+<beans:beans xmlns= "http://www.springframework.org/schema/batch"
+     xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="
            http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/batch
-           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd&quot;&gt;
-     &lt;beans:bean id =&quot;first-tasklet&quot;
-           class= &quot;com.coderli.spring.batch.firstjob.FirstTasklet&quot; &gt;&lt;/beans:bean &gt;
+           http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+     <beans:bean id ="first-tasklet"
+           class= "com.coderli.spring.batch.firstjob.FirstTasklet" ></beans:bean >
 
-     &lt;beans:bean id =&quot;jobRepository&quot;
-           class= &quot;org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean&quot; &gt;
-           &lt;beans:property name =&quot;transactionManager&quot; ref= &quot;transactionManager&quot; /&gt;
-     &lt;/beans:bean &gt;
+     <beans:bean id ="jobRepository"
+           class= "org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" >
+           <beans:property name ="transactionManager" ref= "transactionManager" />
+     </beans:bean >
 
-     &lt;beans:bean id =&quot;transactionManager&quot;
-           class= &quot;org.springframework.batch.support.transaction.ResourcelessTransactionManager&quot; &gt;&lt;/beans:bean &gt;
+     <beans:bean id ="transactionManager"
+           class= "org.springframework.batch.support.transaction.ResourcelessTransactionManager" ></beans:bean >
 
-     &lt;job id =&quot;onecoder-job&quot;&gt;
-           &lt;step id =&quot;first-step&quot; next=&quot;secend-step&quot;&gt;
-               &lt;tasklet ref =&quot;first-tasklet&quot;&gt;&lt;/ tasklet&gt;
-           &lt;/step &gt;
-           &lt;step id =&quot;secend-step&quot; &gt;
-               &lt;tasklet &gt;
-                    &lt;chunk reader =&quot;myReader&quot; writer= &quot;myWriter&quot; processor =&quot;myProcessor&quot;
-                         commit-interval= &quot;1&quot;&gt;&lt;/chunk &gt;
-               &lt;/tasklet &gt;
-           &lt;/step &gt;
-     &lt;/job &gt;
+     <job id ="onecoder-job">
+           <step id ="first-step" next="secend-step">
+               <tasklet ref ="first-tasklet"></ tasklet>
+           </step >
+           <step id ="secend-step" >
+               <tasklet >
+                    <chunk reader ="myReader" writer= "myWriter" processor ="myProcessor"
+                         commit-interval= "1"></chunk >
+               </tasklet >
+           </step >
+     </job >
 
-     &lt;beans:bean id =&quot;myReader&quot; class= &quot;com.coderli.spring.batch.firstjob.MyReader&quot; &gt;&lt;/beans:bean &gt;
-     &lt;beans:bean id =&quot;myWriter&quot; class= &quot;com.coderli.spring.batch.firstjob.MyWriter&quot; &gt;&lt;/beans:bean &gt;
-     &lt;beans:bean id =&quot;myProcessor&quot;
-           class= &quot;com.coderli.spring.batch.firstjob.MyProcessor&quot; &gt;&lt;/beans:bean &gt;
-     &lt;beans:bean id =&quot;myFirstJobLauncher&quot;
-           class= &quot;org.springframework.batch.core.launch.support.SimpleJobLauncher&quot; &gt;
-           &lt;beans:property name =&quot;taskExecutor&quot; ref= &quot;syncTaskExecutor&quot; /&gt;
-           &lt;beans:property name =&quot;jobRepository&quot; ref= &quot;jobRepository&quot; /&gt;
-     &lt;/beans:bean &gt;
-     &lt;beans:bean id =&quot;syncTaskExecutor&quot;
-           class= &quot;org.springframework.core.task.SyncTaskExecutor&quot; /&gt;
-     &lt;beans:bean id =&quot;jobLauncherTestUtils&quot;
-           class= &quot;org.springframework.batch.test.JobLauncherTestUtils&quot; &gt;
-           &lt;beans:property name =&quot;job&quot; ref= &quot;onecoder-job&quot;&gt;&lt;/beans:property &gt;
-     &lt;/beans:bean &gt;
+     <beans:bean id ="myReader" class= "com.coderli.spring.batch.firstjob.MyReader" ></beans:bean >
+     <beans:bean id ="myWriter" class= "com.coderli.spring.batch.firstjob.MyWriter" ></beans:bean >
+     <beans:bean id ="myProcessor"
+           class= "com.coderli.spring.batch.firstjob.MyProcessor" ></beans:bean >
+     <beans:bean id ="myFirstJobLauncher"
+           class= "org.springframework.batch.core.launch.support.SimpleJobLauncher" >
+           <beans:property name ="taskExecutor" ref= "syncTaskExecutor" />
+           <beans:property name ="jobRepository" ref= "jobRepository" />
+     </beans:bean >
+     <beans:bean id ="syncTaskExecutor"
+           class= "org.springframework.core.task.SyncTaskExecutor" />
+     <beans:bean id ="jobLauncherTestUtils"
+           class= "org.springframework.batch.test.JobLauncherTestUtils" >
+           <beans:property name ="job" ref= "onecoder-job"></beans:property >
+     </beans:bean >
 
-&lt;/beans:beans&gt;
-</pre>
+</beans:beans>
+```
+
 <p>
 	<em>First-Tasklet类</em></p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 package com.coderli.spring.batch.firstjob;
 
 import lombok.extern.slf4j.Slf4j;
@@ -181,14 +192,16 @@ public class FirstTasklet implements Tasklet {
      @Override
      public RepeatStatus execute(StepContribution contribution,
               ChunkContext chunkContext) throws Exception {
-           log.info( &quot;This is tasklet one in step one of job MyJob&quot;);
+           log.info( "This is tasklet one in step one of job MyJob");
            return RepeatStatus.FINISHED;
      }
 }
-</pre>
+```
+
 <p>
 	Reader类：</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 package com.coderli.spring.batch.firstjob;
 
 import lombok.extern.slf4j.Slf4j;
@@ -205,30 +218,32 @@ import org.springframework.batch.item.UnexpectedInputException;
 * @date 2014年9月28日 下午2:33:43
 */
 @Slf4j
-public class MyReader implements ItemReader&lt;MyModel&gt; {
+public class MyReader implements ItemReader<MyModel> {
 
      private int count;
 
      @Override
      public MyModel read() throws Exception, UnexpectedInputException,
               ParseException, NonTransientResourceException {
-           log.info( &quot;This is my reader in step two of job: [MyJob.]&quot;);
+           log.info( "This is my reader in step two of job: [MyJob.]");
           MyModel model = null;
-           if ( count &lt; 2) {
+           if ( count < 2) {
                model = new MyModel();
-               model.setDescription( &quot;My Description&quot;);
-               model.setId( &quot;My ID&quot;);
-               model.setName( &quot;My Name&quot;);
+               model.setDescription( "My Description");
+               model.setId( "My ID");
+               model.setName( "My Name");
                count++;
           }
            return model;
      }
 
 }
-</pre>
+```
+
 <p>
 	writer类</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 package com.coderli.spring.batch.firstjob;
 
 import java.util.List;
@@ -244,22 +259,24 @@ import org.springframework.batch.item.ItemWriter;
 * @date 2014年9月28日 下午2:46:20
 */
 @Slf4j
-public class MyWriter implements ItemWriter&lt;String&gt; {
+public class MyWriter implements ItemWriter<String> {
 
      @Override
-     public void write(List&lt;? extends String&gt; items) throws Exception {
-           log.info( &quot;This is my writer in step two for job: [MyJob].&quot;);
-           log.info( &quot;Write the JSON string to the console.&quot;);
+     public void write(List<? extends String> items) throws Exception {
+           log.info( "This is my writer in step two for job: [MyJob].");
+           log.info( "Write the JSON string to the console.");
            for (String item : items) {
-               log.info( &quot;Write item: {}&quot;, item);
+               log.info( "Write item: {}", item);
           }
      }
 
 }
-</pre>
+```
+
 <p>
 	processor类</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 package com.coderli.spring.batch.firstjob;
 
 import lombok.extern.slf4j.Slf4j;
@@ -274,20 +291,22 @@ import com.google.gson.Gson;
 * @date 2014年9月28日 下午2:39:48
 */
 @Slf4j
-public class MyProcessor implements ItemProcessor&lt;MyModel, String&gt; {
+public class MyProcessor implements ItemProcessor<MyModel, String> {
 
      @Override
      public String process(MyModel item) throws Exception {
-           log.info( &quot;This is my process in step two of job: [MyJob].&quot;);
-           log.info( &quot;Transfer MyModel to JSON string.&quot;);
+           log.info( "This is my process in step two of job: [MyJob].");
+           log.info( "Transfer MyModel to JSON string.");
           Gson gson = new Gson();
            return gson.toJson( item);
      }
 }
-</pre>
+```
+
 <p>
 	测试类</p>
-<pre class="brush:java;first-line:1;pad-line-numbers:true;highlight:null;collapse:false;" style="width: 1272.03125px;">
+
+```java
 package com.coderli.spring.batch.firstjob;
 
 import org.junit.Assert;
@@ -306,7 +325,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 * @date 2014年9月28日 下午3:03:03
 */
 @RunWith(SpringJUnit4ClassRunner. class)
-@ContextConfiguration(locations = { &quot;../batch-context.xml&quot; })
+@ContextConfiguration(locations = { "../batch-context.xml" })
 public class MyFirstJobTest {
 
      @Autowired
@@ -317,11 +336,12 @@ public class MyFirstJobTest {
      public void testJob() throws Exception {
            jobLauncherTestUtils.launchJob();
           JobExecution jobExecution = jobLauncherTestUtils .launchJob();
-          Assert. assertEquals(&quot;COMPLETED&quot;, jobExecution.getExitStatus().getExitCode());
+          Assert. assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode());
      }
 }
 
-</pre>
+```
+
 <p>
 	简单介绍上述代码里用到的东西，@SLF4J注解是lombok中的，之前介绍过。测试用的Spring-test和spring-batch-test提供的相关功能。</p>
 
