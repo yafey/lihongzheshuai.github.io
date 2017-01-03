@@ -1,10 +1,11 @@
 ---
 layout: post
 title: zTree 上手记录
-date: 2014-10-09 16:53
+date: 2014-10-09 16:53 +0800
 author: onecoder
 comments: true
-categories: [ajax, JavaScript, jQuery, zTree]
+tags: [zTree]
+thread_key: 1827
 ---
 由于工作需要，前端基本瞎的我也需要学习一些前端的知识。第一课就是zTree，因为我要做一个树。
 
@@ -20,8 +21,9 @@ zTree支持JSON格式的数据，用zTree生成一个基本树很简单。
 	<li>给出节点数据(JSON)。</li>
 	<li>调用初始化接口。参见下面官方样例：</li>
 </ol>
-<pre class="brush:js">var setting = {    };
 
+```javascript
+var setting = {    };
           var zNodes =[
               { name:"父节点1 - 展开", open:true,
                    children: [
@@ -72,21 +74,24 @@ zTree支持JSON格式的数据，用zTree生成一个基本树很简单。
           $(document).ready(function(){
               $.fn.zTree.init($("#treeDemo"), setting, zNodes);
           });
-</pre>
+```
+
 <img class="aligncenter" src="http://onecoder.qiniudn.com/standard-data-zTree.png" alt="" width="225" height="369" />
 
 这里我们使用的是标准的JSON数据格式。而且所有数据都是预先加载好的。在我们的场景中，一般是需要逐层通过ajax懒加载的。在zTree中，只需要在setting中进行适当的配置即可。代码如下：
-<pre class="brush:xml">&lt;! DOCTYPE html&gt;
-&lt; html&gt;
-&lt; head&gt;
-&lt; meta charset= "UTF-8"&gt;
-&lt; link rel= "stylesheet" href= "../../css/zTreeStyle/zTreeStyle.css"
-      type= "text/css"&gt;
-&lt; script type= "text/javascript" src= "../../js/jQuery/jquery-2.1.1.js" &gt;&lt;/script &gt;
-&lt; script type= "text/javascript"
-      src= "../../js/zTree/jquery.ztree.core-3.5.js" &gt;&lt;/script &gt;
-&lt; title&gt; OneCoder zTree Demo&lt;/ title&gt;
-&lt; SCRIPT type= "text/javascript" &gt;
+
+```xml
+<! DOCTYPE html>
+< html>
+< head>
+< meta charset= "UTF-8">
+< link rel= "stylesheet" href= "../../css/zTreeStyle/zTreeStyle.css"
+      type= "text/css">
+< script type= "text/javascript" src= "../../js/jQuery/jquery-2.1.1.js" ></script >
+< script type= "text/javascript"
+      src= "../../js/zTree/jquery.ztree.core-3.5.js" ></script >
+< title> OneCoder zTree Demo</ title>
+< SCRIPT type= "text/javascript" >
       var setting = {
           async : {
               enable : true,
@@ -104,7 +109,7 @@ zTree支持JSON格式的数据，用zTree生成一个基本树很简单。
       function filter(treeId, parentNode, childNodes) {
            if (!childNodes)
                return null;
-           for ( var i = 0, l = childNodes.length; i &lt; l; i++) {
+           for ( var i = 0, l = childNodes.length; i < l; i++) {
               childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.' );
           }
            return childNodes;
@@ -113,20 +118,23 @@ zTree支持JSON格式的数据，用zTree生成一个基本树很简单。
      $(document).ready( function() {
           $.fn.zTree.init($( "#ajaxTreeDemo"), setting);
      });
-&lt;/ SCRIPT&gt;
+</ SCRIPT>
 
-&lt;/ head&gt;
-&lt; body&gt;
-      &lt;div class = "zTreeDemoBackground left"&gt;
-           &lt;ul id = "ajaxTreeDemo" class= "ztree"&gt;&lt;/ ul&gt;
-      &lt;/div &gt;
+</ head>
+< body>
+      <div class = "zTreeDemoBackground left">
+           <ul id = "ajaxTreeDemo" class= "ztree"></ ul>
+      </div >
 
-&lt;/ body&gt;
-&lt;/ html&gt;
-</pre>
+</ body>
+</ html>
+```
+
 这里主要的区别就是在setting中设置了async属性。url即为ajax请求的地址。其他属性可在API文档中查询：http://www.ztree.me/v3/api.php
 服务端代码如下：
-<pre class="brush:java">package com.coderli.springmvc.controller;
+
+```java
+package com.coderli.springmvc.controller;
 
 import java.io.IOException;
 
@@ -180,7 +188,7 @@ public class ZTreeData {
       private boolean open;
       // 节点是否是父亲节点
       private boolean isParent;
-      private List&lt;ZTreeData&gt; children = new ArrayList&lt;ZTreeData&gt;();;
+      private List<ZTreeData> children = new ArrayList<ZTreeData>();;
 
       public ZTreeData() {
      }
@@ -195,7 +203,8 @@ public class ZTreeData {
      }
 
 }
-</pre>
+```
+
 就是根据上面的标准JSON数据格式来构造返回数据。然后zTree就会根据你返回的数据自动生成。从代码里，也可以看出。如果isParent=true，则会认为是父亲节点，在点击展开节点时会再次向后端请求数据。基本上，对于我们来说，至此已够了。
 
 会上手了，深入的使用只要参考官方的API文档即可。
