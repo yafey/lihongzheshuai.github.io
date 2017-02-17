@@ -4,14 +4,17 @@ title: IP范围过滤实现
 date: 2014-10-24 10:44
 author: onecoder
 comments: true
-categories: [filter, ip, J2EE, Java]
+tags: [Java]
+thread_key: 1841
 ---
 项目里要求实现在项目上线前社内测试团地可以正常访问系统，而外部访问用户看到的是系统尚未开放的页面。
 
 OneCoder的第一反映就是实现一个filter，配置可访问的IP规则，通过正则进行匹配。通过的正常进入系统，不通过的redirect到指定欢迎页面。
 
 整个代码没什么难度，核心就是一个IP规则的检验功能。考虑到配置的简便性，即一般熟悉192.168.1.*和192.168.2.1-23，这种全部匹配和范围匹配的配置方式。OneCoder决定采用拆分解析匹配的方式。规则之间用分号;分隔，是或的关系。代码实现如下：
-<pre class="brush:java">package com.coderli.web.filter.ip;
+
+```java
+package com.coderli.web.filter.ip;
 
 /**
  * IP规则正则处理工具类
@@ -29,7 +32,7 @@ public class IPRegexUtil {
       * @param ipStr
       *            待校验IP
       * @param ipPattern
-      *            IP匹配规则。支持 * 匹配所有和 - 匹配范围。用分号分隔 &lt;br&gt;
+      *            IP匹配规则。支持 * 匹配所有和 - 匹配范围。用分号分隔 <br>
       *            例如：10.34.163.*;10.34.162.1 -128
       * @return
       */
@@ -59,11 +62,11 @@ public class IPRegexUtil {
                int from = Integer.valueOf(rangeArr[0]).intValue();
                int to = Integer.valueOf(rangeArr[1]).intValue();
                int value = Integer.valueOf(ipStrArr[3]).intValue();
-               if ( value &lt; from || value &gt; to) {
+               if ( value < from || value > to) {
                     return false;
               }
           }
-           for ( int i = 0; i &lt; end; i++) {
+           for ( int i = 0; i < end; i++) {
                if ( patternArr[ i].equals( "*")) {
                     continue;
               }
@@ -75,9 +78,12 @@ public class IPRegexUtil {
      }
 
 }
-</pre>
+```
+
 实现过滤器如下：
-<pre class="brush:java">package com.coderli.web.filter.ip;
+
+```java
+package com.coderli.web.filter.ip;
 
 import java.io.IOException;
 
@@ -91,7 +97,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-* IP地址过滤器，如果IP地址在过滤的范围内，则允许访问。&lt;br&gt;
+* IP地址过滤器，如果IP地址在过滤的范围内，则允许访问。<br>
 * 如果没在范围内，则跳转到禁止页面。
 *
 * @author OneCoder
@@ -136,19 +142,24 @@ public class IPFilter implements Filter {
           this.ipPattern = ipPattern;
      }
 
-}</pre>
+}
+```
+
 web.xml配置如下：
-<pre class="brush:xml">     &lt;filter&gt;
-           &lt;filter-name &gt;IPFilter &lt;/filter-name &gt;
-           &lt;filter-class &gt;com.coderli.web.filter.ip.IPFilter &lt;/filter-class &gt;
-           &lt;init-param &gt;
-               &lt;param-name &gt;ip-pattern&lt;/ param-name&gt;
-                &lt;param-value &gt;10.34.163.169;10.34.163.1-254 &lt;/param-value &gt;
-           &lt;/init-param &gt;
-     &lt;/filter &gt;
-     &lt;filter-mapping &gt;
-           &lt;filter-name &gt;IPFilter &lt;/filter-name &gt;
-           &lt;url-pattern &gt;/* &lt;/url-pattern &gt;
-     &lt;/filter-mapping &gt;
-</pre>
+
+```xml
+     <filter>
+           <filter-name >IPFilter </filter-name >
+           <filter-class >com.coderli.web.filter.ip.IPFilter </filter-class >
+           <init-param >
+               <param-name >ip-pattern</ param-name>
+                <param-value >10.34.163.169;10.34.163.1-254 </param-value >
+           </init-param >
+     </filter >
+     <filter-mapping >
+           <filter-name >IPFilter </filter-name >
+           <url-pattern >/* </url-pattern >
+     </filter-mapping >
+```
+
 代码似乎没什么好解释的，目前看似乎是满足了需求了。
