@@ -11,8 +11,8 @@ thread_key: 1843
 官方地址：https://github.com/dreamhead/moc
 
 Moco服务端就是一个独立的jar包。通过命令(针对0.9.2版本)：
-<blockquote>java -jar moco-runner-<version>-standalone.jar start -p 12306 -c ***.json</blockquote>
-即可启动服务。其中12306是任意指定的端口号。foo.json是需要加载的配置文件名。<version> 是你下载的Moco的版本号，当前最新版为0.9.2。
+<blockquote>java -jar moco-runner-&lt;version&gt;-standalone.jar start -p 12306 -c ***.json</blockquote>
+即可启动服务。其中12306是任意指定的端口号。foo.json是需要加载的配置文件名。&lt;version&gt; 是你下载的Moco的版本号，当前最新版为0.9.2。
 
 <img class="aligncenter" src="http://onecoder.qiniudn.com/start-moco.png" alt="" width="674" height="437" />
 
@@ -71,7 +71,7 @@ Moco支持在全局的配置文件中引入其他配置文件，这样就可以�
 ]</div></blockquote>
 </div>
 注意，此时需要通过参数-g在加载全局配置文件。即：
-<blockquote>java -jar moco-runner-<version>-standalone.jar start -p 12306 -g onecoder.json</blockquote>
+<blockquote>java -jar moco-runner-&lt;version&gt;-standalone.jar start -p 12306 -g onecoder.json</blockquote>
 否则配置文件解析会报错。这里容易忽略。
 
 启动成功后，我们分别通过http://localhost:12306/girl/hello 和 http://localhost:12306/boy/hello 访问服务，便可得到对应的reponse结果。
