@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 利用supercsv读写CSV、TSV文件
-date: 2014-11-06 16:33
+date: 2014-11-06 16:33 +0800
 author: onecoder
 comments: true
-categories: [csv, Java, Java进阶, supercsv, tsv]
+tags: [Java]
+thread_key: 1849
 ---
 先简单介绍下CSV和TSV文件的区别：
 <blockquote>TSV ，Tab-separated values的缩写，即制表符分隔值。关于TSV标准，参考：<a href="http://en.wikipedia.org/wiki/Tab-separated_values">http://en.wikipedia.org/wiki/Tab-separated_values</a>
@@ -28,7 +29,9 @@ United States",Y,0,"""Play it, Sam. Play ""As Time Goes By."""" - Casablanca",th
 Santa Clara, CA 95050
 United States",Y,3,"""You've got to ask yourself one question: ""Do I feel lucky?"" Well, do ya, punk?"" - Dirty Harry",billy34@hotmail.com,36</blockquote>
 利用MapReader方式解析的代码：
-<pre class="brush:java">/**
+
+```java
+/**
  * An example of reading using CsvMapReader.
  */private static void readWithCsvMapReader() throws Exception {
         
@@ -77,11 +80,14 @@ United States",Y,3,"""You've got to ask yourself one question: ""Do I feel lucky
         };
         
         return processors;}
-</pre>
+```
+
 样例的代码恐怕清楚的不能再清楚了。只需要解释一点，分隔符是通过CsvPreference.STANDARD_PREFERENCE设定的。如果想要解析TSV文件，只需要将这里换成CsvPreference TAB_PREFERENCE即可。
 
 附个源码吧：
-<pre class="brush:java">/**
+
+```java
+/**
       * Ready to use configuration that should cover 99% of all usages.
       */
       public static final CsvPreference STANDARD_PREFERENCE = new CsvPreference.Builder('"' , ',',"\r\n").build();
@@ -100,4 +106,4 @@ United States",Y,3,"""You've got to ask yourself one question: ""Do I feel lucky
       * Ready to use configuration for tab -delimited files.
       */
       public static final CsvPreference TAB_PREFERENCE = new CsvPreference.Builder( '"', '\t', "\n").build();
-</pre>
+```
