@@ -6,7 +6,7 @@ date: 2017-03-24 14:39:39 +0800
 comments: true
 author: onecoder
 thread_key: 1906
----# 问题描述Spring XD on Yarn在使用过程中发现不论是YarnClient还是AppMaster对Yarn HA的支持都不好。在Yarn的RM重启或切换的情况下，YarnClient必须修改配置文件中的RM地址才可以继续使用，即使在配置文件中配置了Yarn HA的相关配置也不生效。而AppMaster同样会因为长时间监测不到心跳而被Yarn Kill掉，导致XD服务挂掉。因此，此调研的目标实际是为了解决XD on Yarn对RM HA的支持问题。 #  YarnClient问题调研
+---Spring XD on Yarn在使用过程中发现不论是YarnClient还是AppMaster对Yarn HA的支持都不好。在Yarn的RM重启或切换的情况下，YarnClient必须修改配置文件中的RM地址才可以继续使用，即使在配置文件中配置了Yarn HA的相关配置也不生效。而AppMaster同样会因为长时间监测不到心跳而被Yarn Kill掉，导致XD服务挂掉。因此，此调研的目标实际是为了解决XD on Yarn对RM HA的支持问题。 #  YarnClient问题调研
 ## Apache YarnClient
 官方的YarnClient通过 ClientRMProxy#createRMProxy 来创建底层通信用proxy。而在改函数中，会判断是否开启了Yarn HA。即
 
