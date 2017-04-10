@@ -7,8 +7,9 @@ comments: true
 author: onecoder
 thread_key: 1907
 ---
-# 功能说明
 对于保存在.properties文件中的敏感信息，支持采用加密的方式保存。然后在程序中解密使用。
+
+<!--break-->
 
 # 实现方案
 采用自定义PropertySourceLoader的方式，在.properties配置文件加载期，遍历值，遇到指定格式的值，则执行解密操作。具体代码如下：
