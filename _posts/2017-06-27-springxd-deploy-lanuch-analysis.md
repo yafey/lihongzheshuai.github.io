@@ -14,4 +14,4 @@ thread_key: 1908
 
 <!--break-->
 
-![](/images/post/xd-deploy-launch/job-deploy-launch)
+![](/images/post/xd-deploy-launch/job-deploy-launch.png)
