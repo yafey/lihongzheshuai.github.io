@@ -48,8 +48,10 @@ java.lang.module.FindException: Unable to derive module descriptor for /Users/ap
 Caused by: java.lang.module.InvalidModuleDescriptorException: Provider class lombok.eclipse.handlers.HandleAccessors not in module
 
 官方也有对应issue#1361
-work not good with java 9 #1361
+work not good with java 9 #1361  
 [https://github.com/rzwitserloot/lombok/issues/1361](https://github.com/rzwitserloot/lombok/issues/1361)
 
-
 Lombok在Java9下，基本算是无法使用了。
+
+补充：发现issue1361是关闭状态。我提交了一个new issue#1470
+[https://github.com/rzwitserloot/lombok/issues/1470](https://github.com/rzwitserloot/lombok/issues/1470)
